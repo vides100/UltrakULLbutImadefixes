@@ -206,33 +206,68 @@ namespace UltrakULL
 		{
 			return instructions.Select(i => new CodeInstruction(i.Item1, i.Item2)).ToList();
 		}
-		
-		public static GameObject GetObject(string path)
-		{
-			string rootPath, restPath = null;
 
-			if (!path.Contains('/'))
-				rootPath = path;
-			else
-			{
-				var pathParts = path.Split(new[] { '/' }, 2);
-				rootPath = pathParts[0];
-				restPath = pathParts[1];
-			}
+        public static GameObject GetObject(string path)
+        {
+            string rootPath, restPath = null;
 
-			var rootList = new List<GameObject>();
-			GameObject rootPart = null;
-			SceneManager.GetActiveScene().GetRootGameObjects(rootList);
-			
-			foreach (var child in rootList.Where(child => child.name == rootPath))
-				rootPart = child;
+            if (!path.Contains('/'))
+                rootPath = path;
+            else
+            {
+                var pathParts = path.Split(new[] { '/' }, 2);
+                rootPath = pathParts[0];
+                restPath = pathParts[1];
+            }
 
-			if (rootPart == null)
-				return null;
+            // Get ALL root objects, even inactive ones
+            var roots = SceneManager.GetActiveScene().GetRootGameObjects();
 
-			return restPath == null
-				? rootPart
-				: rootPart.transform.Find(restPath).gameObject;
-		}
-	}
+            foreach (var root in roots)
+            {
+                if (root.name != rootPath)
+                    continue;
+
+                if (restPath == null)
+                    return root;
+
+                var result = FindChildRecursive(root.transform, restPath);
+                if (result != null)
+                    return result.gameObject;
+            }
+
+            return null;
+        }
+
+        private static Transform FindChildRecursive(Transform parent, string path)
+        {
+
+            // Support for paths of the form "A/B/C"
+            var split = path.Split('/');
+            return FindRecursiveInternal(parent, split, 0);
+        }
+
+        private static Transform FindRecursiveInternal(Transform current, string[] split, int index)
+        {
+            if (current == null || index >= split.Length)
+                return current;
+
+            var child = current.Find(split[index]);
+            if (child == null)
+            {
+
+                // Trying to manually traverse all children (in case the object is disabled)
+                foreach (Transform t in current)
+                {
+                    if (t.name == split[index])
+                    {
+                        child = t;
+                        break;
+                    }
+                }
+            }
+
+            return FindRecursiveInternal(child, split, index + 1);
+        }
+    }
 }

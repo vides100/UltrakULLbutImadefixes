@@ -32,14 +32,36 @@ namespace UltrakULL
             {
                 foreach (var gameObject in objectReference.Objects)
                 {
-                    var subtitledAudioSource = GetObject(gameObject).GetComponent<SubtitledAudioSource>();
-                    var audioSource = GetObject(gameObject).GetComponentInChildren<AudioSource>();
-    
+                    var obj = GetObject(gameObject);
+                    if (obj == null)
+                    {
+                        Logging.Warn($"[UAK] GetObject('{gameObject}') return NULL");
+                        continue;
+                    }
+
+                    var subtitledAudioSource = obj.GetComponent<SubtitledAudioSource>();
+                    var audioSource = obj.GetComponentInChildren<AudioSource>();
+
                     if (ActiveDubbingEnabled())
-                        audioSource.clip = SwapClipWithFile(audioSource.clip, Combine(SpeechFolder, objectReference.AudioPath));
-                    
+                    {
+                        if (audioSource != null)
+                        {
+                            audioSource.clip = SwapClipWithFile(audioSource.clip, Combine(SpeechFolder, objectReference.AudioPath));
+                        }
+                        else
+                        {
+                            Logging.Warn($"[UAK] AudioSource not founded in '{obj.name}'");
+                        }
+                    }
+
                     if (subtitledAudioSource != null)
+                    {
                         SetPrivate(subtitledAudioSource, typeof(SubtitledAudioSource), "subtitles", objectReference.ToSubtitleData());
+                    }
+                    else
+                    {
+                        Logging.Warn($"[UAK] SubtitledAudioSource not founded in '{obj.name}'");
+                    }
                 }
             }
         }

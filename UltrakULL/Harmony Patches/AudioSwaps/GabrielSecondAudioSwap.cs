@@ -8,7 +8,7 @@ using static UltrakULL.CommonFunctions;
 
 namespace UltrakULL.Harmony_Patches.AudioSwaps
 {
-    [HarmonyPatch(typeof(GabrielSecond),"Start")]
+    [HarmonyPatch(typeof(GabrielSecond),"Awake")]
     public static class GabrielSecondAudioSwap
     {
         

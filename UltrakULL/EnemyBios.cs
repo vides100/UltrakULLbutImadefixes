@@ -12,15 +12,15 @@ namespace UltrakULL
             Logging.Warn(originalName);
             if (originalName.ToUpper().Contains("RADIANT"))
             {
-                if (originalName.Contains("SWORDSMACHINE"))
+                if (originalName.ToUpper().Contains("SWORDSMACHINE"))
                 {
                     return LanguageManager.CurrentLanguage.enemyNames.enemyname_radiant_swordsmachine;
                 }
-                if (originalName.Contains("CERBERUS"))
+                if (originalName.ToUpper().Contains("CERBERUS"))
                 {
                     return LanguageManager.CurrentLanguage.enemyNames.enemyname_radiant_cerberus;
                 }
-                if (originalName.Contains("HIDEOUS MASS")) //I don't know why, but the RADIANT HIDEOUS MASS, when the Idol is destroyed (in the 1-E), does not translate.
+                if (originalName.ToUpper().Contains("HIDEOUS MASS")) //I don't know why, but the RADIANT HIDEOUS MASS, when the Idol is destroyed (in the 1-E), does not translate.
                 {
                     return LanguageManager.CurrentLanguage.enemyNames.enemyname_radiant_hideousMass;
                 }
@@ -87,7 +87,7 @@ namespace UltrakULL
                 default: 
                     { 
                     Logging.Warn("Untranslated enemy name: " + originalName); 
-                    return "Untranslated enemy name: " + originalName; 
+                    return originalName; 
                     }
             }
         }

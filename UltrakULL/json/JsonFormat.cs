@@ -1351,6 +1351,12 @@ namespace UltrakULL.json
         public string mainmenu_mods;
         public string mainmenu_restart;
 
+        public string wingModule;
+        public string armModuleFactory;
+        public string armModuleFeedbacker;
+        public string visualCortexModule;
+        public string legModule;
+
         public string difficulty_title;
         public string difficulty_easy;
         public string difficulty_normal;
@@ -2484,6 +2490,7 @@ namespace UltrakULL.json
         public string act1_lustFirst_knuckleblaster2;
         public string act1_lustFirst_dashJump;
         public string act1_lustFirst_crane;
+        public string act1_lustFirst_elevator;
 
         public string act1_lustSecond_feedbacker1;
         public string act1_lustSecond_feedbacker2;

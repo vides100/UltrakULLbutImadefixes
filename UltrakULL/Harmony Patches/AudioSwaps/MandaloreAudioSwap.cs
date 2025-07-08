@@ -96,8 +96,9 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
                     "mandaloreTaunt_WhyAreWeInThePast",
                     "mandaloreTaunt_ImGonnaPoisonYou",
                 };
-                
-                for (int x = 0; x < mandaloreTauntManda.Length-1; x++)
+
+                int minLength = Math.Min(mandaloreTauntManda.Length, Math.Min(mandaloreTauntOwl.Length, mandaTauntLines.Length));
+                for (int x = 0; x < minLength; x++)
                 {
                     switch(x)
                     {

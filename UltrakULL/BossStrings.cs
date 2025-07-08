@@ -16,7 +16,7 @@ namespace UltrakULL
             //    return (LanguageManager.CurrentLanguage.enemyNames.enemyname_boss_swordsmachineAgony + " " + EnemyBios.GetName(originalBossName.ToUpper())); ;
             //}
 
-            return EnemyBios.GetName(originalBossName.ToUpper());
+            return EnemyBios.GetName(originalBossName);
         }
     }
 }

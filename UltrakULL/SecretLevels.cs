@@ -17,6 +17,8 @@ namespace UltrakULL
         private void PatchTestament(ref GameObject testamentRoom)
         {
             TextMeshProUGUI testamentPanelText = null;
+            TextMeshProUGUI testamentPanelText4S1 = null;
+            TextMeshProUGUI testamentPanelText4S2 = null;
             //TextMeshProUGUI testamentPanelTitle = null;
 
             //0-S
@@ -39,10 +41,66 @@ namespace UltrakULL
             else if (GetCurrentSceneName() == "Level 4-S")
             {
                 //testamentPanelTitle = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(testamentRoom, "4 Stuff"), "FinalRoom 2"), "Room"), "Testament Shop"), "Canvas"), "Border"), "TipBox"), "Panel"), "Title"));
+                Transform[] allChildren = testamentRoom.GetComponentsInChildren<Transform>(true);
+                List<GameObject> stuff = new List<GameObject>();
+                int errorCount = 0;
+                foreach (Transform child in allChildren)
+                {
+                    Logging.Message($"Current object -- {child.gameObject.name}");
+                    if (child.name.Contains("4 Stuff"))
+                    {
+                        stuff.Add(child.gameObject);
+                        Logging.Warn($"Add {child.gameObject.name} to Array");
+                    }
+                }
+                foreach (GameObject stuffObject in stuff)
+                {
+                    if ((testamentPanelText4S1 == null) & (errorCount == 0))
+                    {
+                        try
+                        {
+                            testamentPanelText4S1 = GetTextMeshProUGUI(GetGameObjectChild(
+                                GetGameObjectChild(
+                                    GetGameObjectChild(
+                                        GetGameObjectChild(
+                                            GetGameObjectChild(stuffObject, "FinalRoom SecretExit"),
+                                            "Room"),
+                                        "Testament Shop (1)"),
+                                    "Canvas"),
+                                "Text (TMP)"));
+                        }
+                        catch (Exception ex)
+                        {
+                            Logging.Warn("An error occurred during the search for the first object");
+                            errorCount++;
+                        }
+                    }
+                    else if ((testamentPanelText4S2 == null) & (errorCount < 2))
+                    {
+                        try
+                        {
+                            testamentPanelText4S2 = GetTextMeshProUGUI(GetGameObjectChild(
+                                GetGameObjectChild(
+                                    GetGameObjectChild(
+                                        GetGameObjectChild(
+                                            GetGameObjectChild(stuffObject, "FinalRoom SecretExit"),
+                                            "Room"),
+                                        "Testament Shop (1)"),
+                                    "Canvas"),
+                                "Text (TMP)"));
+                        }
+                        catch (Exception ex)
+                        {
+                            Logging.Warn("An error occurred while searching for the second object");
+                            errorCount++;
+                        }
+                    }
 
-                testamentPanelText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(testamentRoom, "4 Staff(Clone)"), "FinalRoom SecretExit"), "Room"), "Testament Shop (1)"), "Canvas"), "Text (TMP)"));
-
-
+                    if (errorCount >= 2)
+                    {
+                        Logging.Error("The number of attempts to find the Text (TMP) object has been exhausted");
+                    }
+                }
             }
             //5-S   
             else if (GetCurrentSceneName() == "Level 5-S")
@@ -63,6 +121,8 @@ namespace UltrakULL
                 case "Level 0-S":
                     {
                         testamentPanelText.text =
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_prelude_testamentTitle
+                            + "\n\n" +
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_prelude_testament1
                             + "\n\n" + 
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_prelude_testament2
@@ -95,7 +155,10 @@ namespace UltrakULL
 
                 case "Level 4-S":
                     {
-                        testamentPanelText.text =
+                        if (!(testamentPanelText4S1 == null))
+                        {
+                            testamentPanelText4S1.text =
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testamentTitle + "\n\n" +
 
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament1 + "\n" +
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament2 + "\n\n" +
@@ -107,12 +170,31 @@ namespace UltrakULL
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament6 + "\n" +
                             LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament7;
 
-                        //testamentPanelTitle.text = LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testamentTitle;
+                            //testamentPanelTitle.text = LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testamentTitle;
+                        }
+                        if (!(testamentPanelText4S2 == null))
+                        {
+                            testamentPanelText4S2.text =
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testamentTitle + "\n\n" +
+
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament1 + "\n" +
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament2 + "\n\n" +
+
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament3 + "\n" +
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament4 + "\n" +
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament5 + "\n\n" +
+
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament6 + "\n" +
+                            LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testament7;
+
+                            //testamentPanelTitle.text = LanguageManager.CurrentLanguage.secretLevels.secretLevels_fourth_testamentTitle;
+                        }
                         break;
                     }
                 case "Level 5-S":
                     {
                         testamentPanelText.text =
+                                LanguageManager.CurrentLanguage.secretLevels.secretLevels_fifth_testamentTitle + "\n\n" +
                                 LanguageManager.CurrentLanguage.secretLevels.secretLevels_fifth_testament1 + "\n" +
                                 LanguageManager.CurrentLanguage.secretLevels.secretLevels_fifth_testament2 + "\n\n" +
 

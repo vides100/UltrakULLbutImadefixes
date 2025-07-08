@@ -831,13 +831,27 @@ namespace UltrakULL
             TextMeshProUGUI primeTitle = GetTextMeshProUGUI(GetGameObjectChild(primeObject, "Text"));
 			primeTitle.text = LanguageManager.CurrentLanguage.frontend.layer_prime;
 		}
-		
+        private static void PatchTextArroundV1(GameObject mainMenu)
+        {
+            GameObject textV1 = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(mainMenu, "Main Menu (1)"), "BackgroundSwapper"), "Text (TMP)"), "V1Text");
+            TextMeshProUGUI wingModule = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP)"));
+            TextMeshProUGUI armModuleFactory = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (1)"));
+            TextMeshProUGUI armModuleFeedbacker = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (2)"));
+            TextMeshProUGUI visualCortexModule = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (3)"));
+            TextMeshProUGUI legModule = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (4)"));
+            wingModule.text = LanguageManager.CurrentLanguage.frontend.wingModule;
+            armModuleFactory.text = LanguageManager.CurrentLanguage.frontend.armModuleFactory;
+            armModuleFeedbacker.text = LanguageManager.CurrentLanguage.frontend.armModuleFeedbacker;
+            visualCortexModule.text = LanguageManager.CurrentLanguage.frontend.visualCortexModule;
+            legModule.text = LanguageManager.CurrentLanguage.frontend.legModule;
+        }
 
-		public static void Patch(GameObject frontEnd)
+        public static void Patch(GameObject frontEnd)
 		{
 			try
 			{
 				PatchMainMenu(frontEnd);
+                PatchTextArroundV1(frontEnd);
                 PatchPopUps(frontEnd);
                 ChangeTitle(frontEnd);
 				PatchDifficultyMenu(frontEnd);

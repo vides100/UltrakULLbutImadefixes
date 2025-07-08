@@ -1,32 +1,75 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
+using UltrakULL.json;
 
 using static UltrakULL.CommonFunctions;
 
 namespace UltrakULL.Harmony_Patches
 {
-    //@Override
-    //Overrides the CreateBossBar method from the BossBarManager class. This is needed to swap in the translated boss names on their health bars.
-    [HarmonyPatch(typeof(BossBarManager), "CreateBossBar")]
+    [HarmonyPatch]
     public static class LocalizeBossBar
     {
+        // Патч для CreateBossBar
+        [HarmonyPatch(typeof(BossBarManager), "CreateBossBar")]
         [HarmonyPrefix]
-        public static bool CreateBossBar_MyPatch(ref BossHealthBar bossBar)
+        public static void CreateBossBar_Prefix(BossHealthBar bossBar)
         {
-            if(!isUsingEnglish())
-            {
+            LocalizeName(bossBar);
+        }
 
-                // Change "BossStrings.GetBossName(bossBar.source.FullName)" to "BossStrings.GetBossName(bossBar.bossName)" because RADIANT enemies have default source names (like RADIANT SWORDMACHINE = SWORDMACHINE) // Maybe this not work
-                string translatedName = BossStrings.GetBossName(bossBar.bossName);
-                if(translatedName != null)
+        // Патч для UpdateBossBar
+        [HarmonyPatch(typeof(BossBarManager), "UpdateBossBar")]
+        [HarmonyPrefix]
+        public static void UpdateBossBar_Prefix(BossHealthBar bossBar)
+        {
+            LocalizeName(bossBar);
+        }
+
+        public static class BossNameHelper
+        {
+            public static bool IsAlreadyLocalized(string name)
+            {
+                var enemyNames = LanguageManager.CurrentLanguage.enemyNames;
+
+                foreach (var field in enemyNames.GetType().GetFields())
                 {
-                    bossBar.bossName = BossStrings.GetBossName(bossBar.bossName);
+                    var value = field.GetValue(enemyNames)?.ToString();
+                    if (!string.IsNullOrEmpty(value) && value == name)
+                    {
+                        return true; // Совпало — это перевод
+                    }
+                }
+
+                return false; // Не совпало — значит оригинал
+            }
+        }
+
+        private static readonly HashSet<string> loggedNames = new HashSet<string>();
+
+        private static void LocalizeName(BossHealthBar bossBar)
+        {
+            if (!BossNameHelper.IsAlreadyLocalized(bossBar.bossName))
+            {
+                string translatedName = BossStrings.GetBossName(bossBar.bossName);
+                if (!string.IsNullOrEmpty(translatedName))
+                {
+                    bossBar.bossName = translatedName;
                 }
                 else
                 {
-                    bossBar.bossName = "MISSING BOSS STRING: " + bossBar.bossName;
+                    if (loggedNames.Add(bossBar.bossName)) // добавит и вернет true, если не было
+                    {
+                        Logging.Warn($"Boss name '{bossBar.bossName}' not found in localization. Using default.");
+                    }
                 }
             }
-            return true;
+            else
+            {
+                if (loggedNames.Add(bossBar.bossName))
+                {
+                    Logging.Info($"Boss name '{bossBar.bossName}' is already localized. Skipping translation.");
+                }
+            }
         }
     }
 }
