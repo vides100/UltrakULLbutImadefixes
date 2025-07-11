@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using TMPro;
 using UltrakULL.json;
 using static UltrakULL.CommonFunctions;
+using System.Linq;
 
 namespace UltrakULL
 {
@@ -52,40 +53,52 @@ namespace UltrakULL
             MainMenu.Patch(frontEnd);
             Options options = new Options(ref frontEnd);
         }
-        
+
         public static async Task CheckForUpdates()
         {
             string updateUrl = "https://api.github.com/repos/clearwateruk/ultrakull/releases/latest";
-            Client.DefaultRequestHeaders.Accept.Add( new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            Client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
-            Client.Timeout = TimeSpan.FromSeconds(5);
-            
+
+            // We assume that the Client is configured once and is static
+            if (!Client.DefaultRequestHeaders.UserAgent.Any())
+            {
+                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                Client.DefaultRequestHeaders.UserAgent.ParseAdd("UltrakULL-Updater/1.0 (+https://github.com/clearwateruk/ultrakull)");
+                Client.Timeout = TimeSpan.FromSeconds(5);
+            }
+
             try
             {
                 string responseJsonRaw = await Client.GetStringAsync(updateUrl);
                 UpdateInfo responseJson = JsonConvert.DeserializeObject<UpdateInfo>(responseJsonRaw);
-                
-                Logging.Message("Latest version on GitHub: " + responseJson.tag_name.Substring(1));
+
+                if (responseJson == null || string.IsNullOrEmpty(responseJson.tag_name))
+                    throw new Exception("Update info is missing or invalid.");
+
+                string versionString = responseJson.tag_name.TrimStart('v', 'V');
+                Logging.Message("Latest version on GitHub: " + versionString);
                 Logging.Message("Current local version: " + MainPatch.GetVersion());
-                
-                Version onlineVersion = new Version(responseJson.tag_name.Substring(1));
+
+                Version onlineVersion = new Version(versionString);
                 Version localVersion = new Version(MainPatch.GetVersion());
-                
-                switch(localVersion.CompareTo(onlineVersion))
-                {
-                    case -1: { Logging.Warn("UPDATE AVAILABLE!"); updateAvailable = true; break;}
-                    default: { Logging.Warn("No newer version detected. Assuming current version is up to date."); updateAvailable = false;break;}
-                }
+
+                updateAvailable = localVersion.CompareTo(onlineVersion) < 0;
+                if (updateAvailable)
+                    Logging.Warn("UPDATE AVAILABLE!");
+                else
+                    Logging.Message("No newer version detected. Assuming current version is up to date.");
+
+                updateFailed = false;
             }
             catch (Exception e)
             {
                 Logging.Error("Unable to acquire version info from GitHub.");
-                Logging.Error(e.ToString()); 
+                Logging.Error(e.ToString());
                 updateAvailable = false;
                 updateFailed = true;
             }
         }
-        
+
+
         //Patches all text strings in the pause menu.
         public static void PatchPauseMenu(ref GameObject canvasObj)
         {

@@ -17,7 +17,7 @@ namespace UltrakULL.Harmony_Patches
             LocalizeName(bossBar);
         }
 
-        // Патч для UpdateBossBar
+        // Patch for UpdateBossBar
         [HarmonyPatch(typeof(BossBarManager), "UpdateBossBar")]
         [HarmonyPrefix]
         public static void UpdateBossBar_Prefix(BossHealthBar bossBar)
@@ -36,11 +36,11 @@ namespace UltrakULL.Harmony_Patches
                     var value = field.GetValue(enemyNames)?.ToString();
                     if (!string.IsNullOrEmpty(value) && value == name)
                     {
-                        return true; // Совпало — это перевод
+                        return true; // If it matches, it's a translation
                     }
                 }
 
-                return false; // Не совпало — значит оригинал
+                return false;// If it doesn't match, it's the original
             }
         }
 
@@ -57,7 +57,7 @@ namespace UltrakULL.Harmony_Patches
                 }
                 else
                 {
-                    if (loggedNames.Add(bossBar.bossName)) // добавит и вернет true, если не было
+                    if (loggedNames.Add(bossBar.bossName)) // adds and returns true if not present
                     {
                         Logging.Warn($"Boss name '{bossBar.bossName}' not found in localization. Using default.");
                     }
