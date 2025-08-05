@@ -14,7 +14,44 @@ namespace UltrakULL
 {
 	public static class CommonFunctions
 	{
-		public static bool isUsingEnglish()
+
+    private static readonly Dictionary<string, string> LocalizedInputs = new Dictionary<string, string>()
+		{
+			{ "Space", LanguageManager.CurrentLanguage.inputStrings.input_space },
+			{ "Enter", LanguageManager.CurrentLanguage.inputStrings.input_enter },
+			{ "Tab", LanguageManager.CurrentLanguage.inputStrings.input_tab },
+			{ "Esc", LanguageManager.CurrentLanguage.inputStrings.input_esc },
+			{ "Left Shift", LanguageManager.CurrentLanguage.inputStrings.input_leftShift },
+			{ "Right Shift", LanguageManager.CurrentLanguage.inputStrings.input_rightShift },
+			{ "Left Control", LanguageManager.CurrentLanguage.inputStrings.input_leftControl },
+			{ "Right Control", LanguageManager.CurrentLanguage.inputStrings.input_rightControl },
+			{ "Left Alt", LanguageManager.CurrentLanguage.inputStrings.input_leftAlt },
+			{ "Right Alt", LanguageManager.CurrentLanguage.inputStrings.input_rightAlt },
+			{ "LMB", LanguageManager.CurrentLanguage.inputStrings.input_LMB },
+			{ "RMB", LanguageManager.CurrentLanguage.inputStrings.input_RMB },
+			{ "MMB", LanguageManager.CurrentLanguage.inputStrings.input_MMB },
+			{ "Up Arrow", LanguageManager.CurrentLanguage.inputStrings.input_arrowUp },
+			{ "Down Arrow", LanguageManager.CurrentLanguage.inputStrings.input_arrowDown },
+			{ "Left Arrow", LanguageManager.CurrentLanguage.inputStrings.input_arrowLeft },
+			{ "Right Arrow", LanguageManager.CurrentLanguage.inputStrings.input_arrowRight },
+            { "Forward", LanguageManager.CurrentLanguage.inputStrings.input_forward },
+            { "Back", LanguageManager.CurrentLanguage.inputStrings.input_back },
+            { "NO BINDING", LanguageManager.CurrentLanguage.inputStrings.input_noBinding },
+        };
+
+        public static string GetLocalizedInput(string input)
+        {
+            if (input.Length == 1 && char.IsLetter(input[0]))
+                return input;
+
+			Logging.Message("[GetLocalizedInput] Input in Message = " + input);
+            if (LocalizedInputs.TryGetValue(input, out string localized))
+                return localized;
+
+            return input;
+        }
+
+        public static bool isUsingEnglish()
 		{
 			return (LanguageManager.CurrentLanguage.metadata.langDisplayName == "English");
 		}
@@ -183,26 +220,87 @@ namespace UltrakULL
 		}
 
 
-		public static GameObject GetGameObjectChild(GameObject parentObject, string childToFind)
-		{
-			Transform transform = parentObject.transform.Find(childToFind);
-			if (transform == null)
-				return null;
+        public static GameObject GetGameObjectChild(GameObject parentObject, string childToFind)
+        {
+            if (parentObject == null)
+            {
+                Logging.Error($"[GetGameObjectChild] ERROR - parentObject is NULL (looking for '{childToFind}')");
+                return null;
+            }
 
-			GameObject childToReturn = transform.gameObject;
-			return childToReturn;
-		}
-		public static Text GetTextfromGameObject(GameObject objectToUse)
+            Transform parentTransform = parentObject.transform;
+            Transform directChild = null;
+
+            for (int i = 0; i < parentTransform.childCount; i++)
+            {
+                Transform child = parentTransform.GetChild(i);
+                if (child.name == childToFind)
+                {
+                    directChild = child;
+                    break;
+                }
+            }
+
+            if (directChild == null)
+            {
+                Logging.Error($"[GetGameObjectChild] ERROR - Direct child '{childToFind}' not found under '{parentObject.name}'");
+                Logging.Info($"[GetGameObjectChild] Direct children of '{parentObject.name}':");
+                PrintChildrenTree(parentTransform, 1);
+                return null;
+            }
+
+            return directChild.gameObject;
+        }
+
+        public static Transform RecursiveFindChild(Transform parent, string childName)
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.name == childName)
+                    return child;
+
+                Transform result = RecursiveFindChild(child, childName);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+        private static void PrintChildrenTree(Transform parent, int indentLevel)
+        {
+            string indent = new string(' ', indentLevel * 2);
+
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform child = parent.GetChild(i);
+                Logging.Info($"{indent}- {child.name}");
+                if (child.childCount > 0)
+                {
+                    PrintChildrenTree(child, indentLevel + 1);
+                }
+            }
+        }
+
+        public static Text GetTextfromGameObject(GameObject objectToUse)
 		{
 			return objectToUse.GetComponent<Text>();
 		}
 
-		public static TextMeshProUGUI GetTextMeshProUGUI(GameObject objectToUse)
-		{
-			return objectToUse.GetComponent<TextMeshProUGUI>();
-		}
-		
-		public static IEnumerable<CodeInstruction> IL(params (OpCode, object)[] instructions)
+        public static TextMeshProUGUI GetTextMeshProUGUI(GameObject objectToUse)
+        {
+            if (objectToUse == null)
+            {
+                Logging.Error("[GetTextMeshProUGUI] GameObject is NULL");
+                return null;
+            }
+
+            TextMeshProUGUI tmp = objectToUse.GetComponent<TextMeshProUGUI>();
+            if (tmp == null)
+                Logging.Warn($"[GetTextMeshProUGUI] '{objectToUse.name}' not have any TextMeshProUGUI's");
+
+            return tmp;
+        }
+
+        public static IEnumerable<CodeInstruction> IL(params (OpCode, object)[] instructions)
 		{
 			return instructions.Select(i => new CodeInstruction(i.Item1, i.Item2)).ToList();
 		}

@@ -251,23 +251,22 @@ namespace UltrakULL
                     + "\n\n"
                     + "<b>" + LanguageManager.CurrentLanguage.frontend.difficulty_brutalDescription3 + "</b>";
 
-                TextMeshProUGUI underConstructionText = GetTextMeshProUGUI(GetGameObjectChild(calibrationMechanicsWindow, "Under Construction"));
+                TextMeshProUGUI underConstructionText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(calibrationMechanicsWindow, "V1 Must Die"), "Under Construction"));
                 underConstructionText.text = LanguageManager.CurrentLanguage.frontend.difficulty_underConstruction;
 
-                //Controller/autoaim settings
-                TextMeshProUGUI calibrationControllerTitle = GetTextMeshProUGUI(GetGameObjectChild(calibrationControllerWindow, "Text"));
-                calibrationControllerTitle.text = "! " + LanguageManager.CurrentLanguage.tutorial.tutorial_controllerCalibrationTitle + " !";
+                //Controller/autoaim settings //Updated patch to objects in REVAMP update
+                calibrationControllerWindow.SetActive(true); //Fast on-off for load all childs in GameObject
+                calibrationControllerWindow.SetActive(false);
+                TextMeshProUGUI calibrationControllerTitle = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(calibrationControllerWindow, "Contents"), "! Controller Detected !"), "Text"));
+                calibrationControllerTitle.text = "! " + LanguageManager.CurrentLanguage.tutorial.tutorial_controllerCalibrationTitle + " !\n<size=16>" + LanguageManager.CurrentLanguage.tutorial.tutorial_controllerCalibrationSubtitle + "</size>";
 
-                TextMeshProUGUI calibrationControllerSubtitle = GetTextMeshProUGUI(GetGameObjectChild(calibrationControllerWindow, "Text (1)"));
-                calibrationControllerSubtitle.text = LanguageManager.CurrentLanguage.tutorial.tutorial_controllerCalibrationSubtitle;
-
-                TextMeshProUGUI calibrationControllerAutoAimToggle = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(calibrationControllerWindow, "Auto Aim (1)"),"Text (1)"));
+                TextMeshProUGUI calibrationControllerAutoAimToggle = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(calibrationControllerWindow, "Contents"), "Auto Aim"), "Text"));
                 calibrationControllerAutoAimToggle.text = LanguageManager.CurrentLanguage.options.assists_autoAim;
 
-                GameObject calibrationControllerAutoAimAmount = GetGameObjectChild(calibrationControllerWindow, "Auto Aim Amount (1)");
-                TextMeshProUGUI calibrationControllerAutoAimPercent = GetTextMeshProUGUI(GetGameObjectChild(calibrationControllerAutoAimAmount,"Text (1)"));
+                GameObject calibrationControllerAutoAimAmount = GetGameObjectChild(GetGameObjectChild(calibrationControllerWindow, "Contents"), "Auto Aim Amount");
+                TextMeshProUGUI calibrationControllerAutoAimPercent = GetTextMeshProUGUI(GetGameObjectChild(calibrationControllerAutoAimAmount, "Text"));
                 calibrationControllerAutoAimPercent.text = LanguageManager.CurrentLanguage.options.assists_autoAimPercent;
-                SliderValueToText autoAimSlider = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(calibrationControllerAutoAimAmount, "Button"), "Slider"), "Text (2)").GetComponentInChildren<SliderValueToText>();
+                SliderValueToText autoAimSlider = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(calibrationControllerAutoAimAmount, "Slider Button(Clone)"), "Slider"), "Text").GetComponentInChildren<SliderValueToText>();
                 autoAimSlider.ifMin = LanguageManager.CurrentLanguage.options.assists_autoAimPercentMinimum;
                 autoAimSlider.ifMax = LanguageManager.CurrentLanguage.options.assists_autoAimPercentMaximum;
 

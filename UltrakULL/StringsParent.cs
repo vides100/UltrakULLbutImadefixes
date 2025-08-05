@@ -12,6 +12,7 @@ namespace UltrakULL
         public static string GetMessage(string message, string message2, string input)
         {
             string level = GetCurrentSceneName();
+            if (input != null && input.Length > 0) { input = GetLocalizedInput(input); }
 
             if (message.Contains("versions"))
             {

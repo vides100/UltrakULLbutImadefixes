@@ -41,6 +41,7 @@ namespace UltrakULL.json
         public Style style;
         public CheatStrings cheats;
         public Misc misc;
+        public InputStrings inputStrings;
         public Weapon weapon;
 
         public SandboxStrings sandbox;
@@ -230,8 +231,8 @@ namespace UltrakULL.json
         public string cybergrind_themesCustomFogStart;
         public string cybergrind_themesCustomFogEnd;
         public string cybergrind_themesCustomFogDefault;
-        public string cybergrind_themesCustomFogDynamicEnable;
-        public string cybergrind_themesCustomFogDynamicDisable;
+        //public string cybergrind_themesCustomFogDynamicEnable;
+        //public string cybergrind_themesCustomFogDynamicDisable;
 
         public string cybergrind_musicTitle;
         public string cybergrind_musicType;
@@ -1337,7 +1338,7 @@ namespace UltrakULL.json
 
     public class FrontEnd
     {
-        public string mainmenu_imageReplacement;
+        //public string mainmenu_imageReplacement;
         public string mainmenu_earlyAccess;
         public string mainmenu_v1Init;
         public string mainmenu_initSocials;
@@ -2314,11 +2315,13 @@ namespace UltrakULL.json
         public string advanced_level71;
         public string advanced_level73;
         public string advanced_level7S;
+        public string advanced_levelP2;
         public string advanced_52WaterScrolling;
         public string advanced_52WaterWaves;
         public string advanced_71Dark;
         public string advanced_73Grass;
         public string advanced_7SHard;
+        public string advanced_P2DisableTunnelScrolling;
 
         public string language_title;
         public string language_languages;
@@ -2539,7 +2542,7 @@ namespace UltrakULL.json
         public string act2_wrathSecond_jakito2;
         public string act2_wrathSecond_jakito3;
         public string act2_wrathSecond_neptune;
-        public string act2_wrathSecond_hark;
+        //public string act2_wrathSecond_hark;
         public string act2_wrathSecond_idol;
 
         public string act2_wrathThird_rocketLauncher;
@@ -3276,6 +3279,29 @@ namespace UltrakULL.json
         public string violenceScreenText2;
     }
 
+    public class InputStrings
+    {
+        public string input_space = "Space";
+        public string input_enter = "Enter";
+        public string input_tab = "TAB";
+        public string input_esc = "Escape";
+        public string input_leftShift = "Left Shift";
+        public string input_rightShift = "Right Shift";
+        public string input_leftControl = "Left Control";
+        public string input_rightControl = "Right Control";
+        public string input_leftAlt = "Left ALT";
+        public string input_rightAlt = "Right ALT";
+        public string input_LMB = "LMB";
+        public string input_RMB = "RMB";
+        public string input_MMB = "MMB";
+        public string input_forward = "Mouse Button 4";
+        public string input_back = "Mouse Button 5";
+        public string input_arrowUp = "Arrow Up";
+        public string input_arrowDown = "Arrow Down";
+        public string input_arrowLeft = "Arrow Left";
+        public string input_arrowRight = "Arrow Right";
+        public string input_noBinding = "NO BINDING";
+    }
     public class SandboxStrings
     {
         public string sandbox_navmeshWarn;

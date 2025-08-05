@@ -84,10 +84,6 @@ namespace UltrakULL.json
                 }
             }
 
-            foreach (string directory in subdirectories)
-            {
-                LoadLanguagesInDirectory(modVersion, directory);
-            }
         }
 
         public static void LoadLanguages(string modVersion)
