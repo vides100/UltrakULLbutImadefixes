@@ -258,6 +258,7 @@ namespace UltrakULL.json
         public string cybergrind_patternsTitle;
         public string cybergrind_patternsRefresh;
         public string cybergrind_patternsLaunchExternalEditor;
+        public string cybergrind_patternsSwitchButton;
 
         public string cybergrind_wavesTitle;
         public string cybergrind_wavesDescription1;
@@ -391,7 +392,7 @@ namespace UltrakULL.json
         public string style_hammerHitRed;
         public string style_hammerHitYellow;
         public string style_headshot;
-        public string style_headshotcombo;
+        //public string style_headshotcombo; //Not used
         public string style_heavylight;
         public string style_homerun;
         public string style_iconoclasm;
@@ -2872,8 +2873,8 @@ namespace UltrakULL.json
         public string museum_bookSalad1;
         public string museum_bookSalad2;
         public string museum_bookSalad3;
-        public string museum_bookSalad4;
-        public string museum_bookSalad5;
+        //public string museum_bookSalad4;
+        //public string museum_bookSalad5;
         
         public string museum_bookJacobHHR1;
         public string museum_bookJacobHHR2;

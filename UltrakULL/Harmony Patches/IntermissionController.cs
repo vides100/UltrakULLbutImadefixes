@@ -1,17 +1,19 @@
-﻿using HarmonyLib;
-using UltrakULL.json;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Text.RegularExpressions;
+﻿using BepInEx;
+using HarmonyLib;
+using System;
 using System.Collections;
-using System.IO;
-using UnityEngine.Networking;
-using UnityEngine;
-using System.Linq;
-
-using static UltrakULL.CommonFunctions;
-using BepInEx;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using UltrakULL.json;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Windows;
+using static UltrakULL.CommonFunctions;
+using static UnityEngine.UI.Image;
 
 namespace UltrakULL.Harmony_Patches
 {
@@ -37,7 +39,13 @@ namespace UltrakULL.Harmony_Patches
             ResetAudio();
             CoroutineHelper.Init();
 
-            if (isUsingEnglish()) return true; 
+            /*
+            In the original, there is no ▼ (wait input) between act2_intermission_fourth8 and act2_intermission_fourth9.
+            Therefore, I disable the update stop for English(to ensure that the behavior is the same between English and other languages.
+            If this option is not suitable, remove the ▼ between act2_intermission_fourth8 and act2_intermission_fourth9)
+            */
+
+            //if (isUsingEnglish()) return true; 
 
             ___txt = __instance.GetComponent<Text>();
             ___txt.verticalOverflow = VerticalWrapMode.Overflow;
@@ -71,11 +79,40 @@ namespace UltrakULL.Harmony_Patches
             return true;
         }
 
+
+        private static bool wasPausedLastFrame = false;
+
         [HarmonyPrefix]
         [HarmonyPatch("Update")]
         public static void Update_MyPatch(IntermissionController __instance, ref bool ___waitingForInput, ref bool ___skipToInput)
         {
-            if (!__instance.gameObject.activeInHierarchy) return;
+            if (!__instance.gameObject.activeInHierarchy)
+                return;
+
+            bool isPaused = MonoSingleton<OptionsManager>.Instance != null && MonoSingleton<OptionsManager>.Instance.paused;
+
+            // ▶️ Переход из паузы в норму → UnPause
+            if (wasPausedLastFrame && !isPaused)
+            {
+                if (currentAudioSource != null && currentAudioSource.clip != null && currentAudioSource.isPlaying == false)
+                {
+                    currentAudioSource.UnPause();
+                }
+            }
+            // ⏸ Вход в паузу → Pause
+            else if (!wasPausedLastFrame && isPaused)
+            {
+                if (currentAudioSource != null && currentAudioSource.isPlaying)
+                {
+                    currentAudioSource.Pause();
+                }
+            }
+
+            wasPausedLastFrame = isPaused;
+
+            // ❌ Не продолжаем обработку, если игра на паузе
+            if (isPaused)
+                return;
 
             bool waitingForInput = ___waitingForInput;
             bool skipToInput = ___skipToInput;
@@ -110,6 +147,13 @@ namespace UltrakULL.Harmony_Patches
             previousWaitingForInput = waitingForInput;
         }
 
+
+        private static IEnumerator WaitAndPlay(int index, string path, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            PlayAudioForIndex(index, path);
+        }
+
         private static string GetSanitizedHierarchyPath(Transform transform, int depth)
         {
             List<string> names = new List<string>();
@@ -131,7 +175,7 @@ namespace UltrakULL.Harmony_Patches
             if (currentAudioSource != null)
             {
                 currentAudioSource.Stop();
-                Object.Destroy(currentAudioSource.gameObject);
+                UnityEngine.Object.Destroy(currentAudioSource.gameObject);
                 currentAudioSource = null;
                 isPlaying = false;
                 CoroutineHelper.StopCurrentCoroutine();
@@ -158,7 +202,7 @@ namespace UltrakULL.Harmony_Patches
             string audioUrl = "file:///" + audioPath.Replace("\\", "/");
 
             Logging.Info($"[LocalizeIntermission] Попытка воспроизвести: {audioFileName}");
-            CoroutineHelper.StartSafeCoroutine(PlayAudioCoroutine(audioUrl, audioFileName));
+            CoroutineHelper.StartSafeCoroutine(PlayAudioCoroutine(audioUrl, audioFileName, index));
         }
 
         private static string SanitizeFileName(string name)
@@ -177,13 +221,19 @@ namespace UltrakULL.Harmony_Patches
             return sanitized.ToString();
         }
 
-        private static IEnumerator PlayAudioCoroutine(string audioUrl, string fileName)
+        private static IEnumerator PlayAudioCoroutine(string audioUrl, string fileName, int expectedIndex)
         {
             isPlaying = true;
 
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(audioUrl, AudioType.OGGVORBIS))
             {
                 yield return www.SendWebRequest();
+
+                if (currentIndex != expectedIndex)
+                {
+                    Logging.Info($"[LocalizeIntermission] Индекс изменился (ожидался {expectedIndex}, сейчас {currentIndex}), отмена воспроизведения.");
+                    yield break;
+                }
 
                 if (www.result != UnityWebRequest.Result.Success)
                 {
@@ -207,7 +257,7 @@ namespace UltrakULL.Harmony_Patches
                 source.playOnAwake = false;
 
                 currentAudioSource = source;
-                Object.DontDestroyOnLoad(audioObject);
+                UnityEngine.Object.DontDestroyOnLoad(audioObject);
 
                 Logging.Info($"[LocalizeIntermission] Воспроизведение: {fileName}");
                 source.Play();
@@ -222,11 +272,10 @@ namespace UltrakULL.Harmony_Patches
 
                 if (currentAudioSource == source && source != null)
                 {
-                    Object.Destroy(source.gameObject);
+                    UnityEngine.Object.Destroy(source.gameObject);
                     currentAudioSource = null;
                 }
 
-                clip = null;
                 isPlaying = false;
             }
         }
@@ -254,7 +303,7 @@ namespace UltrakULL.Harmony_Patches
                 if (instance == null)
                 {
                     GameObject go = new GameObject("CoroutineHelper");
-                    Object.DontDestroyOnLoad(go);
+                    UnityEngine.Object.DontDestroyOnLoad(go);
                     instance = go.AddComponent<CoroutineHelper>();
                 }
             }

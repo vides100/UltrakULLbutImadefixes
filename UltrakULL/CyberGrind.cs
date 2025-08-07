@@ -323,6 +323,9 @@ namespace UltrakULL
             TextMeshProUGUI cgPatternsWarning = GetTextMeshProUGUI(GetGameObjectChild(cgTerminalPatterns,"Warning Text"));
             cgPatternsWarning.text = "<color=red>" + LanguageManager.CurrentLanguage.cyberGrind.cybergrind_patternsWarning + "</color>";
 
+            TextMeshProUGUI cgPatternsSwitchButton = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(cgTerminalPatterns, "Enable/Disable Button"), "Text"));
+            cgPatternsSwitchButton.text = LanguageManager.CurrentLanguage.cyberGrind.cybergrind_patternsSwitchButton;
+
             TextMeshProUGUI cgPatternsBack = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(cgTerminalMainPanel, "Patterns"), "Back Button"), "Text"));
             cgPatternsBack.text = LanguageManager.CurrentLanguage.cyberGrind.cybergrind_themesCustomBack;
 

@@ -144,18 +144,18 @@
         "museum_bookHealth5": "In early 2023 we collaborated with the band HEALTH to premiere their song \"HATEFUL\" in the Cyber Grind. I've been a fan of HEALTH ever since I heard their music in Max Payne 3 and their heavy, blood-pumping electronic beats are a perfect fit for ULTRAKILL's mayhem, so I'm very happy that their music became a part of the game.",
         "museum_bookHealth6": "\"BACK TO THE CYBER GRIND\"",
 
-		"museum_bookKingGizzard1": "<b><color=orange>KING GIZZARD & THE LIZARD WIZARD</color> - GUEST COMPOSER</b>",
+        "museum_bookKingGizzard1": "<b><color=orange>KING GIZZARD & THE LIZARD WIZARD</color> - GUEST COMPOSER</b>",
         "museum_bookKingGizzard2": "<b><color=orange>STU MACKENZIE</color>",
         "museum_bookKingGizzard3": "<color=orange>AMBROSE KENNY-SMITH</color>",
         "museum_bookKingGizzard4": "<color=orange>JOEY WALKER</color>",
         "museum_bookKingGizzard5": "<color=orange>COOK CRAIG</color>",
         "museum_bookKingGizzard6": "<color=orange>LUCAS HARWOOD</color>",
-		"museum_bookKingGizzard7": "<color=orange>MICHAEL CANAVAGH</color>",
-		"museum_bookKingGizzard8": "<color=orange>ERIC MOORE</color></b> (on \"Robot Stop\")",
-		"museum_bookKingGizzard9": "King Gizzard & The Lizard Wizard is at this point a band that needs no introduction, having over the years become a legendary force in the underground rock scene. When their album PetroDragonic Apocalypse released in 2023, I felt it would be a perfect fit for ULTRAKILL's combat.",
-		"museum_bookKingGizzard10": "Me and Dave both love their music, so we had a hard time agreeing on which song to include. In the end we decided to just go for it and add all 3 of the songs we'd discussed, \"Robot Stop\" from the 2016 album Nonagon Infinity, \"The Dripping Tap\" from the 2022 album Omnium Gatherum and \"Supercell\" from the aforementioned 2023 album PetroDragonic Apocalypse.",
-		"museum_bookKingGizzard11": "Of course, by the time we actually managed to get the songs in, they had already released another 2 albums.",
-		"museum_bookKingGizzard12": "Since the band has 6 members (plus a 7th from around the time of Robot Stop), we elected to instead include a plushification of the lizard from the cover of PetroDragonic Apocalypse as a stand-in for the entire band.",
+        "museum_bookKingGizzard7": "<color=orange>MICHAEL CANAVAGH</color>",
+        "museum_bookKingGizzard8": "<color=orange>ERIC MOORE</color></b> (on \"Robot Stop\")",
+        "museum_bookKingGizzard9": "King Gizzard & The Lizard Wizard is at this point a band that needs no introduction, having over the years become a legendary force in the underground rock scene. When their album PetroDragonic Apocalypse released in 2023, I felt it would be a perfect fit for ULTRAKILL's combat.",
+        "museum_bookKingGizzard10": "Me and Dave both love their music, so we had a hard time agreeing on which song to include. In the end we decided to just go for it and add all 3 of the songs we'd discussed, \"Robot Stop\" from the 2016 album Nonagon Infinity, \"The Dripping Tap\" from the 2022 album Omnium Gatherum and \"Supercell\" from the aforementioned 2023 album PetroDragonic Apocalypse.",
+        "museum_bookKingGizzard11": "Of course, by the time we actually managed to get the songs in, they had already released another 2 albums.",
+        "museum_bookKingGizzard12": "Since the band has 6 members (plus a 7th from around the time of Robot Stop), we elected to instead include a plushification of the lizard from the cover of PetroDragonic Apocalypse as a stand-in for the entire band.",
 
 
         "museum_bookQuetzalTirado1": "<b><color=#AA4CAD>QUETZAL TIRADO</color> - GUEST MUSICIAN</b>",
@@ -163,11 +163,9 @@
         "museum_bookQuetzalTirado3": "Later, she recorded improvised saxophone solos for the 5-1 song \"Deep Blue\", which I edited into what you hear in the final version. She also recorded the bass clarinet drone which turned into the Sisyphean Insurrectionist's horn sound effect.",
         "museum_bookQuetzalTirado4": "\"my mom liked the song i'm on in ultrakill, so i think at this point i count as a successful artist, right? also many thanks to the gay people, find me on that one level where the water fucks up the music, baby\"",
 
-        "museum_bookSalad1": "<b><color=#20FF20>SALAD</color> - ARTIST OF JAKITO</b>",
-        "museum_bookSalad2": "Salad drew Jakito.",
-        "museum_bookSalad3": "Some of their biggest contributions include:",
-        "museum_bookSalad4": "- Jakito",
-        "museum_bookSalad5": "\"Are you in or are you skin?\"",
+        "museum_bookSalad1": "<b><color=#20FF20>SALAD</color> - HELPING HAND</b>",
+        "museum_bookSalad2": "Having previously contributed to the game with his drawing of Jakito, Salad temporarily joined the team in early 2025 to help with new UI art and programming, mainly focused on the Smile OS 2.0 system the terminals use, but also drew the text-mode pixel art logo and V1 for the main menu. He has also helped out by hanging out in voice chat daily during development sessions for motivation and bouncing ideas off of.",
+        "museum_bookSalad3": "\"Let's see you grit those teeth!\"",
 
         "museum_bookJacobHHR1": "<b><color=#FFB2DC>JACOB H.H.R.</color> - WRITER (PROSE & DIALOGUE)</b>",
         "museum_bookJacobHHR2": "Jacob joined the team in early 2020 to help write the prose and dialogue for the game after I met him through a mutual game developer friend. He's mostly responsible for the writing in the various books you find around the levels, as well as Gabriel's dialogue and the prose for the intermission cutscenes. In Act I, I came up with a general outline of what I wanted each text to have and he would write it with some tweaks and edits from me afterwards, while in Act II the prose writing was more of an even 50/50 split between us.",
@@ -217,7 +215,7 @@
         "museum_bookMandalore3": "I originally met with Mandalore in late 2019 after his review of Dusk, when I DM'd him to ask him to elaborate on some criticisms he had mentioned of retro shooters. At the time ULTRAKILL was just a small no-name project, but he still took the time to not only write an in-depth reply, but also to play ULTRAKILL's demo and give very useful feedback for it.",
         "museum_bookMandalore4": "As thanks for his help, I wanted to make a little joke boss fight featuring him and Joy based on some in-jokes from their Mystery of the Druids stream, using clips from his EYE review as his voicelines. Once he saw the boss, he offered to not only re-record those lines, but also record completely new ones with Joy, which they improvised together.",
         "museum_bookMandalore5": "Also, Mandalore played the aztec death whistle on the 7-1 track \"Bull of Hell\".",
-        "museum_bookMandalore6": "\"Visit me in the tombs with piped in music. How classy. Thanks for playing!\"",
+        "museum_bookMandalore6": "<color=#e09e2e>\"Visit me</color> <color=#9884bb>in the tombs with piped in music. How classy. Thanks for playing!\"</color>",
         "museum_bookMandalore7": "\"Here for a good time, not a bad time\"",
 
         "museum_weaponsBeamcutter1": "<b><color=orange>BEAMCUTTER</color></b>",
@@ -368,7 +366,7 @@
         "museum_plaquesHealth1": "HEALTH",
         "museum_plaquesHealth2": "GUEST COMPOSER",
 
-		"museum_plaquesKingGizzard1": "KING GIZZARD & THE LIZARD WIZARD",
+        "museum_plaquesKingGizzard1": "KING GIZZARD & THE LIZARD WIZARD",
         "museum_plaquesKingGizzard2": "GUEST COMPOSER",
 
         "museum_plaquesQuetzalTirado1": "QUETZAL TIRADO",
@@ -529,7 +527,7 @@
         "wash_ToDo": "To Do:",
 
         "wash_roomCourtyard": "Courtyard",
-        "wash_room": "Library",
+        "wash_roomLibrary": "Library",
         "wash_roomLobby": "Lobby",
         "wash_roomLounge": "Lounge",
         "wash_roomSideroom": "Side Room",
@@ -643,6 +641,7 @@
         "style_shredded": "SHREDDED",
         "style_slipped": "SLIPPED",
         "style_trampled": "TRAMPLED",
+        "style_trashed": "TRASHED",
         "style_unchainedsaw": "UNCHAINEDSAW",
         "style_zapped": "ZAPPED",
         "style_why": "why are you even spawning enemies here",
@@ -661,6 +660,7 @@
         "style_queenpromo": "QUEEN PROMOTION",
         "style_rookcapture": "ROOK CAPTURE",
         "style_rookpromo": "ROOK PROMOTION",
+        "style_stophitting": "STOP HITTING YOURSELF",
         "style_ultravictory": "ULTRAVICTORY",
         "style_whitewins": "WHITE WINS",
 
@@ -759,6 +759,7 @@
         "cybergrind_patternsTitle": "Patterns",
         "cybergrind_patternsRefresh": "REFRESH",
         "cybergrind_patternsLaunchExternalEditor": "Pattern Editor",
+        "cybergrind_patternsSwitchButton": "Enable",
 
         "cybergrind_wavesTitle": "Waves",
         "cybergrind_wavesDescription1": "Select Starting Wave",
@@ -972,6 +973,12 @@
         "mainmenu_quit": "QUIT",
         "mainmenu_mods": "MODS",
         "mainmenu_restart": "RESTART",
+        "wingModule": "WING MODULE (8)\nSTATUS CHECK...\n\nMATTER AND ENERGY CONVERSION STORAGE SYSTEM: OK\nINSTANT PROPULSION SYSTEM: OK\nCONTINUOUS PROPULSION SYSTEM: OK\nAUTOMATIC BODY REORIENTATION SYSTEM: OK",
+        "armModuleFactory": "ARM MODULE (DEFAULT)\nSTATUS CHECK...\n\nINERTIA CORRECTION SYSTEM: OK\nAUTOMATIC CENTER OF GRAVITY BALANCING SYSTEM: OK",
+        "armModuleFeedbacker": "ARM MODULE (\"FEEDBACKER\")\nSTATUS CHECK...\n\nVECTOR REDIRECTION SYSTEM: OK\n\"CROSS-COUNTER\" PROGRAM: FOUND",
+        "visualCortexModule": "VISUAL CORTEX MODULE\nSTATUS CHECK...\n\nDATA PROCESSING DELAY SYSTEM: OK\nVISUAL DATA PROCESSING ACCURACY: MINIMAL",
+        "legModule": "LEG MODULE (DEFAULT) (2)\nSTATUS CHECK...\n\nFALL DAMAGE MITIGATION SYSTEM: OK\nWEIGHT REDISTRIBUTION SYSTEM: OK\nPOTENTIAL ENERGY STORAGE SYSTEM: OK",
+
 
         "difficulty_title": "DIFFICULTY",
         "difficulty_easy": "ACCESSIBLE",
@@ -1004,13 +1011,14 @@
         "difficulty_brutalDescription3": "Recommended for players who already have considerable experience with the game and are looking for a fresh challenge.",
 
         "chapter_title": "CHAPTER",
-
+        "chapter_type_primary": "MAIN STORY",
 
         "chapter_prelude": "PRELUDE",
         "chapter_act1": "ACT I: INFINITE HYPERDEATH",
         "chapter_act2": "ACT II: IMPERFECT HATRED",
         "chapter_act3": "ACT III: GODFIST SUICIDE",
 
+        "chapter_type_secondary": "SECONDARY",
         "chapter_encore": "ENCORES",
         "chapter_prime": "PRIME SANCTUMS",
         "chapter_cyberGrind": "THE CYBER GRIND",
@@ -1376,6 +1384,7 @@
         "graphics_vsync": "VSYNC",
         "graphics_fieldOfVision": "FOV",
         "graphics_gamma": "GAMMA (BRIGHTNESS)",
+        "graphics_disableNewShaders": "DISABLE NEW SHADERS\n(REQUIRES RESTART)",
         "graphics_filters": "PSX SETTINGS",
         "graphics_filtersDescription": "(Tone down for more visual clarity)",
         "graphics_pixelisation": "DOWNSCALING",
@@ -1566,11 +1575,13 @@
         "advanced_level71": "LEVEL 7-1",
         "advanced_level73": "LEVEL 7-3",
         "advanced_level7S": "LEVEL 7-S",
+        "advanced_levelP2": "LEVEL P-2",
         "advanced_52WaterScrolling": "DISABLE WATER SCROLLING",
         "advanced_52WaterWaves": "DISABLE WATER WAVES",
         "advanced_71Dark": "REMAIN ALWAYS DARK",
         "advanced_73Grass": "DISABLE GRASS",
         "advanced_7SHard": "REQUIRE HIGH ACCURACY",
+        "advanced_P2DisableTunnelScrolling": "DISABLE RED TUNNEL SCROLLING",
 
         "save_warning1": "The game will reload.",
         "save_warning2": "If you're in a mission, your current progress will be lost.",
@@ -2621,6 +2632,7 @@
         "act1_lustFirst_knuckleblaster2": "to launch a shockwave that knocks back enemies.",
         "act1_lustFirst_dashjump": "DASH JUMP: Keep the DASH momentum by JUMPING during it.",
         "act1_lustFirst_crane": "CRANE\nCONTROL",
+        "act1_lustFirst_elevator": "ELEVATOR\nTEST",
 
         "act1_lustSecond_checkPoints": "<color=#FF52FF>CIRCULAR CHECKPOINTS</color> can be reused to keep your progress.",
         "act1_lustSecond_feedbacker1": "Only the FEEDBACKER (Blue arm) can PARRY PROJECTILES.",

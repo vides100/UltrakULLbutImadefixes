@@ -166,8 +166,6 @@
 		"museum_bookSalad1": "",
 		"museum_bookSalad2": "",
 		"museum_bookSalad3": "",
-		"museum_bookSalad4": "",
-		"museum_bookSalad5": "",
 
 		"museum_bookJacobHHR1": "",
 		"museum_bookJacobHHR2": "",
@@ -529,7 +527,7 @@
 		"wash_ToDo": "",
 
 		"wash_roomCourtyard": "",
-		"wash_room": "",
+		"wash_roomLibrary": "",
 		"wash_roomLobby": "",
 		"wash_roomLounge": "",
 		"wash_roomSideroom": "",
@@ -643,6 +641,7 @@
 		"style_shredded": "",
 		"style_slipped": "",
 		"style_trampled": "",
+		"style_trashed": "",
 		"style_unchainedsaw": "",
 		"style_zapped": "",
 		"style_why": "",
@@ -661,6 +660,7 @@
 		"style_queenpromo": "",
 		"style_rookcapture": "",
 		"style_rookpromo": "",
+		"style_stophitting": "",
 		"style_ultravictory": "",
 		"style_whitewins": "",
 
@@ -759,6 +759,7 @@
 		"cybergrind_patternsTitle": "",
 		"cybergrind_patternsRefresh": "",
 		"cybergrind_patternsLaunchExternalEditor": "",
+		"cybergrind_patternsSwitchButton": "",
 
 		"cybergrind_wavesTitle": "",
 		"cybergrind_wavesDescription1": "",
@@ -2622,6 +2623,8 @@
 		"act1_lustFirst_knuckleblaster1": "",
 		"act1_lustFirst_knuckleblaster2": "",
 		"act1_lustFirst_dashjump": "",
+		"act1_lustFirst_crane": "",
+		"act1_lustFirst_elevator": "",
 
 		"act1_lustSecond_checkPoints": "",
 		"act1_lustSecond_feedbacker1": "",
