@@ -83,198 +83,121 @@ namespace UltrakULL.Harmony_Patches
 		}
 	}
 
-	public class TextMeshProFontSwap
-	{
-        public static void SwapTMPFont(ref TextMeshProUGUI __instance, bool onTop = false, bool editOverlayStatus = false)
+    public static class TMPFontUtils
+    {
+        public static void ApplyUnderlayAndZTest(TextMeshProUGUI instance, Vector4 underlayColor, bool isUnderlaid, bool isOverlay, bool editOverlayStatus, TMP_FontAsset fontAsset, Material overlayMat, Material normalMat)
         {
-            if (__instance.transform.parent.GetComponent<HealthBar>() != null && __instance.gameObject.name.Equals("HP Text")) { return; }
-            string currentLanguage = LanguageManager.CurrentLanguage.metadata.langName.ToLower();
-            string currentLanguageCode = currentLanguage.Substring(0, 2);
-            bool isUnderlaid = __instance.gameObject.name.Contains("NameText") ||
-                __instance.gameObject.name.Contains("LayerText") ||
-                __instance.transform.parent.gameObject.name.Contains("Cheats Info");
-            bool isOverlay = onTop;
-            Vector4 originalUnderlaycolor;
-            if (__instance.fontMaterial != null)
+            // First we set the font
+            instance.font = fontAsset;
+
+            // Basic material for the copy
+            Material baseMat = editOverlayStatus
+                ? (isOverlay ? overlayMat : normalMat)
+                : instance.fontSharedMaterial;
+
+            // Creating a new instance so as not to touch global materials
+            Material newMat = new Material(baseMat);
+
+            // Setting up the background
+            if (isUnderlaid)
             {
-                originalUnderlaycolor = __instance.fontMaterial.GetVector("_UnderlayColor");
+                newMat.SetVector("_UnderlayColor", underlayColor);
             }
             else
             {
-                originalUnderlaycolor = new Vector4(0, 0, 0, 0);
+                newMat.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
             }
+
+            // Setting up ZTest, if necessary
+            if (editOverlayStatus)
+            {
+                newMat.SetFloat("_ZTest", isOverlay ? 8f : 4f);
+            }
+
+            // Assigning the finished material
+            instance.fontSharedMaterial = newMat;
+        }
+    }
+
+    public class TextMeshProFontSwap
+	{
+
+        public static void SwapTMPFont(ref TextMeshProUGUI __instance, bool onTop = false, bool editOverlayStatus = false)
+        {
+            if (__instance.transform.parent.GetComponent<HealthBar>() != null && __instance.gameObject.name.Equals("HP Text"))
+                return;
+
+            string ReadingScannedPatch = null;
+            if (__instance.transform.parent != null)
+            {
+                if (__instance.transform.parent.parent != null)
+                {
+                    ReadingScannedPatch = __instance.transform.parent.parent.gameObject.name + "/" + __instance.transform.parent.gameObject.name + "/" + __instance.transform.gameObject.name;
+                }
+            }
+
+            string currentLanguage = LanguageManager.CurrentLanguage.metadata.langName.ToLower();
+            string currentLanguageCode = currentLanguage.Substring(0, 2);
+            bool isUnderlaid = __instance.gameObject.name.Contains("NameText") ||
+                               __instance.gameObject.name.Contains("LayerText") ||
+                               __instance.transform.parent.gameObject.name.Contains("Cheats Info") ||
+                (ReadingScannedPatch != null && ReadingScannedPatch.Equals("ReadingScanned/Panel/Text (1)"));
+            bool isOverlay = onTop;
+
+            Vector4 originalUnderlaycolor = __instance.fontMaterial != null
+                ? __instance.fontMaterial.GetVector("_UnderlayColor")
+                : new Vector4(0, 0, 0, 0);
+
             switch (currentLanguageCode)
             {
-                //Traditional/Simplified Chinese
+                // Chinese
                 case "zh":
-                    {
+                    TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.CJKFontTMP, Core.CJKFontTMPOverlayMat, Core.CJKFontTMP.material);
+                    break;
 
-                        //Swap with a Chinese font when it comes in.
-                        __instance.font = Core.CJKFontTMP;
-                        if (isUnderlaid)
-                        {
-                            Material underlaid = new Material(__instance.fontMaterial);
-                            underlaid.SetVector("_UnderlayColor", originalUnderlaycolor);
-                            if (editOverlayStatus)
-                            {
-                                __instance.fontMaterial = (isOverlay ? Core.CJKFontTMPOverlayMat : Core.CJKFontTMP.material);
-                                __instance.fontMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                            }
-                            __instance.fontMaterial = underlaid;
-                        }
-                        else
-                        {
-                            if (editOverlayStatus)
-                            {
-                                __instance.fontMaterial = (isOverlay ? Core.CJKFontTMPOverlayMat : Core.CJKFontTMP.material);
-                                __instance.fontMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                            }
-                            __instance.fontSharedMaterial.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
-                        }
-                        break;
-                    }
-                //Japanese
+                // Japanese
                 case "ja":
-                    {
-                        __instance.font = Core.JaFontTMP;
-                        if (isUnderlaid)
-                        {
-                            Material underlaid = new Material(__instance.fontMaterial);
-                            underlaid.SetVector("_UnderlayColor", originalUnderlaycolor);
-                            if (editOverlayStatus)
-                            {
-                                __instance.fontSharedMaterial = (isOverlay ? Core.jaFontTMPOverlayMat : Core.JaFontTMP.material);
-                                //__instance.fontSharedMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                            }
-                            __instance.fontSharedMaterial = underlaid;
-                        }
-                        else
-                        {
-                            if (editOverlayStatus)
-                            {
-                                __instance.fontMaterial = (isOverlay ? Core.jaFontTMPOverlayMat : Core.JaFontTMP.material);
-                                //__instance.fontMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                            }
-                            __instance.fontSharedMaterial.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
-                        }
-                        break;
-                    }
-                //Arabic Persian Urdu
+                    TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.JaFontTMP, Core.jaFontTMPOverlayMat, Core.JaFontTMP.material);
+                    break;
+
+                // Arabic, Persian, Urdu
                 case "ar":
                 case "fa":
                 case "ur":
+                    // Changing the alignment for RTL
+                    switch (__instance.alignment)
                     {
-
-                        switch (__instance.alignment)
-                        {
-                            case TextAlignmentOptions.TopLeft:
-                                __instance.alignment = TextAlignmentOptions.TopRight;
-                                break;
-                            case TextAlignmentOptions.Left:
-                                __instance.alignment = TextAlignmentOptions.Right;
-                                break;
-                            case TextAlignmentOptions.BottomLeft:
-                                __instance.alignment = TextAlignmentOptions.BottomRight;
-                                break;
-                            case TextAlignmentOptions.BaselineLeft:
-                                __instance.alignment = TextAlignmentOptions.BaselineRight;
-                                break;
-                        }
-
-                        Core.GlobalFontTMP.fallbackFontAssetTable.Add(Core.ArabicFontTMP);
-
-                        if (GetCurrentSceneName() == "CreditsMuseum2")
-                        {
-                            if (__instance.font.name == "GFS Garaldus")
-                            {
-                                __instance.font = Core.MuseumFontTMP;
-                            }
-                            else
-                            {
-                                __instance.font = Core.GlobalFontTMP;
-                            }
-                        }
-                        else
-                        {
-                            __instance.font = Core.GlobalFontTMP;
-                            if (isUnderlaid)
-                            {
-                                Material underlaid = new Material(__instance.fontMaterial);
-                                underlaid.SetVector("_UnderlayColor", originalUnderlaycolor);
-                                __instance.fontMaterial = underlaid;
-                            }
-                            else
-                            {
-                                __instance.fontSharedMaterial.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
-                            }
-                        }
-
-                        break;
+                        case TextAlignmentOptions.TopLeft: __instance.alignment = TextAlignmentOptions.TopRight; break;
+                        case TextAlignmentOptions.Left: __instance.alignment = TextAlignmentOptions.Right; break;
+                        case TextAlignmentOptions.BottomLeft: __instance.alignment = TextAlignmentOptions.BottomRight; break;
+                        case TextAlignmentOptions.BaselineLeft: __instance.alignment = TextAlignmentOptions.BaselineRight; break;
                     }
+                    Core.GlobalFontTMP.fallbackFontAssetTable.Add(Core.ArabicFontTMP);
+                    if (GetCurrentSceneName() == "CreditsMuseum2" && __instance.font.name == "GFS Garaldus")
+                        TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.MuseumFontTMP, Core.GlobalFontTMPOverlayMat, Core.GlobalFontTMP.material);
+                    else
+                        TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.GlobalFontTMP, Core.GlobalFontTMPOverlayMat, Core.GlobalFontTMP.material);
+                    break;
 
-                //Hebrew Yiddish Ladino Mozarabic Judeo-Arabic
+                // Hebrew, Yiddish, Ladino, etc.
                 case "he":
                 case "yi":
                 case "la":
                 case "ro":
                 case "jr":
-                    {
-                        __instance.font = Core.HebrewFontTMP;
-                        if (isUnderlaid)
-                        {
-                            Material underlaid = new Material(__instance.fontMaterial);
-                            underlaid.SetVector("_UnderlayColor", originalUnderlaycolor);
-                            __instance.fontMaterial = underlaid;
-                        }
-                        else
-                        {
-                            __instance.fontSharedMaterial.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        if (GetCurrentSceneName() == "CreditsMuseum2")
-                        {
-                            if (__instance.font.name == "GFS Garaldus")
-                            {
-                                __instance.font = Core.MuseumFontTMP;
-                            }
-                            else
-                            {
-                                __instance.font = Core.GlobalFontTMP;
-                            }
-                        }
-                        else
-                        {
-                            __instance.font = Core.GlobalFontTMP;
-                            if (isUnderlaid)
-                            {
-                                Material underlaid = new Material(__instance.fontMaterial);
-                                underlaid.SetVector("_UnderlayColor", originalUnderlaycolor);
-                                if (editOverlayStatus)
-                                {
-                                    __instance.fontSharedMaterial = (isOverlay ? Core.GlobalFontTMPOverlayMat : Core.GlobalFontTMP.material);
-                                    __instance.fontSharedMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                                }
-                                __instance.fontMaterial = underlaid;
-                            }
-                            else
-                            {
-                                if (editOverlayStatus)
-                                {
-                                    __instance.fontSharedMaterial = (isOverlay ? Core.GlobalFontTMPOverlayMat : Core.GlobalFontTMP.material);
-                                    __instance.fontSharedMaterial.SetFloat("_ZTest", (isOverlay ? 8f : 4f));
-                                }
-                                __instance.fontSharedMaterial.SetVector("_UnderlayColor", new Vector4(0, 0, 0, 0));
-                            }
-                        }
-                        break;
-                    }
-            }
+                    TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.HebrewFontTMP, Core.GlobalFontTMPOverlayMat, Core.GlobalFontTMP.material);
+                    break;
 
+                // Default
+                default:
+                    if (GetCurrentSceneName() == "CreditsMuseum2" && __instance.font.name == "GFS Garaldus")
+                        TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.MuseumFontTMP, Core.GlobalFontTMPOverlayMat, Core.GlobalFontTMP.material);
+                    else
+                        TMPFontUtils.ApplyUnderlayAndZTest(__instance, originalUnderlaycolor, isUnderlaid, isOverlay, editOverlayStatus, Core.GlobalFontTMP, Core.GlobalFontTMPOverlayMat, Core.GlobalFontTMP.material);
+                    break;
+            }
         }
-		[HarmonyPatch(typeof(TextMeshProUGUI), "OnEnable")]
+        [HarmonyPatch(typeof(TextMeshProUGUI), "OnEnable")]
 		public static class TextMeshProFontSwapper
 		{
 

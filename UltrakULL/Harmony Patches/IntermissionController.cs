@@ -91,7 +91,7 @@ namespace UltrakULL.Harmony_Patches
 
             bool isPaused = MonoSingleton<OptionsManager>.Instance != null && MonoSingleton<OptionsManager>.Instance.paused;
 
-            // ▶️ Переход из паузы в норму → UnPause
+            // ▶️ Transition from pause to normal → UnPause
             if (wasPausedLastFrame && !isPaused)
             {
                 if (currentAudioSource != null && currentAudioSource.clip != null && currentAudioSource.isPlaying == false)
@@ -99,7 +99,7 @@ namespace UltrakULL.Harmony_Patches
                     currentAudioSource.UnPause();
                 }
             }
-            // ⏸ Вход в паузу → Pause
+            // ⏸ Entering pause → Pause
             else if (!wasPausedLastFrame && isPaused)
             {
                 if (currentAudioSource != null && currentAudioSource.isPlaying)
@@ -110,7 +110,7 @@ namespace UltrakULL.Harmony_Patches
 
             wasPausedLastFrame = isPaused;
 
-            // ❌ Не продолжаем обработку, если игра на паузе
+            // ❌ Don't continue processing if the game is paused
             if (isPaused)
                 return;
 
@@ -179,7 +179,7 @@ namespace UltrakULL.Harmony_Patches
                 currentAudioSource = null;
                 isPlaying = false;
                 CoroutineHelper.StopCurrentCoroutine();
-                Logging.Info("[LocalizeIntermission] Озвучка остановлена (скип).");
+                Logging.Info("[LocalizeIntermission] Audio stopped (skipped).");
             }
         }
 
@@ -201,7 +201,7 @@ namespace UltrakULL.Harmony_Patches
             string audioPath = Path.Combine(folderPath, audioFileName);
             string audioUrl = "file:///" + audioPath.Replace("\\", "/");
 
-            Logging.Info($"[LocalizeIntermission] Попытка воспроизвести: {audioFileName}");
+            Logging.Info($"[LocalizeIntermission] Attempting to play: {audioFileName}");
             CoroutineHelper.StartSafeCoroutine(PlayAudioCoroutine(audioUrl, audioFileName, index));
         }
 
@@ -231,14 +231,14 @@ namespace UltrakULL.Harmony_Patches
 
                 if (currentIndex != expectedIndex)
                 {
-                    Logging.Info($"[LocalizeIntermission] Индекс изменился (ожидался {expectedIndex}, сейчас {currentIndex}), отмена воспроизведения.");
+                    Logging.Info($"[LocalizeIntermission] Index changed (expected {expectedIndex}, current {currentIndex}), stopping playback.");
                     yield break;
                 }
 
                 if (www.result != UnityWebRequest.Result.Success)
                 {
-                    Logging.Warn($"[LocalizeIntermission] Ошибка загрузки аудиофайла '{fileName}': {www.error}");
-                    Logging.Warn($"[LocalizeIntermission] Путь: '{audioUrl}'");
+                    Logging.Warn($"[LocalizeIntermission] Error loading audio file '{fileName}': {www.error}");
+                    Logging.Warn($"[LocalizeIntermission] Path: '{audioUrl}'");
                     isPlaying = false;
                     yield break;
                 }
@@ -246,7 +246,7 @@ namespace UltrakULL.Harmony_Patches
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 if (clip == null || clip.length <= 0f)
                 {
-                    Logging.Warn($"[LocalizeIntermission] Файл '{fileName}' повреждён или пуст.");
+                    Logging.Warn($"[LocalizeIntermission] File '{fileName}' is corrupted or empty.");
                     isPlaying = false;
                     yield break;
                 }
@@ -259,7 +259,7 @@ namespace UltrakULL.Harmony_Patches
                 currentAudioSource = source;
                 UnityEngine.Object.DontDestroyOnLoad(audioObject);
 
-                Logging.Info($"[LocalizeIntermission] Воспроизведение: {fileName}");
+                Logging.Info($"[LocalizeIntermission] Playing: {fileName}");
                 source.Play();
 
                 float timer = 0f;
@@ -290,7 +290,7 @@ namespace UltrakULL.Harmony_Patches
             timeSinceTransition = 0f;
 
             StopCurrentAudio();
-            Logging.Info("[LocalizeIntermission] Сброс состояния озвучки при запуске сцены.");
+            Logging.Info("[LocalizeIntermission] Resetting audio state on scene start.");
         }
 
         private class CoroutineHelper : MonoBehaviour

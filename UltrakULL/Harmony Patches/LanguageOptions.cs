@@ -131,7 +131,7 @@ namespace UltrakULL.Harmony_Patches
                     var highlightParent = buttonObj.GetComponentInParent<ButtonHighlightParent>();
                     if (highlightParent != null && buttonImage != null)
                     {
-                        // Добавляем реакцию на нажатие этой кнопки
+                        // Add click reaction to this button
                         button.onClick.AddListener(() => highlightParent.ChangeButton(buttonImage));
                     }
                 }
@@ -481,8 +481,8 @@ namespace UltrakULL.Harmony_Patches
 
             // ScrollRect settings to limit side-to-side scrolling
             ScrollRect scrollRectComponent = scrollView.GetComponent<ScrollRect>();
-            scrollRectComponent.horizontal = false; // Отключаем горизонтальную прокрутку
-            scrollRectComponent.vertical = true; // Включаем вертикальную прокрутку
+            scrollRectComponent.horizontal = false; // Disable horizontal scrolling
+            scrollRectComponent.vertical = true; // Enable vertical scrolling
             scrollRectComponent.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
 
             // Adding a scrollbar
@@ -597,7 +597,7 @@ namespace UltrakULL.Harmony_Patches
                         if (child.TryGetComponent(out Button b))
                         {
                             ColorBlock cb = b.colors;
-                            b.colors = cb; // Принудительно обновить цвета (иногда помогает)
+                            b.colors = cb; // Force update colors (sometimes helps)
                         }
                     }
                     Transform navRail = GetGameObjectChild(GetInactiveRootObject("Canvas"), "OptionsMenu").transform.Find("Navigation Rail");

@@ -9,7 +9,7 @@ namespace UltrakULL.Harmony_Patches
     [HarmonyPatch]
     public static class LocalizeBossBar
     {
-        // Патч для CreateBossBar
+        // Patch for CreateBossBar
         [HarmonyPatch(typeof(BossBarManager), "CreateBossBar")]
         [HarmonyPrefix]
         public static void CreateBossBar_Prefix(BossHealthBar bossBar)
