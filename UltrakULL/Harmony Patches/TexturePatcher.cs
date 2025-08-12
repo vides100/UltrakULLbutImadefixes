@@ -186,6 +186,7 @@ namespace UltrakULL.Harmony_Patches
             ClearTextureCache();
             ClearRankSprites();
             processedObjectIds.Clear();
+            processedRawImages.Clear();
             currentReplacements = null;
             currentLevel = null;
             isProcessing = false;
@@ -276,7 +277,6 @@ namespace UltrakULL.Harmony_Patches
 
                 if ((currentReplacements != null && currentReplacements.Count > 0) || rankSprites.Count > 0)
                 {
-                    Logging.Debug($"[TexturePatcher] Background check running (delay {waitTime}s)");
                     yield return ReplaceTexturesInScene(false);
                     yield return UpdateStyleHUD();
                 }
@@ -290,13 +290,14 @@ namespace UltrakULL.Harmony_Patches
             if (sceneName.IndexOf("4-S", StringComparison.OrdinalIgnoreCase) >= 0)
                 return 3f;
 
-            return 0.25f;
+            return 0.5f;
         }
 
 
         private static bool ShouldCancel() =>
             cancellationTokenSource?.IsCancellationRequested ?? false;
         private static readonly string[] TextureProps = { "_MainTex", "_BaseMap", "_DetailAlbedoMap", "_Texture", "_MainTexture", "_EmissiveTex" };
+        private static readonly int[] TexturePropIDs = TextureProps.Select(Shader.PropertyToID).ToArray();
 
         private static IEnumerator ReplaceTexturesInScene(bool isInitialPass)
         {
@@ -304,10 +305,14 @@ namespace UltrakULL.Harmony_Patches
                 yield break;
 
             Camera mainCam = Camera.main;
-            int processed = 0;
-            const int maxPerFrame = 5;
+            int processedChanges = 0;
+            int scannedRenderers = 0;
+            int scannedRawImages = 0;
+            const int maxChangesPerFrame = 8;
+            const int maxScansPerFrame = 60;
 
-            foreach (var rend in Object.FindObjectsOfType<Renderer>())
+            var renderers = Object.FindObjectsOfType<Renderer>();
+            foreach (var rend in renderers)
             {
                 if (!IsValidRenderer(rend, mainCam))
                     continue;
@@ -316,37 +321,51 @@ namespace UltrakULL.Harmony_Patches
                 if (!processedObjectIds.Add(id))
                     continue;
 
-                bool modified = false;
-                var materials = rend.materials;
+                var sharedMaterials = rend.sharedMaterials;
+                var propertyBlock = new MaterialPropertyBlock();
 
-                foreach (var mat in materials)
+                for (int m = 0; m < sharedMaterials.Length; m++)
                 {
+                    var mat = sharedMaterials[m];
                     if (mat == null) continue;
 
-                    foreach (var prop in TextureProps)
-                    {
-                        if (!mat.HasProperty(prop)) continue;
+                    bool modified = false;
+                    propertyBlock.Clear();
+                    rend.GetPropertyBlock(propertyBlock, m);
 
-                        Texture2D curTex = mat.GetTexture(prop) as Texture2D;
+                    for (int p = 0; p < TexturePropIDs.Length; p++)
+                    {
+                        int propId = TexturePropIDs[p];
+                        if (!mat.HasProperty(propId)) continue;
+
+                        var curTex = mat.GetTexture(propId) as Texture2D;
                         if (curTex == null) continue;
 
                         if (TryGetReplacement(curTex.name, out var replacement))
                         {
-                            mat.SetTexture(prop, replacement);
+                            propertyBlock.SetTexture(propId, replacement);
                             modified = true;
-                            processed++;
+                            processedChanges++;
                         }
 
-                        if (processed >= maxPerFrame)
+                        if (processedChanges >= maxChangesPerFrame)
                         {
-                            processed = 0;
+                            processedChanges = 0;
                             yield return null;
                         }
                     }
+
+                    if (modified)
+                    {
+                        rend.SetPropertyBlock(propertyBlock, m);
+                    }
                 }
 
-                if (modified)
-                    rend.materials = materials;
+                scannedRenderers++;
+                if ((scannedRenderers % maxScansPerFrame) == 0)
+                {
+                    yield return null;
+                }
             }
 
             foreach (var raw in Object.FindObjectsOfType<RawImage>())
@@ -354,7 +373,7 @@ namespace UltrakULL.Harmony_Patches
                 if (!IsValidRawImage(raw)) continue;
 
                 int id = raw.GetInstanceID();
-                if (!processedObjectIds.Add(id)) continue;
+                if (!processedRawImages.Add(id)) continue;
 
                 Texture2D curTex = raw.texture as Texture2D;
                 if (curTex == null) continue;
@@ -362,13 +381,14 @@ namespace UltrakULL.Harmony_Patches
                 if (TryGetReplacement(curTex.name, out var replacement))
                 {
                     raw.texture = replacement;
-                    processed++;
+                    processedChanges++;
+                }
 
-                    if (processed >= maxPerFrame)
-                    {
-                        processed = 0;
-                        yield return null;
-                    }
+                scannedRawImages++;
+                if (processedChanges >= maxChangesPerFrame || (scannedRawImages % maxScansPerFrame) == 0)
+                {
+                    processedChanges = 0;
+                    yield return null;
                 }
             }
         }
@@ -563,6 +583,7 @@ namespace UltrakULL.Harmony_Patches
         private static void ReplaceUISprites()
         {
             var images = GameObject.FindObjectsOfType<Image>(true);
+            int replaced = 0;
 
             foreach (var img in images)
             {
@@ -574,13 +595,16 @@ namespace UltrakULL.Harmony_Patches
                 if (rankSprites.TryGetValue(spriteName, out var replacement))
                 {
                     img.sprite = replacement;
-                    Logging.Message($"[TexturePatcher] Sprite replaced: '{spriteName}' → in object '{img.gameObject.name}'");
+                    replaced++;
                 }
                 else
                 {
-                    Logging.Debug($"[TexturePatcher] No replacement found for sprite: '{spriteName}'");
+                    // reduce per-image logging noise
                 }
             }
+
+            if (replaced > 0)
+                Logging.Message($"[TexturePatcher] Replaced {replaced} UI sprites");
         }
 
         private static bool ShouldIgnoreScene(string sceneName)
