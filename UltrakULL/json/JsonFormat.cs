@@ -2142,6 +2142,7 @@ namespace UltrakULL.json
         public string audio_musicVolume;
         public string audio_muffleMusic;
         public string audio_dubbing;
+        public string audio_dubbing_extra;
 
         public string hud_type;
         public string hud_typeNone;

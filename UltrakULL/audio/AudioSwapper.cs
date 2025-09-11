@@ -20,19 +20,37 @@ namespace UltrakULL.audio
             {
                 return sourceClip;
             }
+            
             string file = "file://" + audioFilePath + ".ogg";
             Logging.Message("Swapping: " + file);
 
-            UnityWebRequest fileRequest = UnityWebRequestMultimedia.GetAudioClip(file,AudioType.OGGVORBIS);
-            fileRequest.SendWebRequest();
+            UnityWebRequest fileRequest = null;
             try
             {
-                while (!fileRequest.isDone) {}
+                fileRequest = UnityWebRequestMultimedia.GetAudioClip(file, AudioType.OGGVORBIS);
+                fileRequest.SendWebRequest();
+
+                // Using a safer waiting method
+                while (!fileRequest.isDone) 
+                {
+                    // Add a small delay to prevent blocking
+                    if (Time.frameCount % 30 == 0) // Checking every 30 frames
+                    {
+                        System.Threading.Thread.Sleep(1);
+                    }
+                }
  
-                if (fileRequest.isNetworkError || fileRequest.isHttpError) Logging.Warn(fileRequest.error + "\n Expected path: " + audioFilePath + ".ogg");
+                if (fileRequest.result != UnityWebRequest.Result.Success)
+                {
+                    Logging.Warn(fileRequest.error + "\n Expected path: " + audioFilePath + ".ogg");
+                }
                 else
                 {
-                    sourceClip = DownloadHandlerAudioClip.GetContent(fileRequest);
+                    var newClip = DownloadHandlerAudioClip.GetContent(fileRequest);
+                    if (newClip != null)
+                    {
+                        sourceClip = newClip;
+                    }
                 }
             }
             catch (Exception err)
@@ -40,6 +58,15 @@ namespace UltrakULL.audio
                 Logging.Warn("Failed to swap " + audioFilePath);
                 Logging.Warn($"{err.Message}, {err.StackTrace}");
             }
+            finally
+            {
+                // Releasing resources correctly
+                if (fileRequest != null)
+                {
+                    fileRequest.Dispose();
+                }
+            }
+            
             return sourceClip;
         }
     }

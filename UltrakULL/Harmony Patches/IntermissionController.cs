@@ -185,24 +185,31 @@ namespace UltrakULL.Harmony_Patches
 
         private static void PlayAudioForIndex(int index, string gameObjectName)
         {
-            isPlaying = true;
-            string audioFileName = $"line{index}.ogg";
-            string folderPath = Path.Combine(
-                Paths.ConfigPath,
-                "ultrakull",
-                "audio",
-                LanguageManager.CurrentLanguage.metadata.langName,
-                GetCurrentSceneName(),
-                gameObjectName
-            );
+            if ((Convert.ToBoolean(LanguageManager.configFile.Bind("General", "activeDubbing", "False").Value) & Convert.ToBoolean(LanguageManager.configFile.Bind("General", "extraDubbing", "False").Value)) != false)
+            {
+                isPlaying = true;
+                string audioFileName = $"line{index}.ogg";
+                string folderPath = Path.Combine(
+                    Paths.ConfigPath,
+                    "ultrakull",
+                    "audio",
+                    LanguageManager.CurrentLanguage.metadata.langName,
+                    GetCurrentSceneName(),
+                    gameObjectName
+                );
 
-            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            string audioPath = Path.Combine(folderPath, audioFileName);
-            string audioUrl = "file:///" + audioPath.Replace("\\", "/");
+                string audioPath = Path.Combine(folderPath, audioFileName);
+                string audioUrl = "file:///" + audioPath.Replace("\\", "/");
 
-            Logging.Info($"[LocalizeIntermission] Attempting to play: {audioFileName}");
-            CoroutineHelper.StartSafeCoroutine(PlayAudioCoroutine(audioUrl, audioFileName, index));
+                Logging.Info($"[LocalizeIntermission] Attempting to play: {audioFileName}");
+                CoroutineHelper.StartSafeCoroutine(PlayAudioCoroutine(audioUrl, audioFileName, index));
+            }
+            else
+            {
+                Logging.Info("[LocalizeIntermission] Audio dubbing or Extra dubbing is disabled :(");
+            }
         }
 
         private static string SanitizeFileName(string name)

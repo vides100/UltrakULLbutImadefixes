@@ -1,18 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Linq.Expressions;
+using System.Text;
+using System.Text.RegularExpressions;
 using TMPro;
+using UltrakULL.json;
 using UnityEngine;
 using UnityEngine.UI;
 using static UltrakULL.CommonFunctions;
-using UltrakULL.json;
-using System.Linq.Expressions;
-using System;
-using System.Diagnostics.Eventing.Reader;
 
 namespace UltrakULL
 {
     class SecretLevels
     {
         private string currentLevel;
+        public static string GetAbbreviation(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            StringBuilder abbreviation = new StringBuilder();
+
+            foreach (string word in words)
+            {
+                if (!string.IsNullOrWhiteSpace(word) && word.Length > 0)
+                {
+                    abbreviation.Append(char.ToUpper(word[0]));
+                }
+            }
+
+            return abbreviation.ToString();
+        }
 
         private void PatchTestament(ref GameObject testamentRoom)
         {
@@ -245,20 +266,37 @@ namespace UltrakULL
         public void Patch5S(ref GameObject canvasObj)
         {
             GameObject powerGauge = GetGameObjectChild(GetInactiveRootObject("FishingCanvas"), "Power Meter");
-            Text distanceFar = GetTextfromGameObject(GetGameObjectChild(powerGauge, "Text"));
+            TextMeshProUGUI distanceFar = GetTextMeshProUGUI(GetGameObjectChild(powerGauge, "Text (TMP)")); 
             distanceFar.text = LanguageManager.CurrentLanguage.fishing.fish_rodFar;
-            Text distanceClose = GetTextfromGameObject(GetGameObjectChild(powerGauge, "Text (1)"));
+            TextMeshProUGUI distanceClose = GetTextMeshProUGUI(GetGameObjectChild(powerGauge, "Text (TMP) (1)"));
             distanceClose.text = LanguageManager.CurrentLanguage.fishing.fish_rodClose;
+
+            //Localize buttons in Balancing Minigame
+            GameObject balancingMinigame = GetGameObjectChild(GetGameObjectChild(GetInactiveRootObject("FishingCanvas"), "Struggle Mini Game"), "Balancing Minigame");
+            TextMeshProUGUI RMB = GetTextMeshProUGUI(GetGameObjectChild(balancingMinigame, "Text (TMP)"));
+            RMB.text = GetAbbreviation(LanguageManager.CurrentLanguage.inputStrings.input_RMB);
+            TextMeshProUGUI LMB = GetTextMeshProUGUI(GetGameObjectChild(balancingMinigame, "Text (TMP) (1)"));
+            LMB.text = GetAbbreviation(LanguageManager.CurrentLanguage.inputStrings.input_LMB);
 
             GameObject fishingLeaderboard = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetInactiveRootObject("Exit Lobby Interior"), "Fish Scores"), "Canvas"), "Border"), "TipBox"), "Panel");
 
             TextMeshProUGUI fishingLeaderboardTitle = GetTextMeshProUGUI(GetGameObjectChild(fishingLeaderboard, "Title"));
             fishingLeaderboardTitle.text = LanguageManager.CurrentLanguage.fishing.fish_leaderboard;
 
-            GameObject fishingTerminal = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetInactiveRootObject("Fishing Enc Terminal"), "Canvas"), "Background"), "Main Window");
+            //Trying change Fishing Leaderboard "Global" and "Friend" title. Not work now, need create Harmony Patch for original Fishing Leaderboad code
+            /*TextMeshProUGUI fishingLeaderboardGlobal = GetTextMeshProUGUI(GetGameObjectChild(fishingLeaderboard, "Global Text"));
+            TextMeshProUGUI fishingLeaderboardFriends = GetTextMeshProUGUI(GetGameObjectChild(fishingLeaderboard, "Friends Text"));
+            var rx = new Regex(@"\bGLOBAL\b", RegexOptions.IgnoreCase);
+            var rw = new Regex(@"\bFRIENDS\b", RegexOptions.IgnoreCase);
+            fishingLeaderboardGlobal.text = rx.Replace(fishingLeaderboardGlobal.text, "GLOBAL TEST", 1);
+            fishingLeaderboardFriends.text = rw.Replace(fishingLeaderboardFriends.text, "FRIENDS TEST", 1);*/
 
+            GameObject fishingTerminal = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetInactiveRootObject("Fishing Enc Terminal"), "Canvas"), "Background"), "Main Window");
             TextMeshProUGUI fishingTerminalTitle = GetTextMeshProUGUI(GetGameObjectChild(fishingTerminal, "Title"));
             fishingTerminalTitle.text = LanguageManager.CurrentLanguage.fishing.fish_terminalTitle;
+            GameObject fishingTerminalBackButton = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(fishingTerminal, "Fish Info"), "Window"), "Back Button");
+            TextMeshProUGUI fishingTerminalBackButtonText = GetTextMeshProUGUI(GetGameObjectChild(fishingTerminalBackButton, "Text"));
+            fishingTerminalBackButtonText.text = LanguageManager.CurrentLanguage.shop.shop_back;
         }
         public void Patch7S(ref GameObject canvasObj)
         {

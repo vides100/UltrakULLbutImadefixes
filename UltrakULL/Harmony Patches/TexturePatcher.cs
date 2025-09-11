@@ -89,7 +89,7 @@ namespace UltrakULL.Harmony_Patches
                     { "Level 4-3", new Dictionary<string, (string, string)> { { "traitor", ("traitor", "texture") }, { "", ("Batch 4-3", "texture") } } },
                     { "Level 5-1", new Dictionary<string, (string, string)> { { "WaterProcessingAttention", ("WaterProcessingAttention", "texture") }, { "", ("Batch 5-1", "texture") } } },
                     { "Level 5-S", new Dictionary<string, (string, string)> { { "", ("Batch 5-S", "texture") } } },
-                    { "Level 7-2", new Dictionary<string, (string, string)> { { "", ("Batch 7-2", "texture") } } },
+                    { "Level 7-2", new Dictionary<string, (string, string)> { { "", ("Batch 7-2", "texture") }, { "exit", ("exit", "texture") } } },
                     { "Level 7-3", new Dictionary<string, (string, string)> { { "marble_inverted 3", ("marble_inverted 3", "texture") } } },
                     { "Level 7-4", new Dictionary<string, (string, string)> { { "HotPipeSign", ("HotPipeSign", "texture") }, { "T_Cent_PlantRoom", ("T_Cent_PlantRoom", "texture") } } },
                     { "Level 7-S", new Dictionary<string, (string, string)> { { "T_Placard", ("T_Placard", "texture") } } },

@@ -81,15 +81,40 @@ namespace UltrakULL
 
 		public static GameObject GetInactiveRootObject(string objectName)
 		{
-			List<GameObject> rootList = new List<GameObject>();
-			SceneManager.GetActiveScene().GetRootGameObjects(rootList);
-			foreach (GameObject child in rootList)
+            // Caching search results to improve performance
+            Dictionary<string, GameObject> rootObjectCache = new Dictionary<string, GameObject>();
+			float lastCacheTime = 0f;
+			const float CACHE_DURATION = 1f; // Кэш действителен 1 секунду
+
+            // The cache is valid for 1 second
+            if (Time.time - lastCacheTime < CACHE_DURATION && rootObjectCache.TryGetValue(objectName, out GameObject cached))
 			{
-				if (child.name == objectName)
+				if (cached != null)
+					return cached;
+				else
+					rootObjectCache.Remove(objectName);
+			}
+
+            // If the cache is outdated, clear it
+            if (Time.time - lastCacheTime >= CACHE_DURATION)
+			{
+				rootObjectCache.Clear();
+				lastCacheTime = Time.time;
+			}
+			
+			var roots = SceneManager.GetActiveScene().GetRootGameObjects();
+			foreach (var root in roots)
+			{
+				if (root.name == objectName)
 				{
-					return child;
+                    // Save it to the cache
+                    rootObjectCache[objectName] = root;
+					return root;
 				}
 			}
+
+            // If the object is not found, store null in the cache
+            rootObjectCache[objectName] = null;
 			return null;
 		}
 		
@@ -220,36 +245,44 @@ namespace UltrakULL
 		}
 
 
-        public static GameObject GetGameObjectChild(GameObject parentObject, string childToFind)
+        public static GameObject GetGameObjectChild(GameObject parent, string childName)
         {
-            if (parentObject == null)
+            if (parent == null) return null;
+
+            // Caching search results to improve performance
+            Dictionary<(GameObject, string), GameObject> childCache = new Dictionary<(GameObject, string), GameObject>();
+            float lastChildCacheTime = 0f;
+            const float CHILD_CACHE_DURATION = 0.5f; // Cache is valid for 0.5 seconds
+
+            var cacheKey = (parent, childName);
+
+            // Checking the cache
+            if (Time.time - lastChildCacheTime < CHILD_CACHE_DURATION && childCache.TryGetValue(cacheKey, out GameObject cached))
             {
-                Logging.Error($"[GetGameObjectChild] ERROR - parentObject is NULL (looking for '{childToFind}')");
-                return null;
+                if (cached != null)
+                    return cached;
+                else
+                    childCache.Remove(cacheKey);
             }
 
-            Transform parentTransform = parentObject.transform;
-            Transform directChild = null;
-
-            for (int i = 0; i < parentTransform.childCount; i++)
+            // If the cache is outdated, clear it
+            if (Time.time - lastChildCacheTime >= CHILD_CACHE_DURATION)
             {
-                Transform child = parentTransform.GetChild(i);
-                if (child.name == childToFind)
-                {
-                    directChild = child;
-                    break;
-                }
+                childCache.Clear();
+                lastChildCacheTime = Time.time;
+            }
+            
+            Transform child = parent.transform.Find(childName);
+            if (child != null)
+            {
+                // Save it to the cache
+                childCache[cacheKey] = child.gameObject;
+                return child.gameObject;
             }
 
-            if (directChild == null)
-            {
-                Logging.Error($"[GetGameObjectChild] ERROR - Direct child '{childToFind}' not found under '{parentObject.name}'");
-                Logging.Info($"[GetGameObjectChild] Direct children of '{parentObject.name}':");
-                PrintChildrenTree(parentTransform, 1);
-                return null;
-            }
-
-            return directChild.gameObject;
+            // If the object is not found, store null in the cache
+            childCache[cacheKey] = null;
+            return null;
         }
 
         public static Transform RecursiveFindChild(Transform parent, string childName)

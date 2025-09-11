@@ -33,11 +33,10 @@ namespace UltrakULL.Harmony_Patches
                         GameObject AudioPageContainer = GetGameObjectChild(AudioPage, "Container");
                         GameObject originalSlider = GetGameObjectChild(AudioPageContainer, "Subtitles");
 
-
+                        // ---- Dialogue Dub ----
                         GameObject dubSlider = GameObject.Instantiate(originalSlider, AudioPageContainer.transform);
                         dubSlider.GetComponent<RectTransform>().anchoredPosition = new Vector2(300f, -225f);
                         dubSlider.name = "Dialogue Dub";
-
 
                         GameObject oldToggleObj = GetGameObjectChild(dubSlider, "Toggle(Clone)");
                         Toggle oldToggle = oldToggleObj.GetComponent<Toggle>();
@@ -52,6 +51,7 @@ namespace UltrakULL.Harmony_Patches
                         GameObject oldFakeCheck = GetGameObjectChild(GetGameObjectChild(oldToggleObj, "Background"), "FakeCheck");
                         oldCheckmark.SetActive(false);
                         oldFakeCheck.SetActive(false);
+
                         GameObject background = GetGameObjectChild(newToggleObj, "Background");
                         GameObject checkmark = GetGameObjectChild(background, "Checkmark");
 
@@ -65,13 +65,6 @@ namespace UltrakULL.Harmony_Patches
 
                         GameObject.Destroy(GetGameObjectChild(dubSlider, "Reset Button Variant(Clone)"));
 
-                        dubToggle.onValueChanged.AddListener(delegate
-                        {
-                            bool newValue = dubToggle.isOn;
-                            LanguageManager.configFile.Bind("General", "activeDubbing", "False").Value = newValue.ToString();
-                            Logging.Info("[AudioDubSlider] Dialogue Dub toggled: " + newValue);
-                        });
-
                         try
                         {
                             GetTextMeshProUGUI(GetGameObjectChild(dubSlider, "Text")).text = LanguageManager.CurrentLanguage.options.audio_dubbing;
@@ -82,6 +75,69 @@ namespace UltrakULL.Harmony_Patches
                             GetTextMeshProUGUI(GetGameObjectChild(dubSlider, "Text")).text = "DUBBED AUDIO";
                         }
                         Logging.Info("[AudioDubSlider] Successful creation of the AudioDubSlider");
+
+                        // ---- Extra Option ----
+                        GameObject extraSlider = GameObject.Instantiate(originalSlider, AudioPageContainer.transform);
+                        extraSlider.GetComponent<RectTransform>().anchoredPosition = new Vector2(650f, -225f);
+                        extraSlider.name = "ExtraOption";
+
+                        GameObject extraOldToggleObj = GetGameObjectChild(extraSlider, "Toggle(Clone)");
+                        Toggle extraOldToggle = extraOldToggleObj.GetComponent<Toggle>();
+
+                        GameObject extraNewToggleObj = GameObject.Instantiate(extraOldToggleObj, extraOldToggleObj.transform.parent);
+                        extraNewToggleObj.name = "ExtraToggle";
+                        extraNewToggleObj.SetActive(true);
+
+                        Toggle extraToggle = extraNewToggleObj.GetComponent<Toggle>();
+
+                        GameObject extraOldCheckmark = GetGameObjectChild(GetGameObjectChild(extraOldToggleObj, "Background"), "Checkmark");
+                        GameObject extraOldFakeCheck = GetGameObjectChild(GetGameObjectChild(extraOldToggleObj, "Background"), "FakeCheck");
+                        extraOldCheckmark.SetActive(false);
+                        extraOldFakeCheck.SetActive(false);
+
+                        GameObject extraBackground = GetGameObjectChild(extraNewToggleObj, "Background");
+                        GameObject extraCheckmark = GetGameObjectChild(extraBackground, "Checkmark");
+
+                        extraToggle.targetGraphic = extraBackground.GetComponent<Image>();
+                        extraToggle.graphic = extraCheckmark.GetComponent<Image>();
+
+                        bool isExtraActive = Convert.ToBoolean(LanguageManager.configFile.Bind("General", "extraDubbing", "False").Value);
+                        extraToggle.isOn = isExtraActive;
+
+                        extraToggle.transition = Selectable.Transition.ColorTint;
+
+                        GameObject.Destroy(GetGameObjectChild(extraSlider, "Reset Button Variant(Clone)"));
+
+                        extraToggle.onValueChanged.AddListener(delegate
+                        {
+                            bool newValue = extraToggle.isOn;
+                            LanguageManager.configFile.Bind("General", "extraDubbing", "False").Value = newValue.ToString();
+                            Logging.Info("[AudioDubSlider] EXTRA DUBBING toggled: " + newValue);
+                        });
+
+                        if (!(String.IsNullOrWhiteSpace(LanguageManager.CurrentLanguage.options.audio_dubbing_extra)))
+                        { GetTextMeshProUGUI(GetGameObjectChild(extraSlider, "Text")).text = LanguageManager.CurrentLanguage.options.audio_dubbing_extra; }
+                        else { GetTextMeshProUGUI(GetGameObjectChild(extraSlider, "Text")).text = LanguageManager.CurrentLanguage.options.audio_dubbing_extra; }
+
+
+                            Action<bool> updateExtraInteractable = (bool active) =>
+                        {
+                            extraToggle.interactable = active;
+                            CanvasGroup cg = extraSlider.GetComponent<CanvasGroup>();
+                            if (cg == null) cg = extraSlider.AddComponent<CanvasGroup>();
+                            cg.alpha = active ? 1f : 0.5f;
+                        };
+
+                        updateExtraInteractable(dubToggle.isOn);
+
+                        dubToggle.onValueChanged.AddListener(delegate (bool newValue)
+                        {
+                            LanguageManager.configFile.Bind("General", "activeDubbing", "False").Value = newValue.ToString();
+                            Logging.Info("[AudioDubSlider] Dialogue Dub toggled: " + newValue);
+                            updateExtraInteractable(newValue);
+                        });
+
+                        Logging.Info("[AudioDubSlider] Successful creation of the ExtraOption slider");
                     }
                     catch (Exception e)
                     {
