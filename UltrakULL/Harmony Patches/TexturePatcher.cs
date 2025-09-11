@@ -32,6 +32,11 @@ namespace UltrakULL.Harmony_Patches
         private static readonly HashSet<int> processedRawImages = new HashSet<int>();
         private static Coroutine backgroundChecker;
 
+        private static readonly List<string> IgnoredPathPatterns = new List<string>
+        {
+            "Leaderboard/Container/Entry Template", // игнорируем всё внутри этого блока
+        };
+
         private static readonly Dictionary<string, (string filename, string type)> globalTextureReplacements = new Dictionary<string, (string, string)>
         {
             { "checkpoint", ("Checkpoint", "texture") },
@@ -311,11 +316,15 @@ namespace UltrakULL.Harmony_Patches
             const int maxChangesPerFrame = 8;
             const int maxScansPerFrame = 60;
 
+            // --- Renderers ---
             var renderers = Object.FindObjectsOfType<Renderer>();
             foreach (var rend in renderers)
             {
                 if (!IsValidRenderer(rend, mainCam))
                     continue;
+
+                if (IsInIgnoredPath(rend.gameObject))
+                    continue; // <<< игнорируем по пути
 
                 int id = rend.GetInstanceID();
                 if (!processedObjectIds.Add(id))
@@ -368,9 +377,13 @@ namespace UltrakULL.Harmony_Patches
                 }
             }
 
+            // --- RawImages ---
             foreach (var raw in Object.FindObjectsOfType<RawImage>())
             {
                 if (!IsValidRawImage(raw)) continue;
+
+                if (IsInIgnoredPath(raw.gameObject))
+                    continue; // <<< игнорируем по пути
 
                 int id = raw.GetInstanceID();
                 if (!processedRawImages.Add(id)) continue;
@@ -605,6 +618,31 @@ namespace UltrakULL.Harmony_Patches
 
             if (replaced > 0)
                 Logging.Message($"[TexturePatcher] Replaced {replaced} UI sprites");
+        }
+
+        private static string GetHierarchyPath(Transform transform)
+        {
+            var names = new List<string>();
+            while (transform != null)
+            {
+                names.Insert(0, transform.name);
+                transform = transform.parent;
+            }
+            return string.Join("/", names);
+        }
+
+
+        private static bool IsInIgnoredPath(GameObject obj)
+        {
+            string path = GetHierarchyPath(obj.transform);
+
+            foreach (var pattern in IgnoredPathPatterns)
+            {
+                if (path.Contains(pattern))
+                    return true;
+            }
+
+            return false;
         }
 
         private static bool ShouldIgnoreScene(string sceneName)
