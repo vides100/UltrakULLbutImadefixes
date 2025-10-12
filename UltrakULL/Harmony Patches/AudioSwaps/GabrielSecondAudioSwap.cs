@@ -38,29 +38,33 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
             
             for(int x = 0; x < gabeSecondTaunts.Length; x++)
             {
-                string gabrielSecondTauntString = gabeSecondFolder + tauntLines[x];
-                gabeSecondTaunts[x] =  AudioSwapper.SwapClipWithFile(gabeSecondTaunts[x], gabrielSecondTauntString);
+                int ix = x;
+                string gabrielSecondTauntString = gabeSecondFolder + tauntLines[ix];
+                AudioSwapper.SwapClipWithFileAsync(gabeSecondTaunts[ix], gabrielSecondTauntString, (clip) => { try { gabeSecondTaunts[ix] = clip; } catch { } });
             }
             
             //Phase change - need to use ref otherwise it gets swapped back to original
-            ref AudioClip gabeSecondPhaseChange = ref ___voice.phaseChange;
+            var voice = ___voice;
+            AudioClip tmpPhase = voice.phaseChange;
             string gabrielSecondPhaseChangeString = gabeSecondFolder + "gabrielSecondPhaseChange";
-            gabeSecondPhaseChange = AudioSwapper.SwapClipWithFile(gabeSecondPhaseChange, gabrielSecondPhaseChangeString);
+            AudioSwapper.SwapClipWithFileAsync(tmpPhase, gabrielSecondPhaseChangeString, (clip) => { try { voice.phaseChange = clip; } catch { } });
 
             //Big hurt
             AudioClip[] gabeSecondBigHurt = ___voice.bigHurt;
             for(int x = 0; x < gabeSecondBigHurt.Length; x++)
             {
-                string gabrielSecondBigHurtString = gabeSecondFolder + "gabrielSecondBigHurt" + (x+1).ToString();
-                gabeSecondBigHurt[x] =  AudioSwapper.SwapClipWithFile(gabeSecondBigHurt[x], gabrielSecondBigHurtString);
+                int ix = x;
+                string gabrielSecondBigHurtString = gabeSecondFolder + "gabrielSecondBigHurt" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(gabeSecondBigHurt[ix], gabrielSecondBigHurtString, (clip) => { try { gabeSecondBigHurt[ix] = clip; } catch { } });
             }
 
             //Hurt
             AudioClip[] gabeSecondHurt = ___voice.hurt;
             for(int x = 0; x < gabeSecondHurt.Length; x++)
             {
-                string gabrielSecondHurtString = gabeSecondFolder + "gabrielSecondHurt" + (x+1).ToString();
-                gabeSecondHurt[x] =  AudioSwapper.SwapClipWithFile(gabeSecondHurt[x], gabrielSecondHurtString);
+                int ix = x;
+                string gabrielSecondHurtString = gabeSecondFolder + "gabrielSecondHurt" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(gabeSecondHurt[ix], gabrielSecondHurtString, (clip) => { try { gabeSecondHurt[ix] = clip; } catch { } });
             }
             
             //Taunts second phase
@@ -78,8 +82,9 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
             AudioClip[] gabeSecondTauntsSecondPhase = ___voice.tauntSecondPhase;
             for(int x = 0; x < gabeSecondTauntsSecondPhase.Length; x++)
             {
-                string gabeSecondTauntsSecondPhaseString = gabeSecondFolder + tauntLinesSecondPhase[x];
-                gabeSecondTauntsSecondPhase[x] =  AudioSwapper.SwapClipWithFile(gabeSecondTauntsSecondPhase[x], gabeSecondTauntsSecondPhaseString);
+                int ix = x;
+                string gabeSecondTauntsSecondPhaseString = gabeSecondFolder + tauntLinesSecondPhase[ix];
+                AudioSwapper.SwapClipWithFileAsync(gabeSecondTauntsSecondPhase[ix], gabeSecondTauntsSecondPhaseString, (clip) => { try { gabeSecondTauntsSecondPhase[ix] = clip; } catch { } });
             }
         }
     }

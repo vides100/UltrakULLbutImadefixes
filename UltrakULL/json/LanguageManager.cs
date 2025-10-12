@@ -301,83 +301,153 @@ namespace UltrakULL.json
 
         private static JsonFormat ApplyRtl(JsonFormat language)
         {
-            //Logging.Warn("ApplyRtl Breakpoint #1");
-
+            if (language == null)
+            {
+                return language;
+            }
 
             List<object> translationComponents = new List<object>
-                {
-                    language.frontend,
-                    language.tutorial,
-                    language.prelude,
-                    language.act1,
-                    language.act2,
-                    language.act3,
-                    language.cyberGrind,
-                    language.encore,
-                    language.primeSanctum,
-                    language.secretLevels,
-                    language.intermission,
-                    language.ranks,
-                    language.pauseMenu,
-                    language.options,
-                    language.levelNames,
-                    language.levelChallenges,
-                    language.enemyNames,
-                    language.enemyBios,
-                    language.shop,
-                    language.levelTips,
-                    language.books,
-                    language.visualnovel,
-                    language.subtitles,
-                    language.style,
-                    language.cheats,
-                    language.misc,
-                    language.devMuseum
-                };
-
-
-            //Logging.Warn("ApplyRtl Breakpoint #2");
-
-            foreach (object component in translationComponents)
             {
+                language.frontend,
+                language.tutorial,
+                language.prelude,
+                language.act1,
+                language.act2,
+                language.act3,
+                language.cyberGrind,
+                language.encore,
+                language.primeSanctum,
+                language.secretLevels,
+                language.intermission,
+                language.ranks,
+                language.pauseMenu,
+                language.options,
+                language.levelNames,
+                language.levelChallenges,
+                language.enemyNames,
+                language.enemyBios,
+                language.shop,
+                language.levelTips,
+                language.books,
+                language.visualnovel,
+                language.subtitles,
+                language.style,
+                language.cheats,
+                language.misc,
+                language.devMuseum
+            };
+
+            ProcessTranslationComponents(translationComponents);
+            return language;
+        }
+
+        private static void ProcessTranslationComponents(List<object> components)
+        {
+            foreach (object component in components)
+            {
+                if (component == null) continue;
+
                 try
                 {
-                    Type type = component.GetType();
-                    FieldInfo[] fields = type.GetFields();
-                    foreach (FieldInfo field in fields)
-                    {
-                        string originalString = (string)field.GetValue(component);
-                        string translatedString = null;
-
-                        if (originalString != null)
-                        {
-
-                            //Logging.Warn("ApplyRtl Breakpoint #3");
-                            //Apply the RTL fix here
-                            translatedString = ArabicFixer.Fix(originalString);
-                        }
-                        if (translatedString != null)
-                        {
-
-                            //Logging.Warn("ApplyRtl Breakpoint #4");
-                            field.SetValue(component, translatedString);
-                        }
-                    }
-
-
-
-                    //Logging.Warn("ApplyRtl Breakpoint #5");
+                    ProcessComponent(component);
                 }
                 catch (Exception ex)
                 {
-                    Logging.Warn($"ULL caught an exception while trying to fix a RTL language! {ex.Message} \nSource: {ex.Source}\nStack Trace:{ex.StackTrace}");
+                    jsonLogger.LogError($"Ошибка при обработке компонента {component.GetType().Name}: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        jsonLogger.LogError($"Внутренняя ошибка: {ex.InnerException.Message}");
+                    }
                 }
+            }
+        }
 
-                //Logging.Warn("ApplyRtl Breakpoint #6");
+        private static void ProcessComponent(object component)
+        {
+            Type type = component.GetType();
+            
+            // Обрабатываем поля
+            foreach (FieldInfo field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                ProcessField(component, field);
             }
 
-            //Logging.Warn("ApplyRtl Breakpoint #7");
-            return language;
+            // Обрабатываем свойства
+            foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                if (prop.CanRead && prop.CanWrite)
+                {
+                    ProcessProperty(component, prop);
+                }
+            }
+        }
+
+        private static void ProcessField(object component, FieldInfo field)
+        {
+            object value = field.GetValue(component);
+            if (value == null) return;
+
+            if (value is string stringValue)
+            {
+                // Обработка строкового значения
+                string translated = ArabicFixer.Fix(stringValue);
+                if (translated != stringValue)
+                {
+                    field.SetValue(component, translated);
+                }
+            }
+            else if (value is IEnumerable enumerable && !(value is string))
+            {
+                // Рекурсивная обработка коллекций
+                foreach (object item in enumerable)
+                {
+                    if (item != null)
+                    {
+                        ProcessComponent(item);
+                    }
+                }
+            }
+            else if (value.GetType().IsClass)
+            {
+                // Рекурсивная обработка объектов
+                ProcessComponent(value);
+            }
+        }
+
+        private static void ProcessProperty(object component, PropertyInfo prop)
+        {
+            try
+            {
+                object value = prop.GetValue(component);
+                if (value == null) return;
+
+                if (value is string stringValue)
+                {
+                    string translated = ArabicFixer.Fix(stringValue);
+                    if (translated != stringValue)
+                    {
+                        prop.SetValue(component, translated);
+                    }
+                }
+                else if (value is IEnumerable enumerable && !(value is string))
+                {
+                    foreach (object item in enumerable)
+                    {
+                        if (item != null)
+                        {
+                            ProcessComponent(item);
+                        }
+                    }
+                }
+                else if (value.GetType().IsClass)
+                {
+                    ProcessComponent(value);
+                }
+            }
+            catch (Exception ex)
+            {
+                jsonLogger.LogWarning($"Не удалось обработать свойство {prop.Name}: {ex.Message}");
+            }
         }
 
         public static void SetCurrentLanguage(string langName)

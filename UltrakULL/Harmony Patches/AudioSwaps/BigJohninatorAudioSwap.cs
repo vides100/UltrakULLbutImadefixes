@@ -23,15 +23,17 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
 
             string radioFolder = AudioSwapper.SpeechFolder + "BigJohninator" + Path.DirectorySeparatorChar;
 
-            for (int i = 0; i < __instance.songs.Length; i++)
+            var inst = __instance;
+            for (int i = 0; i < inst.songs.Length; i++)
             {
-                var clip = __instance.songs[i];
+                int ix = i;
+                var clip = inst.songs[ix];
                 if (clip == null)
                     continue;
 
                 string clipPath = radioFolder + clip.name;
-                // Replace if there is a file
-                __instance.songs[i] = AudioSwapper.SwapClipWithFile(clip, clipPath);
+                // Replace if there is a file (async)
+                AudioSwapper.SwapClipWithFileAsync(clip, clipPath, (newClip) => { try { inst.songs[ix] = newClip; } catch { } });
             }
         }
     }

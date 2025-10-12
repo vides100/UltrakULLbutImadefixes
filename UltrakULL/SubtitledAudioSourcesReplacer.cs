@@ -46,7 +46,8 @@ namespace UltrakULL
                     {
                         if (audioSource != null)
                         {
-                            audioSource.clip = SwapClipWithFile(audioSource.clip, Combine(SpeechFolder, objectReference.AudioPath));
+                            var src = audioSource;
+                            SwapClipWithFileAsync(src.clip, Combine(SpeechFolder, objectReference.AudioPath), (newClip) => { try { src.clip = newClip; } catch { } });
                         }
                         else
                         {

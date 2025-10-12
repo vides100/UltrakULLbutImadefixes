@@ -40,30 +40,33 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
             };
             for(int x = 0; x < gabeTaunts.Length; x++)
             {
-                string gabrielTauntString = gabeFirstFolder + tauntLines[x];
-                gabeTaunts[x] =  AudioSwapper.SwapClipWithFile(gabeTaunts[x], gabrielTauntString);
+                int ix = x;
+                string gabrielTauntString = gabeFirstFolder + tauntLines[ix];
+                AudioSwapper.SwapClipWithFileAsync(gabeTaunts[ix], gabrielTauntString, (clip) => { try { gabeTaunts[ix] = clip; } catch { } });
             }
             
             //Phase change - need to use ref otherwise it gets swapped back to original
-            ref AudioClip gabePhaseChange = ref ___voice.phaseChange;
+            var voice = ___voice;
+            AudioClip tmpPhase = voice.phaseChange;
             string gabrielPhaseChangeString = gabeFirstFolder + "gabrielPhaseChange";
-            gabePhaseChange = AudioSwapper.SwapClipWithFile(gabePhaseChange, gabrielPhaseChangeString);
+            AudioSwapper.SwapClipWithFileAsync(tmpPhase, gabrielPhaseChangeString, (clip) => { try { voice.phaseChange = clip; } catch { } });
 
             //Big hurt
             AudioClip[] gabeBigHurt = ___voice.bigHurt;
             for(int x = 0; x < gabeBigHurt.Length; x++)
             {
-                string gabrielBigHurtString = gabeFirstFolder + "gabrielBigHurt" + (x+1).ToString();
-                gabeBigHurt[x] =  AudioSwapper.SwapClipWithFile(gabeBigHurt[x], gabrielBigHurtString);
-                
+                int ix = x;
+                string gabrielBigHurtString = gabeFirstFolder + "gabrielBigHurt" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(gabeBigHurt[ix], gabrielBigHurtString, (clip) => { try { gabeBigHurt[ix] = clip; } catch { } });
             }
 
             //Hurt
             AudioClip[] gabeHurt = ___voice.hurt;
             for(int x = 0; x < gabeHurt.Length; x++)
             {
-                string gabrielHurtString = gabeFirstFolder + "gabrielHurt" + (x+1).ToString();
-                gabeHurt[x] =  AudioSwapper.SwapClipWithFile(gabeHurt[x], gabrielHurtString);
+                int ix = x;
+                string gabrielHurtString = gabeFirstFolder + "gabrielHurt" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(gabeHurt[ix], gabrielHurtString, (clip) => { try { gabeHurt[ix] = clip; } catch { } });
             }
         }
     }

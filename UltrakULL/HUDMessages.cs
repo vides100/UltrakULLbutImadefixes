@@ -4,7 +4,7 @@ using UltrakULL.json;
 using UnityEngine;
 using UnityEngine.UI;
 using static UltrakULL.CommonFunctions;
-                                                                                 
+
 namespace UltrakULL
 {
     public static class HUDMessages
@@ -44,11 +44,11 @@ namespace UltrakULL
             {
                 return LanguageManager.CurrentLanguage.misc.hud_outOfBounds;
             }
-            if(message.Contains("CLASH"))
+            if (message.Contains("CLASH"))
             {
                 return LanguageManager.CurrentLanguage.misc.hud_clashMode;
             }
-            if(message.Contains("DRONE HAUNTING"))
+            if (message.Contains("DRONE HAUNTING"))
             {
                 return LanguageManager.CurrentLanguage.misc.hud_droneHaunting;
             }
@@ -65,13 +65,13 @@ namespace UltrakULL
                 return message; //4-S transaction complete
             }
             //For some reason 5-S passes through this function instead of passing through HudMessage. So we'll do this
-            if(GetCurrentSceneName() == "Level 5-S")
+            if (GetCurrentSceneName() == "Level 5-S")
             {
                 return StringsParent.GetMessage(message, "", "");
             }
-            
+
             //chessTip
-            if(GetCurrentSceneName() == "CreditsMuseum2")
+            if (GetCurrentSceneName() == "CreditsMuseum2")
             {
                 return StringsParent.GetMessage(message, "", "");
             }
@@ -80,7 +80,7 @@ namespace UltrakULL
             //Cybergrind custom pattern fix
             if (GetCurrentSceneName() == "Endless")
             {
-                if(message.Contains("NO PATTERNS"))
+                if (message.Contains("NO PATTERNS"))
                 {
                     return LanguageManager.CurrentLanguage.cyberGrind.cybergrind_noPatternsSelected;
                 }
@@ -129,8 +129,8 @@ namespace UltrakULL
                 Logging.Error(e.ToString());
             }
         }
-        
-        
+
+
 
         public static void PatchMisc(ref GameObject canvasObj)
         {
@@ -139,11 +139,11 @@ namespace UltrakULL
             GameObject styleMeter = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(player, "Main Camera"), "HUD Camera"), "HUD"), "StyleCanvas"), "Panel (1)"), "Panel"), "Text (1)"), "Text");
             TextMeshProUGUI styleMeterMultiplierText = GetTextMeshProUGUI(styleMeter);
             styleMeterMultiplierText.text = LanguageManager.CurrentLanguage.style.stylemeter_multiplier;
-            
+
             //Classic HUD
             GameObject classicHudBw = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(canvasObj, "Crosshair Filler"), "AltHud"), "Filler");
             GameObject classicHudColor = GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(canvasObj, "Crosshair Filler"), "AltHud (2)"), "Filler");
-            
+
             TextMeshProUGUI classicHudBwHealth = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(classicHudBw, "Health"), "Title"));
             TextMeshProUGUI classicHudColorHealth = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(classicHudColor, "Health (1)"), "Title"));
             classicHudBwHealth.text = LanguageManager.CurrentLanguage.misc.classicHud_health;
@@ -153,7 +153,7 @@ namespace UltrakULL
             TextMeshProUGUI classicHudColorStamina = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(classicHudColor, "Stamina (1)"), "Title"));
             classicHudBwStamina.text = LanguageManager.CurrentLanguage.misc.classicHud_stamina;
             classicHudColorStamina.text = LanguageManager.CurrentLanguage.misc.classicHud_stamina;
-            
+
             TextMeshProUGUI classicHudBwWeapon = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(classicHudBw, "Weapon"), "Title"));
             TextMeshProUGUI classicHudColorWeapon = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(classicHudColor, "Weapon (1)"), "Title"));
             classicHudBwWeapon.text = LanguageManager.CurrentLanguage.misc.classicHud_weapon;

@@ -12,6 +12,8 @@ using TMPro;
 using UltrakULL.json;
 using static UltrakULL.CommonFunctions;
 using System.Linq;
+using BepInEx;
+using BepInEx.Configuration;
 
 namespace UltrakULL
 {
@@ -56,32 +58,38 @@ namespace UltrakULL
 
         public static async Task CheckForUpdates()
         {
-            string updateUrl = "https://api.github.com/repos/clearwateruk/ultrakull/releases/latest";
-
-            // We assume that the Client is configured once and is static
-            if (!Client.DefaultRequestHeaders.UserAgent.Any())
-            {
-                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                Client.DefaultRequestHeaders.UserAgent.ParseAdd("UltrakULL-Updater/1.0 (+https://github.com/clearwateruk/ultrakull)");
-                Client.Timeout = TimeSpan.FromSeconds(5);
-            }
+            string rssUrl = "https://github.com/ClearwaterUK/UltrakULL/releases.atom";
+            Client.Timeout = TimeSpan.FromSeconds(5);
 
             try
             {
-                string responseJsonRaw = await Client.GetStringAsync(updateUrl);
-                UpdateInfo responseJson = JsonConvert.DeserializeObject<UpdateInfo>(responseJsonRaw);
+                string rssContent = await Client.GetStringAsync(rssUrl);
+                var doc = new System.Xml.XmlDocument();
+                doc.LoadXml(rssContent);
 
-                if (responseJson == null || string.IsNullOrEmpty(responseJson.tag_name))
-                    throw new Exception("Update info is missing or invalid.");
+                // Create namespace manager for Atom
+                var nsManager = new System.Xml.XmlNamespaceManager(doc.NameTable);
+                nsManager.AddNamespace("atom", "http://www.w3.org/2005/Atom");
 
-                string versionString = responseJson.tag_name.TrimStart('v', 'V');
-                Logging.Message("Latest version on GitHub: " + versionString);
+                // Get latest release entry using namespace
+                var latest = doc.SelectSingleNode("//atom:entry[1]", nsManager);
+                if (latest == null)
+                    throw new Exception("No releases found in RSS feed");
+
+                string title = latest.SelectSingleNode("atom:title", nsManager)?.InnerText ?? "";
+                string updated = latest.SelectSingleNode("atom:updated", nsManager)?.InnerText ?? "";
+
+                // Parse version from title (usually the tag)
+                string versionString = title.TrimStart('v', 'V');
+                Logging.Message("Latest version from RSS: " + versionString);
                 Logging.Message("Current local version: " + MainPatch.GetVersion());
 
                 Version onlineVersion = new Version(versionString);
                 Version localVersion = new Version(MainPatch.GetVersion());
 
+                // Simple version compare - update available if online version is newer
                 updateAvailable = localVersion.CompareTo(onlineVersion) < 0;
+
                 if (updateAvailable)
                     Logging.Warn("UPDATE AVAILABLE!");
                 else
@@ -91,7 +99,7 @@ namespace UltrakULL
             }
             catch (Exception e)
             {
-                Logging.Error("Unable to acquire version info from GitHub.");
+                Logging.Error("Unable to check for updates via RSS feed.");
                 Logging.Error(e.ToString());
                 updateAvailable = false;
                 updateFailed = true;
@@ -543,8 +551,8 @@ namespace UltrakULL
 
         public static async void ApplyPostInitFixes(GameObject canvasObj)
         {
-            /*await Task.Delay(250);
-            if (GetCurrentSceneName() == "Main Menu")
+            await Task.Delay(250); // Fix warning about async without await
+            /*if (GetCurrentSceneName() == "Main Menu")
             {
                 //Open Language Folder button in Options->Language
                 TextMeshProUGUI openLangFolderText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(GetGameObjectChild(canvasObj,"OptionsMenu"), "Language Page"),"Scroll Rect (1)"),"Contents"),"OpenLangFolder"),"Slot Text")); 

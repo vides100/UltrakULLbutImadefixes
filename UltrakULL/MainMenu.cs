@@ -147,7 +147,7 @@ namespace UltrakULL
         }
 
 
-        public static void ChangeTitle(GameObject mainMenu)
+        /*public static void ChangeTitle(GameObject mainMenu) // This feature is currently disabled because there is a more global texture replacement feature (＞﹏＜)
 		{
 			try
 			{
@@ -193,7 +193,7 @@ namespace UltrakULL
                 Logging.Error("An error occured while switching the title. Check the console for details.");
                 Logging.Error(e.ToString());
             }
-        }
+        }*/
 
 		//Patches all text strings in the difficulty selection menu.
 		private static void PatchDifficultyMenu(GameObject frontEnd)
@@ -426,24 +426,6 @@ namespace UltrakULL
 				rect.anchoredPosition = new Vector3(-388f, 0f, 0f);
 			}
 
-			GameObject progressObject = obj.transform.Find("Progress").gameObject;
-			if (progressObject != null)
-			{
-				Text progress = progressObject.GetComponent<Text>();
-				if (progress != null)
-				{
-					progress.alignment = TextAnchor.MiddleLeft;
-					RectTransform rectTrans = progress.rectTransform;
-					if (rectTrans != null)
-					{
-						rectTrans.anchoredPosition = new Vector2(380.0f - 60.0f, 0.0f);
-					}
-				}
-				else
-				{
-				}
-			}
-
 			GameObject act1RankIcon = obj.transform.Find("RankPanel").gameObject;
 			if (act1RankIcon != null)
 			{
@@ -460,6 +442,54 @@ namespace UltrakULL
 				}
 			}
 
+			GameObject progressObject = obj.transform.Find("Progress").gameObject;
+			if (progressObject != null)
+			{
+				TextMeshProUGUI progress = progressObject.GetComponent<TextMeshProUGUI>();
+				if (progress != null)
+				{
+					progress.alignment = TextAlignmentOptions.MidlineLeft;
+					RectTransform rectTrans = progress.rectTransform;
+					if (rectTrans != null)
+					{
+						rectTrans.anchorMin = new Vector2(0.0f, 0.5f);
+						rectTrans.anchorMax = new Vector2(0.0f, 0.5f);
+						GameObject rankPanel = obj.transform.Find("RankPanel")?.gameObject;
+						RectTransform parentRect = obj.GetComponent<RectTransform>();
+						float minDistance = -70f; // Минимальный отступ между Rank и Progress
+						float progressWidth = rectTrans.rect.width;
+						float newX = 0f;
+
+						if (rankPanel != null)
+						{
+							RectTransform rankRect = rankPanel.GetComponent<RectTransform>();
+							if (rankRect != null)
+							{
+								// Вычисляем правый край RankPanel с учетом его позиции и ширины
+								float rankFullRight = rankRect.anchoredPosition.x + (rankRect.rect.width * 1.0f);
+								// Ставим Progress справа от RankPanel (учитываем, что anchor слева)
+								newX = rankFullRight + minDistance;
+							}
+						}
+
+						// Проверка на выход за пределы родителя
+						if (parentRect != null)
+						{
+							float parentRight = parentRect.rect.width;
+							float maxX = parentRight - progressWidth - minDistance;
+							if (newX > maxX)
+							{
+								newX = maxX;
+							}
+						}
+
+						rectTrans.anchoredPosition = new Vector2(newX, 0.0f);
+					}
+				}
+				else
+				{
+				}
+			}
 
 		}
 
@@ -839,11 +869,16 @@ namespace UltrakULL
             TextMeshProUGUI armModuleFeedbacker = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (2)"));
             TextMeshProUGUI visualCortexModule = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (3)"));
             TextMeshProUGUI legModule = GetTextMeshProUGUI(GetGameObjectChild(textV1, "Text (TMP) (4)"));
-            wingModule.text = LanguageManager.CurrentLanguage.frontend.wingModule;
-            armModuleFactory.text = LanguageManager.CurrentLanguage.frontend.armModuleFactory;
-            armModuleFeedbacker.text = LanguageManager.CurrentLanguage.frontend.armModuleFeedbacker;
-            visualCortexModule.text = LanguageManager.CurrentLanguage.frontend.visualCortexModule;
-            legModule.text = LanguageManager.CurrentLanguage.frontend.legModule;
+			if (!string.IsNullOrEmpty(LanguageManager.CurrentLanguage.frontend.wingModule))
+				wingModule.text = LanguageManager.CurrentLanguage.frontend.wingModule;
+			if (!string.IsNullOrEmpty(LanguageManager.CurrentLanguage.frontend.armModuleFactory))
+				armModuleFactory.text = LanguageManager.CurrentLanguage.frontend.armModuleFactory;
+			if (!string.IsNullOrEmpty(LanguageManager.CurrentLanguage.frontend.armModuleFeedbacker))
+				armModuleFeedbacker.text = LanguageManager.CurrentLanguage.frontend.armModuleFeedbacker;
+			if (!string.IsNullOrEmpty(LanguageManager.CurrentLanguage.frontend.visualCortexModule))
+				visualCortexModule.text = LanguageManager.CurrentLanguage.frontend.visualCortexModule;
+			if (!string.IsNullOrEmpty(LanguageManager.CurrentLanguage.frontend.legModule))
+				legModule.text = LanguageManager.CurrentLanguage.frontend.legModule;
         }
 
         public static void Patch(GameObject frontEnd)
@@ -853,7 +888,7 @@ namespace UltrakULL
 				PatchMainMenu(frontEnd);
                 PatchTextArroundV1(frontEnd);
                 PatchPopUps(frontEnd);
-                ChangeTitle(frontEnd);
+                //ChangeTitle(frontEnd);
 				PatchDifficultyMenu(frontEnd);
 				PatchDifficultyDescriptors(frontEnd);
 

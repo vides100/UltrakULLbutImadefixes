@@ -36,12 +36,24 @@ namespace UltrakULL.Harmony_Patches
             // RTL support
             if (LanguageManager.IsRightToLeft)
             {
-                string lvlNumber = "";
-                char[] lnum = missionNumber.ToCharArray();
-
-                lvlNumber += lnum[2];
-                lvlNumber += lnum[1];
-                lvlNumber += lnum[0];
+                // This is a new block that changes the "mission numbers". It has not been tested. If it causes bugs or is unnecessary, please remove it.
+                string lvlNumber;
+                if (missionNumber.Contains("-"))
+                {
+                    // For formats such as "P-1", "0-E", etc., leave it as is
+                    lvlNumber = missionNumber;
+                }
+                else if (!string.IsNullOrEmpty(missionNumber))
+                {
+                    // For numeric formats, reverse the order of digits
+                    char[] lnum = missionNumber.ToCharArray();
+                    lvlNumber = new string(lnum.Reverse().ToArray());
+                }
+                else
+                {
+                    // If the mission number is empty
+                    lvlNumber = "";
+                }
 
                 string lvlTitle = missionName;
 
@@ -184,7 +196,6 @@ namespace UltrakULL.Harmony_Patches
             }
 
             // Custom mission name translation/replacement logic
-            string missionName;
             switch (missionNum)
             {
                 case 0: __result = LanguageManager.CurrentLanguage.levelNames.levelName_mainMenu; return false;
@@ -237,10 +248,7 @@ namespace UltrakULL.Harmony_Patches
                 case 667: __result = LanguageManager.CurrentLanguage.levelNames.levelName_primeSecond; return false;
                 case 668: __result = LanguageManager.CurrentLanguage.levelNames.levelName_primeThird; return false;
                 default: __result = ""; return true;
-
             }
-
-            return true; // If nothing was substituted, the original function is used
         }
     }
 
