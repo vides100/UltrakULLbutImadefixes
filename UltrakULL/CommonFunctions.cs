@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Text;
 using HarmonyLib;
 using TMPro;
 using UltrakULL.json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UltrakULL.audio;
+
+
 
 namespace UltrakULL
 {
@@ -400,5 +405,94 @@ namespace UltrakULL
 
             return FindRecursiveInternal(child, split, index + 1);
         }
+		public static string MakeVertical(string input)
+		{
+			if (string.IsNullOrEmpty(input))
+			{
+				return input;
+			}
+			StringBuilder stringBuilder = new StringBuilder(input.Length * 2);
+			for (int i = 0; i < input.Length; i++)
+			{
+				stringBuilder.Append(input[i]);
+				if (i < input.Length - 1)
+				{
+					stringBuilder.Append('\n');
+				}
+			}
+			return stringBuilder.ToString();
+		}
+		public static void ExportAudioClipToWav(AudioClip clip, string clipName, string exportDir = null)
+		{
+			try
+			{
+				if (exportDir == null)
+				{
+					exportDir = Path.Combine(AudioSwapper.SpeechFolder, "export");
+				}
+				Directory.CreateDirectory(exportDir);
+				string text = Path.Combine(exportDir, clipName + ".wav");
+				if (File.Exists(text))
+				{
+					Logging.Info("[AudioExport] WAV file already exists: " + text);
+					return;
+				}
+				byte[] bytes = EncodeAudioClipToWav(clip);
+				File.WriteAllBytes(text, bytes);
+				Logging.Info("[AudioExport] Exported " + clipName + ".wav to " + text);
+			}
+			catch (Exception arg)
+			{
+				Logging.Error($"[AudioExport] Failed to export {clipName}: {arg}");
+			}
+		}
+
+		public static byte[] EncodeAudioClipToWav(AudioClip clip)
+		{
+			int channels = clip.channels;
+			int frequency = clip.frequency;
+			float[] array = new float[clip.samples * channels];
+			clip.GetData(array, 0);
+			short[] array2 = new short[array.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				float num = array[i];
+				if (num > 1f)
+				{
+					num = 1f;
+				}
+				if (num < -1f)
+				{
+					num = -1f;
+				}
+				array2[i] = (short)(num * 32767f);
+			}
+			byte[] array3 = new byte[44];
+			using (MemoryStream output = new MemoryStream(array3))
+			{
+				using (BinaryWriter binaryWriter = new BinaryWriter(output))
+				{
+					binaryWriter.Write(new char[4] { 'R', 'I', 'F', 'F' });
+					binaryWriter.Write(36 + array2.Length * 2);
+					binaryWriter.Write(new char[4] { 'W', 'A', 'V', 'E' });
+					binaryWriter.Write(new char[4] { 'f', 'm', 't', ' ' });
+					binaryWriter.Write(16);
+					binaryWriter.Write((short)1);
+					binaryWriter.Write((short)channels);
+					binaryWriter.Write(frequency);
+					binaryWriter.Write(frequency * channels * 2);
+					binaryWriter.Write((short)(channels * 2));
+					binaryWriter.Write((short)16);
+					binaryWriter.Write(new char[4] { 'd', 'a', 't', 'a' });
+					binaryWriter.Write(array2.Length * 2);
+				}
+			}
+			byte[] array4 = new byte[array2.Length * 2];
+			Buffer.BlockCopy(array2, 0, array4, 0, array4.Length);
+			byte[] array5 = new byte[array3.Length + array4.Length];
+			Buffer.BlockCopy(array3, 0, array5, 0, array3.Length);
+			Buffer.BlockCopy(array4, 0, array5, array3.Length, array4.Length);
+			return array5;
+		}
     }
 }

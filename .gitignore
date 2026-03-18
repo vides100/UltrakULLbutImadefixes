@@ -378,3 +378,9 @@ FodyWeavers.xsd
 .idea/
 .github/copilot-instructions.md
 .vscode/tasks.json
+
+# User-specific build props
+Directory.Build.props
+
+# Decompiled game files
+.Decompiled/

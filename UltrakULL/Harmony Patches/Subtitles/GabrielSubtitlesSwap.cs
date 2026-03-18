@@ -1,75 +1,76 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using HarmonyLib;
-using static UltrakULL.CommonFunctions;
-using static UltrakULL.json.LanguageManager;
+using UltrakULL.json;
+using UnityEngine;
 
 namespace UltrakULL.Harmony_Patches.Subtitles
 {
-    [HarmonyPatch(typeof(GabrielVoice),"Start")]
-    public static class GabrielSubtitlesSwap
-    {
-        private static readonly List<string> FirstEncounterTauntsOrder = new List<string>
-        {
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt2,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt3,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt8,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt6,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt9,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt4,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt5,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt7,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt1,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt12,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt10,
-            CurrentLanguage.subtitles.subtitles_gabriel_taunt11
-        };
-        
-        private static readonly List<string> SecondEncounterTauntsOrder = new List<string>
-        {
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt6,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt5,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt8,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt4,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt9,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt7,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt1
-        };
-        
-        private static readonly List<string> SecondEncounterPhaseTwoTauntsOrder = new List<string>
-        {
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt11,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt12,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt13,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt3,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt2,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt10,
-            CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt14
-        };
-        
-        [HarmonyPostfix]
-        public static void GabrielVoice_Start(ref GabrielVoice __instance, ref string[] ___taunts, ref string[] ___tauntsSecondPhase)
-        {
-            if (__instance.gameObject.name.Contains("2nd"))
-            {
-                __instance.phaseChangeSubtitle = CurrentLanguage.subtitles.subtitles_gabrielSecondPhaseChange;
+	[HarmonyPatch(typeof(GabrielVoice), "Start")]
+	public static class GabrielSubtitlesSwap
+	{
+		private static readonly List<string> FirstEncounterTauntsOrder = new List<string>
+		{
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt2,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt3,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt8,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt6,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt9,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt4,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt5,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt7,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt1,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt12,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt10,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_taunt11
+		};
 
-                for (var i = 0; i < SecondEncounterTauntsOrder.Count; i++)
-                    ___taunts[i] = SecondEncounterTauntsOrder[i];
+		private static readonly List<string> SecondEncounterTauntsOrder = new List<string>
+		{
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt6,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt5,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt8,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt4,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt9,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt7,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt1
+		};
 
-                for (var i = 0; i < SecondEncounterPhaseTwoTauntsOrder.Count; i++)
-                    ___tauntsSecondPhase[i] = SecondEncounterPhaseTwoTauntsOrder[i];
-                SubtitledAudioSourcesReplacer.ReplaceSubsAndAudio(); //Need to fix unswaped main voicelines (not taunts) after respawn
-                return;
-            }
-            else
-            {
-                __instance.phaseChangeSubtitle = CurrentLanguage.subtitles.subtitles_gabriel_phaseChange;
-                    
-                for (var i = 0; i < FirstEncounterTauntsOrder.Count; i++)
-                    ___taunts[i] = FirstEncounterTauntsOrder[i];
-                SubtitledAudioSourcesReplacer.ReplaceSubsAndAudio(); //Need to fix unswaped main voicelines (not taunts) after respawn
-                return;
-            }
-        }
-    }
+		private static readonly List<string> SecondEncounterPhaseTwoTauntsOrder = new List<string>
+		{
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt11,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt12,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt13,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt3,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt2,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt10,
+			LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondTaunt14
+		};
+
+		[HarmonyPostfix]
+		public static void GabrielVoice_Start(ref GabrielVoice __instance, ref string[] ___taunts, ref string[] ___tauntsSecondPhase)
+		{
+			if (((Object)((Component)__instance).gameObject).name.Contains("2nd"))
+			{
+				__instance.phaseChangeSubtitle = LanguageManager.CurrentLanguage.subtitles.subtitles_gabrielSecondPhaseChange;
+				for (int i = 0; i < SecondEncounterTauntsOrder.Count; i++)
+				{
+					___taunts[i] = SecondEncounterTauntsOrder[i];
+				}
+				for (int j = 0; j < SecondEncounterPhaseTwoTauntsOrder.Count; j++)
+				{
+					___tauntsSecondPhase[j] = SecondEncounterPhaseTwoTauntsOrder[j];
+				}
+				SubtitledAudioSourcesReplacer.ReplaceSubsAndAudio();
+			}
+			else
+			{
+				__instance.phaseChangeSubtitle = LanguageManager.CurrentLanguage.subtitles.subtitles_gabriel_phaseChange;
+				for (int k = 0; k < FirstEncounterTauntsOrder.Count; k++)
+				{
+					___taunts[k] = FirstEncounterTauntsOrder[k];
+				}
+				SubtitledAudioSourcesReplacer.ReplaceSubsAndAudio();
+			}
+		}
+	}
 }

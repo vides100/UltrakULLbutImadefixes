@@ -485,5 +485,13 @@ namespace UltrakULL.json
             else
                 Logging.Warn("No language found with name " + langName);
         }
+
+        /// <summary>
+        /// Clears any caches used by the language manager.
+        /// </summary>
+        public static void ClearCaches()
+        {
+            // Currently no caches to clear, but method is kept for compatibility.
+        }
     }
 }

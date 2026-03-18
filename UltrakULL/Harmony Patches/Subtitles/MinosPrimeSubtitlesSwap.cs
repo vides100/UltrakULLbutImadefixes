@@ -1,110 +1,108 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using UltrakULL.json;
 using UnityEngine;
-using static System.Reflection.Emit.OpCodes;
-using static HarmonyLib.AccessTools;
-using static UltrakULL.CommonFunctions;
 
 namespace UltrakULL.Harmony_Patches.Subtitles
 {
-    /**
-     * Minos and Sisyphus still have to be patched with transpiler, but they're
-     * significantly less tricky than Mandalore since there's only one DisplaySubtitle
-     * call per method and a constant Ldstr offset from it.
-     */
-    [HarmonyPatch(typeof(MinosPrime))]
-    public class MinosPrimeSubtitlesSwap
-    {
-        private const int LdstrInstructionOffset = 3;
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "Update")]
-        private static IEnumerable<CodeInstruction> MinosPrime_Update(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_phaseChange", code);
-            return code;
-        }
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "Combo")]
-        private static IEnumerable<CodeInstruction> MinosPrime_Combo(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack1", code);
-            return code;
-        }
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "Boxing")]
-        private static IEnumerable<CodeInstruction> MinosPrime_Boxing(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack2", code);
-            return code;
-        }
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "RiderKick")]
-        private static IEnumerable<CodeInstruction> MinosPrime_RiderKick(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack3", code);
-            return code;
-        }
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "DropAttack")]
-        private static IEnumerable<CodeInstruction> MinosPrime_DropAttack(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack4", code);
-            return code;
-        }
-        
-        [HarmonyTranspiler]
-        [HarmonyPatch(typeof(MinosPrime), "Dropkick")]
-        private static IEnumerable<CodeInstruction> MinosPrime_Dropkick(IEnumerable<CodeInstruction> instructions)
-        {
-            var code  = instructions.ToList();
-            TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack5", code);
-            return code;
-        }
+	[HarmonyPatch(typeof(MinosPrime))]
+	public class MinosPrimeSubtitlesSwap
+	{
+		private const int LdstrInstructionOffset = 3;
 
-        private static void TraverseCodeAndReplaceSubtitles(string subtitles, List<CodeInstruction> instructions)
-        {
-            for (var i = 0; i < instructions.Count; i++)
-            {
-                if (!DisplaySubtitleCall(instructions[i]))
-                    continue;
-                
-                // Ldstr opcode is always 3 instructions above
-                ReplaceLdstr(i - LdstrInstructionOffset, subtitles, instructions);
-                break;
-            }
-        }
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "Update")]
+		private static IEnumerable<CodeInstruction> MinosPrime_Update(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_phaseChange", list);
+			return list;
+		}
 
-        private static bool DisplaySubtitleCall(CodeInstruction instruction)
-        {
-            return instruction.opcode == Callvirt
-                   && instruction.OperandIs(Method(typeof(SubtitleController), "DisplaySubtitle",
-                       new[] { typeof(string), typeof(AudioSource), typeof(bool) }));
-        }
-        
-        private static void ReplaceLdstr(int offset, string subtitles, List<CodeInstruction> instructions)
-        {
-            instructions.RemoveAt(offset);
-            instructions.InsertRange(offset, ReplaceLdstr(subtitles));
-        }
-        
-        private static IEnumerable<CodeInstruction> ReplaceLdstr(string subtitles)
-        {
-            return IL(
-                (Call, Method(typeof(LanguageManager), "get_CurrentLanguage")),
-                (Ldfld, Field(typeof(JsonFormat), "subtitles")),
-                (Ldfld, Field(typeof(json.Subtitles), subtitles)));
-        }
-    }
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "Combo")]
+		private static IEnumerable<CodeInstruction> MinosPrime_Combo(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack1", list);
+			return list;
+		}
+
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "Boxing")]
+		private static IEnumerable<CodeInstruction> MinosPrime_Boxing(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack2", list);
+			return list;
+		}
+
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "RiderKick")]
+		private static IEnumerable<CodeInstruction> MinosPrime_RiderKick(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack3", list);
+			return list;
+		}
+
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "DropAttack")]
+		private static IEnumerable<CodeInstruction> MinosPrime_DropAttack(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack4", list);
+			return list;
+		}
+
+		[HarmonyTranspiler]
+		[HarmonyPatch(typeof(MinosPrime), "Dropkick")]
+		private static IEnumerable<CodeInstruction> MinosPrime_Dropkick(IEnumerable<CodeInstruction> instructions)
+		{
+			List<CodeInstruction> list = instructions.ToList();
+			TraverseCodeAndReplaceSubtitles("subtitles_minosPrime_attack5", list);
+			return list;
+		}
+
+		private static void TraverseCodeAndReplaceSubtitles(string subtitles, List<CodeInstruction> instructions)
+		{
+			for (int i = 0; i < instructions.Count; i++)
+			{
+				if (DisplaySubtitleCall(instructions[i]))
+				{
+					ReplaceLdstr(i - 3, subtitles, instructions);
+					break;
+				}
+			}
+		}
+
+		private static bool DisplaySubtitleCall(CodeInstruction instruction)
+		{
+			if (instruction.opcode == OpCodes.Callvirt)
+			{
+				return CodeInstructionExtensions.OperandIs(instruction, (MemberInfo)AccessTools.Method(typeof(SubtitleController), "DisplaySubtitle", new Type[3]
+				{
+					typeof(string),
+					typeof(AudioSource),
+					typeof(bool)
+				}, (Type[])null));
+			}
+			return false;
+		}
+
+		private static void ReplaceLdstr(int offset, string subtitles, List<CodeInstruction> instructions)
+		{
+			instructions.RemoveAt(offset);
+			instructions.InsertRange(offset, ReplaceLdstr(subtitles));
+		}
+
+		private static IEnumerable<CodeInstruction> ReplaceLdstr(string subtitles)
+		{
+			return CommonFunctions.IL((OpCodes.Call, AccessTools.Method(typeof(LanguageManager), "get_CurrentLanguage", (Type[])null, (Type[])null)), (OpCodes.Ldfld, AccessTools.Field(typeof(JsonFormat), "subtitles")), (OpCodes.Ldfld, AccessTools.Field(typeof(UltrakULL.json.Subtitles), subtitles)));
+		}
+	}
 }

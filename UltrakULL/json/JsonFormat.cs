@@ -416,6 +416,7 @@ namespace UltrakULL.json
         public string style_ricoshotCounter;
         public string style_rocketreturn;
         public string style_roundtrip;
+        public string style_terminalvelocity;
         public string style_scrindonguloded;
         public string style_scrongled;
         public string style_scrongbongled;
@@ -467,6 +468,8 @@ namespace UltrakULL.json
         public string style_stophitting;
         public string style_ultravictory;
         public string style_whitewins;
+        public string style_lostinspace;
+        public string style_starstruck;
 
         public string style_d;
         public string style_c;
@@ -786,6 +789,53 @@ namespace UltrakULL.json
 
         public string enemyBios_sisyphusPrime_strategy1;
         public string enemyBios_sisyphusPrime_strategy2;
+
+        // Providence
+        public string enemyBios_providence_1;
+        public string enemyBios_providence_2;
+        public string enemyBios_providence_3;
+        public string enemyBios_providence_4;
+        public string enemyBios_providence_strategy1;
+        public string enemyBios_providence_strategy2;
+        public string enemyBios_providence_strategy3;
+
+        // Power
+        public string enemyBios_power_1;
+        public string enemyBios_power_2;
+        public string enemyBios_power_3;
+        public string enemyBios_power_4;
+        public string enemyBios_power_strategy1;
+        public string enemyBios_power_strategy2;
+        public string enemyBios_power_strategy3;
+        public string enemyBios_power_strategy4;
+
+        // Geryon
+        public string enemyBios_geryon_1;
+        public string enemyBios_geryon_2;
+        public string enemyBios_geryon_3;
+        public string enemyBios_geryon_4;
+        public string enemyBios_geryon_strategy1;
+        
+        public string enemyBios_geryon_strategy3;
+        public string enemyBios_geryon_strategy2;
+
+        // Mirror Reaper
+        public string enemyBios_mirrorReaper_1;
+        public string enemyBios_mirrorReaper_2;
+        public string enemyBios_mirrorReaper_3;
+        public string enemyBios_mirrorReaper_4;
+        public string enemyBios_mirrorReaper_strategy1;
+        public string enemyBios_mirrorReaper_strategy2;
+        public string enemyBios_mirrorReaper_strategy3;
+
+        // Deathcatcher
+        public string enemyBios_deathcatcher_1;
+        public string enemyBios_deathcatcher_2;
+        public string enemyBios_deathcatcher_3;
+        public string enemyBios_deathcatcher_4;
+        public string enemyBios_deathcatcher_strategy1;
+        public string enemyBios_deathcatcher_strategy2;
+        public string enemyBios_deathcatcher_strategy3;
     }
 
     public class Subtitles
@@ -967,6 +1017,37 @@ namespace UltrakULL.json
         public string subtitles_gabrielSecondDefeated10;
         public string subtitles_gabrielSecondDefeated11;
         public string subtitles_gabrielSecondDefeated12;
+
+        public string subtitles_power_intro_0;
+        public string subtitles_power_intro_1;
+        public string subtitles_power_intro_2;
+        public string subtitles_power_intro_3;
+        public string subtitles_power_intro_4;
+        public string subtitles_power_enrage_0;
+        public string subtitles_power_enrage_1;
+        public string subtitles_power_enrage_2;
+        public string subtitles_power_enrage_3;
+        public string subtitles_power_enrage_4;
+        public string subtitles_power_taunt_0;
+        public string subtitles_power_taunt_1;
+        public string subtitles_power_taunt_2;
+        public string subtitles_power_taunt_3;
+        public string subtitles_power_taunt_4;
+        public string subtitles_power_cheapShot_0;
+        public string subtitles_power_cheapShot_1;
+        public string subtitles_power_cheapShot_2;
+        public string subtitles_power_rapier;
+        public string subtitles_power_greatsword;
+        public string subtitles_power_spear;
+        public string subtitles_power_spearThrow;
+        public string subtitles_power_glaive;
+        public string subtitles_power_glaiveThrow;
+        public string subtitles_power_specialWave1_1;
+        public string subtitles_power_specialWave1_2;
+        public string subtitles_power_specialWave2_1;
+        public string subtitles_power_specialWave2_2;
+        public string subtitles_power_specialWave3;
+        public string subtitles_power_specialWave4;
 
         public string GetField(string name)
         {
@@ -1512,6 +1593,52 @@ namespace UltrakULL.json
         public string books_violenceSecret_Slate1;
         public string books_violenceSecret_Slate2;
 
+        // Fraud Second (Level 8-2) books
+        public string books_fraudSecond1_1;
+        public string books_fraudSecond1_2;
+        public string books_fraudSecond1_3;
+        public string books_fraudSecond1_4;
+        public string books_fraudSecond1_5;
+        public string books_fraudSecond1_6;
+        public string books_fraudSecond1_7;
+        public string books_fraudSecond1_8;
+        public string books_fraudSecond1_9;
+        public string books_fraudSecond1_10;
+
+        public string books_fraudSecond2_1;
+        public string books_fraudSecond2_2;
+        public string books_fraudSecond2_3;
+        public string books_fraudSecond2_4;
+        public string books_fraudSecond2_5;
+        public string books_fraudSecond2_6;
+        public string books_fraudSecond2_7;
+        public string books_fraudSecond2_8;
+
+        public string books_fraudSecond3_1;
+        public string books_fraudSecond3_2;
+        public string books_fraudSecond3_3;
+        public string books_fraudSecond3_4;
+        public string books_fraudSecond3_5;
+        public string books_fraudSecond3_6;
+        public string books_fraudSecond3_7;
+        public string books_fraudSecond3_8;
+
+        // Fraud Third (Level 8-3) books
+        public string books_fraudThird1_1;
+        public string books_fraudThird1_2;
+        public string books_fraudThird1_3;
+        public string books_fraudThird1_4;
+        public string books_fraudThird1_5;
+        public string books_fraudThird1_6;
+
+        public string books_fraudThird2_1;
+        public string books_fraudThird2_2;
+        public string books_fraudThird2_3;
+        public string books_fraudThird2_4;
+        public string books_fraudThird2_5;
+        public string books_fraudThird2_6;
+        public string books_fraudThird2_7;
+
     }
 
     public class PauseMenu
@@ -1932,6 +2059,8 @@ namespace UltrakULL.json
         public string enemyname_earthmover;
         public string enemyname_idol;
         public string enemyname_ferryman;
+        public string enemyname_boss_ferrymanRudraksha;
+        public string enemyname_boss_ferrymanAgonis;
         public string enemyname_leviathan;
         public string enemyname_v2;
         public string enemyname_v2Second;
@@ -1992,6 +2121,14 @@ namespace UltrakULL.json
         public string enemyname_type_supremeAngel;
         public string enemyname_type_primeSoul;
 
+        public string enemyname_boss_providence;
+        public string enemyname_deathcatcher;
+        public string enemyname_boss_mirrorReaper;
+        public string enemyname_power;
+        public string enemyname_boss_powerManadel;
+        public string enemyname_boss_powerLehahiah;
+        public string enemyname_boss_powerChauakiah;
+        public string enemyname_boss_geryon;
     }
 
     public class Option
@@ -2088,7 +2225,7 @@ namespace UltrakULL.json
         public string graphics_vsync;
         public string graphics_fieldOfVision;
         public string graphics_gamma;
-        public string graphics_disableNewShaders;
+        public string graphics_useFallbackShaders;
         public string graphics_filters;
         public string graphics_filtersDescription;
         public string graphics_pixelisation;
@@ -2593,6 +2730,16 @@ namespace UltrakULL.json
         public string act3_violenceFourth_countdownTitle;
 
         public string act3_secretNotReady;
+
+        public string act3_fraudSecond_cycleOfLife;
+        public string act3_fraudSecond_happeningAgain;
+        public string act3_fraudSecond_outOfOrder;
+        public string act3_fraudSecond_errorResetPower;
+        public string act3_fraudFourth_fallWarning_part1;
+        public string act3_fraudFourth_fallWarning_part2;
+        public string act3_fraudFourth_fallWarning_part3;
+        public string act3_fraudFourth_heightMarkerTitle;
+        public string act3_fraudFourth_nope;
     }
 
     public class Enc
@@ -2798,17 +2945,6 @@ namespace UltrakULL.json
         public string museum_bookSamuelJamesBryan1;
         public string museum_bookSamuelJamesBryan2;
         public string museum_bookSamuelJamesBryan3;
-        
-        public string museum_bookQATeam1;
-        public string museum_bookQATeam2;
-        public string museum_bookQATeam3;
-        public string museum_bookQATeam4;
-        public string museum_bookQATeam5;
-        public string museum_bookQATeam6;
-        public string museum_bookQATeam7;
-        public string museum_bookQATeam8;
-        public string museum_bookQATeam9;
-        public string museum_bookQATeam10;
         
         public string museum_bookPitr1;
         public string museum_bookPitr2;
@@ -3077,6 +3213,8 @@ namespace UltrakULL.json
         public string museum_plaquesHealth1;
         public string museum_plaquesHealth2;
 
+        public string museum_plaquesHazeluff1;
+        public string museum_plaquesHazeluff2;
         public string museum_plaquesKingGizzard1;
         public string museum_plaquesKingGizzard2;
 
@@ -3133,7 +3271,48 @@ namespace UltrakULL.json
         public string museum_spoiler2;
         public string museum_spoiler3;
 
-	}
+        public string museum_bookQATeamLine1;
+        public string museum_bookQATeamLine2;
+        public string museum_bookQATeamLine3;
+        public string museum_bookQATeamLine4;
+        public string museum_bookQATeamLine5;
+        public string museum_bookQATeamDesc1;
+        public string museum_bookQATeamDesc2;
+        public string museum_bookQATeamDesc3;
+        public string museum_bookQATeamQuote1;
+        public string museum_bookQATeamQuote2;
+        public string museum_bookQATeamQuote3;
+        public string museum_bookQATeamQuote4;
+        public string museum_bookQATeamQuote5;
+        public string museum_bookHazeluff1;
+        public string museum_bookHazeluff2;
+        public string museum_bookHazeluff3;
+        public string museum_bookPower1;
+        public string museum_bookPower2;
+        public string museum_bookPower3;
+        public string museum_bookVylet1;
+        public string museum_bookVylet2;
+        public string museum_bookVylet3;
+        public string museum_bookVylet4;
+        public string museum_bookVylet5;
+        public string museum_bookAdditionalArt1;
+        public string museum_bookAdditionalArt2;
+        public string museum_bookAdditionalArt3;
+        public string museum_bookAdditionalArt4;
+        public string museum_bookAdditionalArt5;
+        public string museum_bookAdditionalArt6;
+        public string museum_bookAdditionalArt7;
+        public string museum_bookAdditionalArt8;
+        public string museum_bookAdditionalArt9;
+        public string museum_plaquesAaronBurzynski1;
+        public string museum_plaquesAaronBurzynski2;
+        public string museum_plaquesKennadyRay1;
+        public string museum_plaquesKennadyRay2;
+        public string museum_plaquesVyletPony1;
+        public string museum_plaquesVyletPony2;
+        public string museum_plaquesAdditionalArt;
+
+ }
 
     public class Misc
     {

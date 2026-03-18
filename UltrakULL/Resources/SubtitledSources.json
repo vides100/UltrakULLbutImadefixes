@@ -596,6 +596,64 @@
 				"objects": ["3 - Traitor Hallway/3B - Tomb of Kings/3B Stuff/Hall/FakeMandalore/Mandalore (Skeleton)/Armature.001/Base/Hips/Chest/Shammy"],
 				"audio": "mandalore\\owlIntro"
 			}
-		]
+		],
+		"Level 8-3": [
+			{
+				"objects": [
+				"Pre-Space/Rooms/7 - Heart Chamber/7 Stuff/Wave 1/PowerWithSpawnEffect"
+				],
+				"audio": "power\\powerSpecialWave1",
+				"lines": [
+				{
+					"line": "subtitles_power_specialWave1_1",
+					"delay": 0.0
+				},
+				{
+					"line": "subtitles_power_specialWave1_2",
+					"delay": 1.0
+				}
+				]
+			},
+			{
+				"objects": [
+				"Pre-Space/Rooms/7 - Heart Chamber/7 Stuff/Wave 2/PowerWithSpawnEffect (1)"
+				],
+				"audio": "power\\powerSpecialWave2",
+				"lines": [
+				{
+					"line": "subtitles_power_specialWave2_1",
+					"delay": 0.0
+				},
+				{
+					"line": "subtitles_power_specialWave2_2",
+					"delay": 1.35
+				}
+				]
+			},
+			{
+				"objects": [
+				"Pre-Space/Rooms/9 - Loop Drop/9 Stuff/Wave 2/PowerWithSpawnEffect"
+				],
+				"audio": "power\\powerSpecialWave3",
+				"lines": [
+				{
+					"line": "subtitles_power_specialWave3",
+					"delay": 0.0
+				}
+				]
+			},
+			{
+				"objects": [
+				"Space/16 - Space Tree/16 Stuff/Wave 3/PowerWithSpawnEffect"
+				],
+				"audio": "power\\powerSpecialWave4",
+				"lines": [
+				{
+					"line": "subtitles_power_specialWave4",
+					"delay": 0.0
+				}
+				]
+			}
+    ]
 	}
 }

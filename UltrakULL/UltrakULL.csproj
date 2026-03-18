@@ -216,6 +216,7 @@
     <Compile Include="Harmony Patches\AudioSwaps\MinosPrimeAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\AudioFixes.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\SisyphusPrimeAudioSwap.cs" />
+    <Compile Include="Harmony Patches\AudioSwaps\PowerAudioSwap.cs" />
     <Compile Include="Harmony Patches\BossBarManager.cs" />
     <Compile Include="Harmony Patches\CheatsManager.cs" />
     <Compile Include="Harmony Patches\GetMissionName.cs" />
@@ -259,8 +260,12 @@
     <Compile Include="Harmony Patches\Subtitles\MandaloreSubtitlesSwap.cs" />
     <Compile Include="Harmony Patches\Subtitles\MinosPrimeSubtitlesSwap.cs" />
     <Compile Include="Harmony Patches\Subtitles\SisyphusPrimeSubtitlesSwap.cs" />
+    <Compile Include="Harmony Patches\Subtitles\PowerSubtitlesSwap.cs" />
     <Compile Include="Harmony Patches\TextFontSwap.cs" />
+    <Compile Include="Harmony Patches\TextMeshProFontSwap.cs" />
+    <Compile Include="Harmony Patches\TMPFontUtils.cs" />
     <Compile Include="Harmony Patches\TexturePatcher.cs" />
+    <Compile Include="Harmony Patches\TextGetControlPatch.cs" />
     <Compile Include="Harmony Patches\VariationInfo.cs" />
     <Compile Include="json\LanguageManager.cs" />
     <Compile Include="Harmony Patches\LanguageOptions.cs" />

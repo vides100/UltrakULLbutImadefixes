@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using UltrakULL.json;
+using UltrakULL;
 
 using static UltrakULL.CommonFunctions;
 
@@ -41,6 +42,39 @@ namespace UltrakULL.Harmony_Patches
                 else
                 {
                     newmessage = HUDMessages.GetHUDToolTip(newmessage);
+                }
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(HudMessageReceiver),"SendHudMessage2")]
+    public static class SendHudMessage2Patch
+    {
+        [HarmonyPrefix]
+        public static bool SendHudMessage2_Prefix(ref string format, ref string[] newinputs, int delay, bool silent, ref bool inputBeenProcessed, bool automaticTimer)
+        {
+            if (!isUsingEnglish())
+            {
+                // Локализуем каждый input, если они есть
+                if (newinputs != null)
+                {
+                    for (int i = 0; i < newinputs.Length; i++)
+                    {
+                        newinputs[i] = GetLocalizedInput(newinputs[i]);
+                    }
+                }
+
+                // Если это сообщение о свободном падении на уровне 8-4, заменяем format на переведённый вариант
+                if (format.Contains("WARNING:") && format.Contains("free fall"))
+                {
+                    string translated = Act3Strings.Level84(format, "", newinputs);
+                    if (translated != "Unimplemented string")
+                    {
+                        format = translated;
+                        newinputs = null; // чтобы оригинальный метод не пытался форматировать снова
+                        inputBeenProcessed = true;
+                    }
                 }
             }
             return true;

@@ -2706,7 +2706,10 @@
 		"act3_violenceFourth_magentaAttack": "",
 		"act3_violenceFourth_countdownTitle": "",
 
-		"act3_secretNotReady": ""
+		"act3_secretNotReady": "",
+		"act3_fraudThird_outOfOrder": "",
+		"act3_fraudSecond_errorResetPower": "",
+		"act3_fraudFourth_nope": ""
 	},
 	"encore": {
 		"encorePrelude_aboutRadiantEnemies": "",
@@ -2989,8 +2992,37 @@
 		"subtitles_sisyphusPrime_defeated2": "",
 		"subtitles_sisyphusPrime_defeated3": "",
 		"subtitles_sisyphusPrime_defeated4": "",
-		"subtitles_sisyphusPrime_defeated5": ""
-	},
+		"subtitles_sisyphusPrime_defeated5": "",
+		
+		"subtitles_power_intro1": "",
+		"subtitles_power_intro2": "",
+		"subtitles_power_intro3": "",
+		"subtitles_power_intro4": "",
+		"subtitles_power_intro5": "",
+
+		"subtitles_power_enrage1": "",
+		"subtitles_power_enrage2": "",
+		"subtitles_power_enrage3": "",
+		"subtitles_power_enrage4": "",
+		"subtitles_power_enrage5": "",
+
+		"subtitles_power_taunt1": "",
+		"subtitles_power_taunt2": "",
+		"subtitles_power_taunt3": "",
+		"subtitles_power_taunt4": "",
+		"subtitles_power_taunt5": "",
+
+		"subtitles_power_cheapShot1": "",
+		"subtitles_power_cheapShot2": "",
+		"subtitles_power_cheapShot3": "",
+
+		"subtitles_power_rapier": "",
+		"subtitles_power_greatsword": "",
+		"subtitles_power_spear": "",
+		"subtitles_power_spearThrow": "",
+		"subtitles_power_glaive": "",
+		"subtitles_power_glaiveThrow": ""
+ },
 
 	"misc": {
 		"hud_noArm1": "",

@@ -235,8 +235,8 @@ namespace UltrakULL
             TextMeshProUGUI gammaCorrectionText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(graphicsContent, "Gamma (Brightness)"), "Text"));
             gammaCorrectionText.text = LanguageManager.CurrentLanguage.options.graphics_gamma;
 
-            TextMeshProUGUI disableNewShadersText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(graphicsContent, "Disable New Shaders (Requires Reload)"), "Text"));
-            disableNewShadersText.text = LanguageManager.CurrentLanguage.options.graphics_disableNewShaders;
+            TextMeshProUGUI disableNewShadersText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(graphicsContent, "Use Fallback Shaders (Requires Reload)"), "Text"));
+            disableNewShadersText.text = LanguageManager.CurrentLanguage.options.graphics_useFallbackShaders;
 
             //--PSX--
             TextMeshProUGUI psxFilterSettingsText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(graphicsContent, "-- PSX --"), "Text"));
