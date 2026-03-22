@@ -2640,6 +2640,8 @@ namespace UltrakULL.json
         public string act1_lustSecond_checkPoints;
 
         public string act1_lustThird_water;
+        public string act1_lustFourth_offTheBeatenTrack;
+        public string act1_greedFirst_cavity;
 
 
         public string act1_secret;

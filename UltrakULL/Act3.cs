@@ -131,6 +131,44 @@ namespace UltrakULL
 					Logging.Warn("[Act3] Hub not found");
 				}
 			}
+			else if (currentSceneName.Contains("8-3"))
+			{
+				string[] screenPaths = new string[]
+				{
+					"Pre-Space/Rooms/10B - Night Street/10B Nonstuff/Office/ElevatorSet (1)/ElevatorStop/InteractiveScreen/Canvas/Background/Text (TMP)",
+					"Pre-Space/Rooms/10B - Night Street/10B Nonstuff/Office/ElevatorSet (1)/ElevatorStop (1)/InteractiveScreen/Canvas/Background/Text (TMP)"
+				};
+				string outOfOrderTranslation = LanguageManager.CurrentLanguage.act3.act3_fraudSecond_outOfOrder;
+				bool translationMissing = string.IsNullOrEmpty(outOfOrderTranslation);
+				if (translationMissing)
+				{
+					Logging.Warn("[Act3] Translation for 'act3_fraudSecond_outOfOrder' is missing or empty. Will keep original text.");
+				}
+				foreach (string path in screenPaths)
+				{
+					GameObject screenObj = CommonFunctions.GetObject(path);
+					if (screenObj != null)
+					{
+						TextMeshProUGUI textComp = CommonFunctions.GetTextMeshProUGUI(screenObj);
+						if (textComp != null)
+						{
+							if (!translationMissing)
+							{
+								((TMP_Text)textComp).text = outOfOrderTranslation;
+								Logging.Info($"[Act3] Replaced OUT OF ORDER text on 8-3 screen at path: {path}");
+							}
+						}
+						else
+						{
+							Logging.Warn($"[Act3] Text (TMP) component not found on screen object at path: {path}");
+						}
+					}
+					else
+					{
+						Logging.Warn($"[Act3] Screen object not found at path: {path}");
+					}
+				}
+			}
 			else if (currentSceneName.Contains("8-4"))
 			{
 				TextMeshProUGUI textMeshProUGUI18 = CommonFunctions.GetTextMeshProUGUI(CommonFunctions.GetGameObjectChild(CommonFunctions.GetGameObjectChild(CommonFunctions.GetGameObjectChild(canvasObj, "HeightMarkerParent"), "HeightMarker"), "Title"));

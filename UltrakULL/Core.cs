@@ -59,7 +59,13 @@ namespace UltrakULL
         public static async Task CheckForUpdates()
         {
             string rssUrl = "https://github.com/ClearwaterUK/UltrakULL/releases.atom";
-            Client.Timeout = TimeSpan.FromSeconds(5);
+            // Increase timeout to 10 seconds for better reliability
+            Client.Timeout = TimeSpan.FromSeconds(10);
+            // Add User-Agent header to avoid being blocked by GitHub
+            if (!Client.DefaultRequestHeaders.Contains("User-Agent"))
+            {
+                Client.DefaultRequestHeaders.Add("User-Agent", "UltrakULL-Update-Checker/1.0");
+            }
 
             try
             {
@@ -81,11 +87,28 @@ namespace UltrakULL
 
                 // Parse version from title (usually the tag)
                 string versionString = title.TrimStart('v', 'V');
-                Logging.Message("Latest version from RSS: " + versionString);
+                // Remove any suffix after hyphen (e.g., "-beta.2") or plus (e.g., "+build")
+                int hyphenIndex = versionString.IndexOf('-');
+                if (hyphenIndex >= 0)
+                    versionString = versionString.Substring(0, hyphenIndex);
+                int plusIndex = versionString.IndexOf('+');
+                if (plusIndex >= 0)
+                    versionString = versionString.Substring(0, plusIndex);
+                // Ensure version string is valid for Version class
+                Logging.Message("Latest version from RSS (cleaned): " + versionString);
                 Logging.Message("Current local version: " + MainPatch.GetVersion());
 
                 Version onlineVersion = new Version(versionString);
-                Version localVersion = new Version(MainPatch.GetVersion());
+                // Clean local version similarly
+                string localVersionString = MainPatch.GetVersion();
+                localVersionString = localVersionString.TrimStart('v', 'V');
+                hyphenIndex = localVersionString.IndexOf('-');
+                if (hyphenIndex >= 0)
+                    localVersionString = localVersionString.Substring(0, hyphenIndex);
+                plusIndex = localVersionString.IndexOf('+');
+                if (plusIndex >= 0)
+                    localVersionString = localVersionString.Substring(0, plusIndex);
+                Version localVersion = new Version(localVersionString);
 
                 // Simple version compare - update available if online version is newer
                 updateAvailable = localVersion.CompareTo(onlineVersion) < 0;
@@ -96,6 +119,18 @@ namespace UltrakULL
                     Logging.Message("No newer version detected. Assuming current version is up to date.");
 
                 updateFailed = false;
+            }
+            catch (TaskCanceledException)
+            {
+                Logging.Error("Update check timed out after 10 seconds.");
+                updateAvailable = false;
+                updateFailed = true;
+            }
+            catch (HttpRequestException hre)
+            {
+                Logging.Error("Network error while checking for updates: " + hre.Message);
+                updateAvailable = false;
+                updateFailed = true;
             }
             catch (Exception e)
             {
@@ -125,9 +160,11 @@ namespace UltrakULL
                 //Checkpoint
                 TextMeshProUGUI checkpointText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(pauseMenu, "Restart Checkpoint"), "Text"));
                 checkpointText.text = LanguageManager.CurrentLanguage.pauseMenu.pause_respawn;
+                //SKIP button 
                 if (GetCurrentSceneName().Contains("Intermission"))
                 {
-                    checkpointText.text = LanguageManager.CurrentLanguage.pauseMenu.pause_skip;
+                    TextMeshProUGUI skipText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(pauseMenu, "Restart Checkpoint (1)"), "Text"));
+                    skipText.text = LanguageManager.CurrentLanguage.pauseMenu.pause_skip;
                 }
                 //Restart mission
                 TextMeshProUGUI restartText = GetTextMeshProUGUI(GetGameObjectChild(GetGameObjectChild(pauseMenu, "Restart Mission"), "Text"));
@@ -421,7 +458,7 @@ namespace UltrakULL
                             Button updateButton = updateLink.GetComponent<Button>();
                             updateButton.onClick.AddListener(() =>
                             {
-                                Application.OpenURL("https://github.com/ClearwaterTM/UltrakULL/releases/latest");
+                                Application.OpenURL("https://github.com/ClearwaterUK/UltrakULL/releases/latest");
                             });
                         }
 

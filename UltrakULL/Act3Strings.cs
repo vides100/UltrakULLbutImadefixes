@@ -70,7 +70,16 @@ namespace UltrakULL
 
 		public static string Level81(string message, string message2)
 		{
-			return "Unimplemented string";
+		    string text = message + message2;
+		    if (text.Contains("The cycle of life"))
+		    {
+		        return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_cycleOfLife;
+		    }
+		    if (text.Contains("It is happening again"))
+		    {
+		        return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_happeningAgain;
+		    }
+		    return "Unimplemented string";
 		}
 
 		public static string Level82(string message, string message2)
@@ -89,7 +98,16 @@ namespace UltrakULL
 
 		public static string Level83(string message, string message2)
 		{
-			return "Unimplemented string";
+		    string text = message + message2;
+		    if (text.Contains("The cycle of life"))
+		    {
+		        return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_cycleOfLife;
+		    }
+		    if (text.Contains("It is happening again"))
+		    {
+		        return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_happeningAgain;
+		    }
+		    return "Unimplemented string";
 		}
 
 		public static string Level84(string format = "", string message2 = "", string[] inputs = null)
@@ -100,6 +118,14 @@ namespace UltrakULL
 				string text2 = (inputs != null && inputs.Length != 0) ? GetLocalizedInput(inputs[0]) : "";
 				string text3 = (inputs != null && inputs.Length > 1) ? GetLocalizedInput(inputs[1]) : "";
 				return LanguageManager.CurrentLanguage.act3.act3_fraudFourth_fallWarning_part1 + "\n" + LanguageManager.CurrentLanguage.act3.act3_fraudFourth_fallWarning_part2 + " <color=orange>" + text2 + "</color> " + LanguageManager.CurrentLanguage.act3.act3_fraudFourth_fallWarning_part3 + " <color=orange>" + text3 + "</color>.";
+			}
+			if (text.Contains("The cycle of life"))
+			{
+				return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_cycleOfLife;
+			}
+			if (text.Contains("It is happening again"))
+			{
+				return LanguageManager.CurrentLanguage.act3.act3_fraudSecond_happeningAgain;
 			}
 			return "Unimplemented string";
 		}

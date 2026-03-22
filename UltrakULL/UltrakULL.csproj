@@ -212,6 +212,7 @@
     <Compile Include="Harmony Patches\AudioSwaps\BigJohninatorAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\GabrielAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\GabrielSecondAudioSwap.cs" />
+    <Compile Include="Harmony Patches\AudioSwaps\GabrielBoatRandomPitchAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\MandaloreAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\MinosPrimeAudioSwap.cs" />
     <Compile Include="Harmony Patches\AudioSwaps\AudioFixes.cs" />

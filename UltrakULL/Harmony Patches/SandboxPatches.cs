@@ -65,7 +65,7 @@ namespace UltrakULL.Harmony_Patches
             }
             switch (name)
             {
-                case "enemy": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_boss_title; break;}
+                case "enemy": case "ENEMY": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_boss_title; break;}
                 case "Jump Pad": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_jumpPadTitle; break;}
                 case "Hook Point": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_hookPointTitle; break;}
                 case "Breakable": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_metaBreakable; break;}
@@ -129,6 +129,10 @@ namespace UltrakULL.Harmony_Patches
                 case "Hurt Cooldown": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_hurtCooldown; break; }
                 //Hookpoint
                 case "Force": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_power; break; }
+                //Health
+                case "Health": case "heatlh": case "HEALTH": { name = LanguageManager.CurrentLanguage.misc.enemyAlter_radianceHealth_tier; break; }
+                //Why not a separate key for health? Why would you need that if the values are the same?
+
                 default: { break; }
             }
             return true;

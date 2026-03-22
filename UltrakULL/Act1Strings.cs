@@ -132,6 +132,10 @@ namespace UltrakULL
         private static string Level24(string message, string message2)
         {
             string fullMessage = message + message2;
+            if (fullMessage.Contains("OFF THE BEATEN TRACK"))
+            {
+                return (LanguageManager.CurrentLanguage.act1.act1_lustFourth_offTheBeatenTrack);
+            }
             return ("Unimplemented string");
         }
         //2-S
@@ -145,6 +149,10 @@ namespace UltrakULL
         private static string Level31(string message, string message2)
         {
             string fullMessage = message + message2;
+            if (fullMessage.Contains("YUP, THAT'S A CAVITY"))
+            {
+                return (LanguageManager.CurrentLanguage.act1.act1_greedFirst_cavity);
+            }
             return ("Unimplemented string");
         }
         //3-2 - In The Flesh

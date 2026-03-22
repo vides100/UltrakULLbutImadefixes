@@ -390,7 +390,7 @@ namespace UltrakULL.Harmony_Patches.Subtitles
 		private static IEnumerable<CodeInstruction> ReplaceSubtitleInMethod(IEnumerable<CodeInstruction> instructions, string baseKey)
 		{
 			List<CodeInstruction> list = new List<CodeInstruction>(instructions);
-			Logging.Message("[PowerTranspiler] Processing " + baseKey);
+			
 			int num = 0;
 			for (int i = 0; i < list.Count; i++)
 			{
@@ -401,21 +401,21 @@ namespace UltrakULL.Harmony_Patches.Subtitles
 					string subtitlesFieldSafe = GetSubtitlesFieldSafe(text2);
 					if (!string.IsNullOrEmpty(subtitlesFieldSafe) && subtitlesFieldSafe != text)
 					{
-						Logging.Message($"[PowerTranspiler] {baseKey}: original='{text}', index={variantIndexFromOriginal}, key={text2}, translated='{subtitlesFieldSafe}'");
+						
 						list[i].operand = subtitlesFieldSafe;
-						Logging.Message("[PowerTranspiler] " + baseKey + ": Replaced subtitle with '" + subtitlesFieldSafe + "'");
+						
 						num++;
 					}
 				}
 			}
-			Logging.Message($"[PowerTranspiler] {baseKey}: Total replaced: {num}");
+			
 			return list;
 		}
 
 		private static IEnumerable<CodeInstruction> ReplaceFixedSubtitle(IEnumerable<CodeInstruction> instructions, string baseKey)
 		{
 			List<CodeInstruction> list = new List<CodeInstruction>(instructions);
-			Logging.Message("[PowerTranspiler] Processing " + baseKey);
+			
 			int num = 0;
 			for (int i = 0; i < list.Count; i++)
 			{
@@ -423,26 +423,28 @@ namespace UltrakULL.Harmony_Patches.Subtitles
 				{
 					continue;
 				}
-				Logging.Message("[PowerTranspiler] " + baseKey + ": Found ldstr='" + text + "'");
+				
 				if ((!(baseKey == "power_spearThrow") || !(text != "Over here!")) && (!(baseKey == "power_glaiveThrow") || !(text != "Take THIS!")))
 				{
 					string subtitlesFieldSafe = GetSubtitlesFieldSafe("subtitles_" + baseKey);
 					if (!string.IsNullOrEmpty(subtitlesFieldSafe) && subtitlesFieldSafe != text)
 					{
-						Logging.Message("[PowerTranspiler] " + baseKey + ": original='" + text + "', translated='" + subtitlesFieldSafe + "'");
+						
 						list[i].operand = subtitlesFieldSafe;
-						Logging.Message("[PowerTranspiler] " + baseKey + ": Replaced subtitle with '" + subtitlesFieldSafe + "'");
+						
 						num++;
 					}
 				}
 			}
-			Logging.Message($"[PowerTranspiler] {baseKey}: Total replaced: {num}");
+			
 			return list;
 		}
 
 		private static int GetVariantIndexFromOriginal(string originalText)
 		{
-			Logging.Message("[PowerTranspiler] GetVariantIndexFromOriginal: checking '" + originalText + "'");
+			if (string.IsNullOrEmpty(originalText))
+				return 0;
+			
 			switch (originalText)
 			{
 			case "Be afraid, machine.":
@@ -516,7 +518,7 @@ namespace UltrakULL.Harmony_Patches.Subtitles
 					return null;
 				}
 				string text = field.GetValue(a) as string;
-				Logging.Message("[PowerSubtitlesSwap] GetSubtitlesFieldSafe('" + key + "') = '" + text + "'");
+				
 				return text;
 			}
 			catch (Exception ex)
