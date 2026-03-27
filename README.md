@@ -6,8 +6,7 @@
 
 # UltrakULL
 
-**UltrakULL** (ULTRAKILL Language Library) is a modification (mod) for ULTRAKILL that allows for modification of the game's text strings,
-effectively allowing for translation and localization into various languages.\
+**UltrakULL** (ULTRAKILL Language Library) is a modification (mod) for ULTRAKILL that allows for modification of the game's text strings, voiceovers and textures effectively allowing for translation and localization into various languages.\
 This mod's primary purpose is to bridge the gap for localization and translation until ULTRAKILL receives official translations.
 
 # Features

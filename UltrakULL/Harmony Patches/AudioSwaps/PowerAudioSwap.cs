@@ -1,11 +1,12 @@
 using System.IO;
+using System.Reflection;
 using BepInEx.Configuration;
 using HarmonyLib;
 using UltrakULL.audio;
 using UltrakULL.json;
 using UnityEngine;
 
-//Thanks to Lukah (Discord: lukahgb) for the tip
+// Thanks to Lukah (Discord: lukahgb) for the tip
 
 namespace UltrakULL.Harmony_Patches.AudioSwaps
 {
@@ -24,6 +25,11 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
 			}
 			string name = ((Object)value).name;
 			if (!name.StartsWith("pow_") && !name.StartsWith("power_"))
+			{
+				return;
+			}
+			// Exclude pow_ScreamContinuous, as it is processed separately
+			if (name == "pow_ScreamContinuous")
 			{
 				return;
 			}
@@ -49,6 +55,48 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
 			finally
 			{
 				_isExporting = false;
+			}
+		}
+	}
+
+	// Patch to replace the fallScream field in PowerVoiceController directly during initialization
+	[HarmonyPatch(typeof(PowerVoiceController), "Awake")]
+	public static class PowerFallScreamDirectSwap
+	{
+		private static bool _isReplacing;
+		
+		private static void Postfix(PowerVoiceController __instance)
+		{
+			if (_isReplacing || LanguageManager.configFile.Bind<string>("General", "activeDubbing", "False", (ConfigDescription)null).Value == "False" || CommonFunctions.isUsingEnglish())
+			{
+				return;
+			}
+			
+			string name = "pow_ScreamContinuous";
+			string path = Path.Combine(AudioSwapper.SpeechFolder, "power");
+			
+			if (File.Exists(Path.Combine(path, name + ".ogg")))
+			{
+				_isReplacing = true;
+				Logging.Info("[UltrakULL] Direct swap FallScream " + name);
+				
+				AudioClip originalClip = __instance.FallScream();
+				AudioClip newClip = AudioSwapper.SwapClipWithFile(originalClip, Path.Combine(path, name));
+				
+				if (newClip != null && newClip != originalClip)
+				{
+					var field = typeof(PowerVoiceController).GetField("fallScream", BindingFlags.NonPublic | BindingFlags.Instance);
+					if (field != null)
+					{
+						field.SetValue(__instance, newClip);
+						Logging.Info("[UltrakULL] FallScream clip replaced successfully");
+					}
+					else
+					{
+						Logging.Error("[UltrakULL] Field 'fallScream' not found!");
+					}
+				}
+				_isReplacing = false;
 			}
 		}
 	}
