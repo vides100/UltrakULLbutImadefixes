@@ -97,7 +97,25 @@ namespace UltrakULL.Harmony_Patches
             }
 		}
 	}
-    
+
+    [HarmonyPatch(typeof(StyleHUD), "Start")]
+    public static class StyleHUD_KoreanPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(StyleHUD __instance)
+        {
+            if (isUsingEnglish()) return;
+            if (LanguageManager.CurrentLanguage.metadata.langName != "ko-KR") return;
+
+            TMP_Text styleInfo = Traverse.Create(__instance).Field("styleInfo").GetValue<TMP_Text>();
+            if (styleInfo != null)
+            {
+                styleInfo.lineSpacing = -10f;
+                Logging.Message("Korean StyleHUD Patched");
+            }
+        }
+    }
+
     /*
 	[HarmonyPatch(typeof(StyleHUD), "Awake")]
 	public static class StyleHUD_AwakePatch
