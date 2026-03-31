@@ -2,12 +2,11 @@
 ![Version](https://img.shields.io/github/v/release/ClearwaterTM/UltrakULL)
 ![Licence](https://img.shields.io/github/license/ClearwaterTM/UltrakULL)
 
-<img src="https://cdn.discordapp.com/attachments/472691871806652429/1041615546514427984/unknown.png" height="400">
+<img src="https://github.com/user-attachments/assets/98fd5921-0662-4e09-9ab4-b844e2bbf45e">
 
 # UltrakULL
 
-**UltrakULL** (ULTRAKILL Language Library) is a modification (mod) for ULTRAKILL that allows for modification of the game's text strings,
-effectively allowing for translation and localization into various languages.\
+**UltrakULL** (ULTRAKILL Language Library) is a modification (mod) for ULTRAKILL that allows for modification of the game's text strings, voiceovers and textures effectively allowing for translation and localization into various languages.\
 This mod's primary purpose is to bridge the gap for localization and translation until ULTRAKILL receives official translations.
 
 # Features
@@ -54,9 +53,10 @@ Installing UltrakULL via GitHub is divided into 2 parts:
 
 ### Usage
 
-- If the mod has loaded correctly, you will see a new "Languages" tab in the Options menu, in the bottom-right hand corner.
+- If the mod has loaded correctly, you will see a new "Languages" tab in the Options menu.
   
-<img src="https://cdn.discordapp.com/attachments/472691871806652429/1188532184039043102/image.png?ex=659addda&is=658868da&hm=375363c76c52d1ea20c05fafef696a441f7e66a84671fe14bcc1ae9b8880eb2b&" alt="drawing" width="550"/>
+<img src="https://github.com/user-attachments/assets/d461c5a3-2de2-4d7c-b390-60235f70b21d" alt="drawing">
+
   
 - From the Languages tab, you can browse available translations for the game by selecting the "Browse Languages Online" button. Additionally, language files that are locally installed in the mod folder will be detected and made available for selection any available language based on the language files UltrakULL has found, and will load them into the game.
 

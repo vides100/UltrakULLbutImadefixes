@@ -33,7 +33,7 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.prelude.prelude_first_groundSlam1 + "'<color=orange>" + input + "</color>'" + LanguageManager.CurrentLanguage.prelude.prelude_first_groundSlam2);
             }
-            return "Unimplemented 0-1 string";
+            return ("Unimplemented string");
         }
         //0-2 - The Meatgrinder
         private static string Level2(string message, string message2, string input)
@@ -52,7 +52,7 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.prelude.prelude_second_changeEquipped + "'<color=orange>" + input + "</color>.'");
             }
-            return "Unimplemented 0-2 string";
+            return ("Unimplemented string");
         }
 
         //0-3 - Double Down
@@ -72,21 +72,21 @@ namespace UltrakULL
             {
                 return LanguageManager.CurrentLanguage.prelude.prelude_third_shotgunPierce;
             }
-            return "Unimplemented 0-3 string";
+            return ("Unimplemented string");
         }
 
         //0-4 - A One-Machine Army
         //This level has no HUD box strings, apart from maybe the overheal.
         private static string Level4()
         {
-            return "Unimplemented 0-4 string";
+            return ("Unimplemented string");
         }
 
         //0-5 - Cerberus
         //This level has no HUD box strings
         private static string Level5()
         {
-            return "Unimplemented 0-5 string";
+            return ("Unimplemented string");
         }
 
 
@@ -99,7 +99,7 @@ namespace UltrakULL
             {
                 return LanguageManager.CurrentLanguage.prelude.prelude_secret_somethingWicked;
             }
-            return "unimplemented 0-S string";
+            return ("Unimplemented string");
         }
 
 
@@ -134,8 +134,8 @@ namespace UltrakULL
                     }
                 default:
                 {
-                    Console.WriteLine("Unknown Prelude string: \n" + message + message2);
-                    return message + message2;
+                    //Console.WriteLine("Unknown Prelude string in " + currentLevel + ": \n" + message + message2);
+                    return ("Unimplemented string");
                 }
                     
             }

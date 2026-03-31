@@ -13,7 +13,7 @@ namespace UltrakULL.Harmony_Patches
     public static class LocalizeEnemyInfo
     {
         [HarmonyPostfix]
-        public static void DisplayInfo_Postfix(SpawnableObject source, EnemyInfoPage __instance, TMP_Text ___enemyPageTitle, TMP_Text ___enemyPageContent)
+        public static void DisplayInfo_Postfix(SpawnableObject source, EnemyInfoPage __instance, TMP_Text ___enemyPageTitle, TMP_Text ___enemyPageContent, TMP_Text ___enemyEntryTitle)
         {
             if(isUsingEnglish())
             {
@@ -30,11 +30,14 @@ namespace UltrakULL.Harmony_Patches
             }
             else { enemyName = EnemyBios.GetName(source.objectName); }
 
+            Logging.Warn("Enemy Name in SHOP: " + enemyName);
             string enemyType = EnemyBios.GetType(source.type);
             string enemyDescription = EnemyBios.GetDescription(source.objectName);
             string enemyStrategy = EnemyBios.GetStrategy(source.objectName);
+            
 
             ___enemyPageTitle.text = enemyName;
+            ___enemyEntryTitle.text = enemyName;
             string text = "</s><color=orange>" + LanguageManager.CurrentLanguage.enemyBios.enemyBios_type + enemyType + "\n\n" + LanguageManager.CurrentLanguage.enemyBios.enemyBios_data + "</color>\n";
             if (MonoSingleton<BestiaryData>.Instance.GetEnemy(source.enemyType) > 1)
             {

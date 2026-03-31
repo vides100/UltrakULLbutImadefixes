@@ -10,9 +10,9 @@ namespace UltrakULL.Harmony_Patches
     [HarmonyPatch(typeof(BloodCheckerManager))]
     public static class _7SecretPatch
     {
-        private static string ReplacePainterName(string a)
+        private static string ReplacePainterName(string painterName)
         {
-            switch (a)
+            switch (painterName)
             {
                 case "Dumpster":
                     {
@@ -80,8 +80,8 @@ namespace UltrakULL.Harmony_Patches
                     }
                 default:
                     {
-                        Logging.Warn("Unknown painter name: \"" + a + "\"");
-                        return a;
+                        Logging.Warn("[7-S] Unknown painter name: \"" + painterName + "\"");
+                        return painterName;
                     }
             }
         }
@@ -94,10 +94,10 @@ namespace UltrakULL.Harmony_Patches
                 Transform parent = __instance.painterGUITemplate.transform.parent;
 
                 Transform[] painterTransforms = parent.GetComponentsInChildren<Transform>(true);
-                Logging.Debug("[painterscount]: " + painterTransforms.Length.ToString() + " [painters]");
+                Logging.Debug("[7-S] Painters Count: " + painterTransforms.Length.ToString());
                 foreach (Transform painterTransform in painterTransforms)
                 {
-                    Logging.Debug("[patching painter name]: " + painterTransform.gameObject.name + "[a]");
+                    Logging.Debug("[7-S] Patching painter name: " + painterTransform.gameObject.name);
                     if (painterTransform.childCount >= 2)
                     {
                         Transform painterObject = painterTransform.GetChild(1);
@@ -109,7 +109,7 @@ namespace UltrakULL.Harmony_Patches
                             }
                             else
                             {
-                                Logging.Warn("no tmp here");
+                                Logging.Warn("[7-S] TextMeshProUGUI not found in Painter");
                             }
                         }
                     }
@@ -121,7 +121,7 @@ namespace UltrakULL.Harmony_Patches
             {
                 Logging.Warn("Failed to Patch 7-S(7Secretpatch.cs)");
                 if(LanguageManager.CurrentLanguage.washing == null)
-                { Logging.Warn("Category is missing from the language file! Please Update it!"); return; }
+                { Logging.Warn("Washing category is missing from the language file! Please Update it!"); return; }
                 Logging.Warn(e.ToString());
             }
         }
@@ -191,7 +191,7 @@ namespace UltrakULL.Harmony_Patches
             }
             catch (Exception e)
             {
-                Logging.Warn("Failed to Patch BloodCheckerManager.UpdateDisplay!");
+                Logging.Warn("[7-S] Failed to Patch BloodCheckerManager.UpdateDisplay!");
                 Logging.Warn(e.ToString());
             }
 

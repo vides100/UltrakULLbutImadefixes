@@ -7,6 +7,7 @@ using System.Linq;
 using TMPro;
 
 using static UltrakULL.CommonFunctions;
+using System.Diagnostics.Eventing.Reader;
 
 namespace UltrakULL.Harmony_Patches
 {
@@ -26,35 +27,8 @@ namespace UltrakULL.Harmony_Patches
 			RankData rank = GameProgressSaver.GetRank(num, false);
 			try
 			{
-				//Bandaid fix for P-2 and P-3 for now since they share the same level id as P-1 for some reason. Shall need to change/remove when they release.
-				if (__instance.name.Contains("P-2") || __instance.transform.Find("Name").GetComponent<TextMeshProUGUI>().text.Contains("P-2"))
-				{
-					__instance.transform.Find("Name").GetComponent<TextMeshProUGUI>().text =
-						"P-2:" + (LanguageManager.CurrentLanguage.levelNames.levelName_primeSecond);
-				}
-				else if (__instance.name.Contains("P-3") || __instance.transform.Find("Name").GetComponent<TextMeshProUGUI>().text.Contains("P-3"))
-				{
-					__instance.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = "P-3: ???";
-				}
-				else
-				{
-					string levelName = LevelNames.GetLevelName(num);
-					if (LanguageManager.IsRightToLeft)
-					{
-						string lvlNumber = "";
-						char[] lnum = levelName.Substring(0, 3).ToCharArray();
-
-						lvlNumber += lnum[2];
-						lvlNumber += lnum[1];
-						lvlNumber += lnum[0];
-
-						string lvlTitle = levelName.Substring(5);
-
-						levelName = $"{lvlTitle} :{lvlNumber}";
-					}
-					__instance.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = levelName; //Level Name
-				}
-				if (rank.levelNumber == __instance.levelNumber || (__instance.levelNumber == 666 && rank.levelNumber == __instance.levelNumber + __instance.levelNumberInLayer - 1))
+                // The level name replacement function has been moved to a separate Harmony Patch (GetMissionName.cs)
+                if (rank.levelNumber == __instance.levelNumber || ((__instance.levelNumber == 666 || __instance.levelNumber == 100) && rank.levelNumber == __instance.levelNumber + __instance.levelNumberInLayer - 1))
 				{
 					if (__instance.challengeIcon)
 					{
@@ -85,8 +59,8 @@ namespace UltrakULL.Harmony_Patches
 			}
 			catch (Exception e)
 			{
-				Debug.LogError("Exception occured :  " + num);
-				Debug.LogError(e.ToString());
+				Logging.Error("Exception occured :  " + num);
+                Logging.Error(e.ToString());
 			}
 		}
 	}

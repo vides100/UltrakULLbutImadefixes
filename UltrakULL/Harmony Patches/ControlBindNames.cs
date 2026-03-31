@@ -4,7 +4,7 @@ using HarmonyLib;
 using TMPro;
 using UltrakULL.json;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 using static UltrakULL.CommonFunctions;
 
 namespace UltrakULL.Harmony_Patches
@@ -17,7 +17,7 @@ namespace UltrakULL.Harmony_Patches
         {
             foreach(GameObject section in ___rebindUIObjects)
             {
-                if (section.name == "SectionTemplate(Clone)")
+                if (section.name == "Control Section Template(Clone)")
                 {
                     TextMeshProUGUI sectionText = GetTextMeshProUGUI(section);
                     switch (sectionText.text)
@@ -34,7 +34,7 @@ namespace UltrakULL.Harmony_Patches
                         }
                         case "-- FIST --":
                         {
-                            sectionText.text = "-- " + LanguageManager.CurrentLanguage.options.controls_arms + " --";
+                            sectionText.text = "-- " + LanguageManager.CurrentLanguage.options.controls_fist + " --";
                             break;
                         }
                         case "-- HUD --":
@@ -53,7 +53,7 @@ namespace UltrakULL.Harmony_Patches
     [HarmonyPatch(typeof(ControlsOptionsKey),"OnEnable")]
     public class ControlBindNames
     {
-        static string getActionName(string originalText)
+        public static string getActionName(string originalText)
         {
             switch (originalText)
             {
@@ -65,11 +65,11 @@ namespace UltrakULL.Harmony_Patches
                 case "SECONDARY FIRE": { return LanguageManager.CurrentLanguage.options.controls_secondaryFire; }
                 case "NEXT VARIATION": { return LanguageManager.CurrentLanguage.options.controls_nextVariation; }
                 case "PREVIOUS VARIATION": { return LanguageManager.CurrentLanguage.options.controls_previousVariation; }
-                case "REVOLVER": { return LanguageManager.CurrentLanguage.shop.shop_weaponsRevolver; }
-                case "SHOTGUN": { return LanguageManager.CurrentLanguage.shop.shop_weaponsShotgun; }
-                case "NAILGUN": { return LanguageManager.CurrentLanguage.shop.shop_weaponsNailgun; }
-                case "RAILCANNON": { return LanguageManager.CurrentLanguage.shop.shop_weaponsRailcannon; }
-                case "ROCKET LAUNCHER": { return LanguageManager.CurrentLanguage.shop.shop_weaponsRocketLauncher; }
+                case "REVOLVER": { return LanguageManager.CurrentLanguage.options.controls_revolver; }
+                case "SHOTGUN": { return LanguageManager.CurrentLanguage.options.controls_shotgun; }
+                case "NAILGUN": { return LanguageManager.CurrentLanguage.options.controls_nailgun; }
+                case "RAILCANNON": { return LanguageManager.CurrentLanguage.options.controls_railcannon; }
+                case "ROCKET LAUNCHER": { return LanguageManager.CurrentLanguage.options.controls_rocketLauncher; }
                 case "SPAWNER ARM": { return LanguageManager.CurrentLanguage.options.controls_spawnerArm; }
                 case "NEXT WEAPON": { return LanguageManager.CurrentLanguage.options.controls_nextWeapon; }
                 case "PREVIOUS WEAPON": { return LanguageManager.CurrentLanguage.options.controls_previousWeapon; }
@@ -78,7 +78,7 @@ namespace UltrakULL.Harmony_Patches
                 case "VARIATION SLOT 2": { return LanguageManager.CurrentLanguage.options.controls_variationSlot2; }
                 case "VARIATION SLOT 3": { return LanguageManager.CurrentLanguage.options.controls_variationSlot3; }
                 case "PUNCH": { return LanguageManager.CurrentLanguage.options.controls_punch; }
-                case "CHANGE FIST": { return LanguageManager.CurrentLanguage.options.controls_changeArm; }
+                case "CHANGE FIST": { return LanguageManager.CurrentLanguage.options.controls_changeFist; }
                 case "PUNCH (FEEDBACKER)": { return LanguageManager.CurrentLanguage.options.controls_punchFeedbacker; }
                 case "PUNCH (KNUCKLEBLASTER)": { return LanguageManager.CurrentLanguage.options.controls_punchKnuckleblaster; }
                 case "HOOK": { return LanguageManager.CurrentLanguage.options.controls_whiplash; }
@@ -91,6 +91,29 @@ namespace UltrakULL.Harmony_Patches
         public static void controlBindNamesPatch_Postfix(ControlsOptionsKey __instance)
         {
             __instance.actionText.text = getActionName(__instance.actionText.text);
+        }
+    }
+    [HarmonyPatch(typeof(ControlsOptionsKey), "GenerateTooltip")]
+    public static class BoundMultipleTimes
+    {
+        [HarmonyPostfix]
+        public static string GenerateTooltip_Postfix(string __result, InputAction action, InputBinding binding, InputBinding[] conflicts)
+        {
+            string str = action.GetBindingDisplayStringWithoutOverride(binding, InputBinding.DisplayStringOptions.DontIncludeInteractions).ToUpper();
+            string str2 = "<color=red>" + str + " " + LanguageManager.CurrentLanguage.options.controls_boundMultiple + ":";
+            HashSet<string> hashSet = new HashSet<string>();
+            foreach (InputBinding inputBinding in conflicts)
+            {
+                if (!hashSet.Contains(inputBinding.action))
+                {
+                    str2 += "<br>";
+                    string actiontranslated = ControlBindNames.getActionName(inputBinding.action.ToUpper());
+                    str2 = str2 + "- " + actiontranslated;
+                    hashSet.Add(inputBinding.action);
+                }
+            }
+            return str2 + "</color>";
+
         }
     }
 }

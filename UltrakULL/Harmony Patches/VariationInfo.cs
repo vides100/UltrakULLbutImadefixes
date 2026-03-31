@@ -4,17 +4,18 @@ using UnityEngine.UI;
 using UltrakULL.json;
 
 using static UltrakULL.CommonFunctions;
+using UnityEngine;
 
 
 namespace UltrakULL.Harmony_Patches
 {
     //@Override
     //Overrides the UpdateMoney method from the VariationInfo class. This is needed to patch the "ALREADY OWNED" string, and will save having to change every single seperate button containing this string in the shop.
-    [HarmonyPatch(typeof(VariationInfo), "UpdateMoney")]
+    [HarmonyPatch(typeof(VariationInfo))]
     public static class LocalizeVariationOwnership
     {
-        [HarmonyPostfix]
-        public static void UpdateMoney_Postfix(VariationInfo __instance, int ___money, bool ___alreadyOwned, TMP_Text ___buttonText)
+        [HarmonyPatch(nameof(VariationInfo.UpdateMoney)), HarmonyPostfix]
+        public static void UpdateMoney_Postfix(VariationInfo __instance, int ___money, bool ___alreadyOwned, TMP_Text ___buttonText, TMP_Text ___equipText)
         {
             if(isUsingEnglish())
             {
@@ -39,7 +40,41 @@ namespace UltrakULL.Harmony_Patches
                 {
                     __instance.costText.text = LanguageManager.CurrentLanguage.misc.weapons_alreadyBought;
                 }
-            ___buttonText.text = (___buttonText.text == "ALREADY OWNED" ? LanguageManager.CurrentLanguage.misc.weapons_alreadyBought : ___buttonText.text);
+            ___buttonText.text = (___buttonText.text.ToUpper() == "ALREADY OWNED" ? LanguageManager.CurrentLanguage.misc.weapons_alreadyBought : ___buttonText.text);
+
+            switch (___equipText.text)
+            {
+                case "Unequipped":
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_unequipped;
+                    return;
+                case "Equipped":
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_equipped;
+                    return;
+                case "Alternate":
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_colorsAlternative;
+                    return;
+                default:
+                    return;
+            }
+        }
+
+        [HarmonyPatch(typeof(VariationInfo), "SetEquipStatusText"), HarmonyPostfix]
+        public static void SetEquipStatusTextPostFix(ref TMP_Text ___equipText, int ___equipStatus)
+        {
+            switch (___equipStatus)
+            {
+                case 0:
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_unequipped;
+                    return;
+                case 1:
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_equipped;
+                    return;
+                case 2:
+                    ___equipText.text = LanguageManager.CurrentLanguage.shop.shop_colorsAlternative;
+                    return;
+                default:
+                    return;
+            }
         }
     }
 }

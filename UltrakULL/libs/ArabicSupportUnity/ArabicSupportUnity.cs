@@ -41,55 +41,137 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 #endregion
 
 namespace ArabicSupportUnity
 {
-
 	public class ArabicFixer
 	{
+        // Caching frequently used strings
+        private static readonly Dictionary<string, string> processedCache = 
+			new Dictionary<string, string>(StringComparer.Ordinal);
+
+        // Regular expressions to protect special tags
+        private static readonly string[] protectedPatterns = {
+			@"<color=[^>]+>.*?</color>",  // Unity color tags
+			@"\{\d+\}",                  // Format placeholders
+			@"<[^>]+>"                    // Other HTML tags
+		};
+
+		private const int MaxCacheSize = 1000;
 		/// <summary>
 		/// Fix the specified string.
 		/// </summary>
 		/// <param name='str'>
 		/// String to be fixed.
 		/// </param>
+		// Replaces protected patterns with placeholders and returns both the processed string
+		// and a local placeholder map (does NOT touch the global processedCache used for caching final results).
+		private static string PreserveSpecialText(string input, out Dictionary<string, string> placeholderMap)
+		{
+			string result = input;
+			int tagIndex = 0;
+			placeholderMap = new Dictionary<string, string>(StringComparer.Ordinal);
+
+			foreach (string pattern in protectedPatterns)
+			{
+				MatchCollection matches = System.Text.RegularExpressions.Regex.Matches(result, pattern);
+				foreach (System.Text.RegularExpressions.Match match in matches)
+				{
+					string placeholder = $"##TAG_{tagIndex}##";
+					// store original in local map
+					placeholderMap[placeholder] = match.Value;
+					result = result.Replace(match.Value, placeholder);
+					tagIndex++;
+				}
+			}
+
+			return result;
+		}
+
+		private static string RestoreSpecialText(string input, Dictionary<string, string> placeholderMap)
+		{
+			if (placeholderMap == null || placeholderMap.Count == 0)
+				return input;
+
+			string result = input;
+            // Restoring all placeholders from the local map
+            foreach (var kv in placeholderMap)
+			{
+				if (kv.Key == null) continue;
+				result = result.Replace(kv.Key, kv.Value);
+			}
+			return result;
+		}
+
+		private static void TrimCache()
+		{
+			if (processedCache.Count > MaxCacheSize)
+			{
+				processedCache.Clear();
+			}
+		}
+
 		public static string Fix(string str)
 		{
-			return Fix(str, false, true);
+			if (string.IsNullOrEmpty(str))
+				return str;
+
+            // Checking the cache
+            if (processedCache.TryGetValue(str, out string cachedResult))
+				return cachedResult;
+
+			TrimCache();
+
+            // Save and replace special constructs (local map)
+            string processed = PreserveSpecialText(str, out var placeholderMap);
+
+            // Processing mixed text (Arabic blocks via FixLine, others as is)
+            string result = FixMixedText(processed);
+
+            // Restoring protected structures
+            result = RestoreSpecialText(result, placeholderMap);
+
+            // Save it to the cache
+            processedCache[str] = result;
+
+			return result;
+		}
+
+		// Tokenize mixed Arabic/LTR text and process only Arabic blocks via ArabicFixerTool.FixLine
+		private static string FixMixedText(string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return input;
+
+			// Regex: group 1 = Arabic block, group 2 = everything else
+			var rx = new Regex("([\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+)|([^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+)", RegexOptions.Compiled);
+			var sb = new StringBuilder();
+
+			foreach (Match m in rx.Matches(input))
+			{
+				if (m.Groups[1].Success)
+				{
+					// Arabic block — run FixLine to shape letters
+					sb.Append(ArabicFixerTool.FixLine(m.Value));
+				}
+				else
+				{
+					// Non-Arabic block — keep as is
+					sb.Append(m.Value);
+				}
+			}
+
+			return sb.ToString();
 		}
 
 		public static string Fix(string str, bool rtl)
 		{
-			if (rtl)
-
-			{
-				return Fix(str);
-			}
-			else
-			{
-				string[] words = str.Split(' ');
-				string result = "";
-				string arabicToIgnore = "";
-				foreach (string word in words)
-				{
-					if (char.IsLower(word.ToLower()[word.Length / 2]))
-					{
-						result += Fix(arabicToIgnore) + word + " ";
-						arabicToIgnore = "";
-					}
-					else
-					{
-						arabicToIgnore += word + " ";
-
-					}
-				}
-				if (arabicToIgnore != "")
-					result += Fix(arabicToIgnore);
-
-				return result;
-			}
+			// Use mixed-text processing for both RTL and LTR modes.
+			// RTL flag can be used in future to alter behavior; current FixMixedText handles mixed content properly.
+			return FixMixedText(str);
 		}
 
 		/// <summary>

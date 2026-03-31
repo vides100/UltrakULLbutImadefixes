@@ -144,6 +144,20 @@
 		"museum_bookHealth5": "",
 		"museum_bookHealth6": "",
 
+		"museum_bookKingGizzard1": "",
+        "museum_bookKingGizzard2": "",
+        "museum_bookKingGizzard3": "",
+        "museum_bookKingGizzard4": "",
+        "museum_bookKingGizzard5": "",
+        "museum_bookKingGizzard6": "",
+		"museum_bookKingGizzard7": "",
+		"museum_bookKingGizzard8": "",
+		"museum_bookKingGizzard9": "",
+		"museum_bookKingGizzard10": "",
+		"museum_bookKingGizzard11": "",
+		"museum_bookKingGizzard12": "",
+
+
 		"museum_bookQuetzalTirado1": "",
 		"museum_bookQuetzalTirado2": "",
 		"museum_bookQuetzalTirado3": "",
@@ -152,8 +166,6 @@
 		"museum_bookSalad1": "",
 		"museum_bookSalad2": "",
 		"museum_bookSalad3": "",
-		"museum_bookSalad4": "",
-		"museum_bookSalad5": "",
 
 		"museum_bookJacobHHR1": "",
 		"museum_bookJacobHHR2": "",
@@ -354,6 +366,9 @@
 		"museum_plaquesHealth1": "",
 		"museum_plaquesHealth2": "",
 
+		"museum_plaquesKingGizzard1": "",
+        "museum_plaquesKingGizzard2": "",
+
 		"museum_plaquesQuetzalTirado1": "",
 		"museum_plaquesQuetzalTirado2": "",
 
@@ -512,7 +527,7 @@
 		"wash_ToDo": "",
 
 		"wash_roomCourtyard": "",
-		"wash_room": "",
+		"wash_roomLibrary": "",
 		"wash_roomLobby": "",
 		"wash_roomLounge": "",
 		"wash_roomSideroom": "",
@@ -549,7 +564,7 @@
 		"style_cannonballed": "",
 		"style_cannonballedfrombounce": "",
 		"style_cannonboost": "",
-		"style_catapaulted": "",
+		"style_catapulted": "",
 		"style_chargeback": "",
 		"style_compressed": "",
 		"style_criticalpunch": "",
@@ -575,6 +590,7 @@
 		"style_hammerHitRed": "",
 		"style_hammerHitYellow": "",
 		"style_headshot": "",
+		"style_heavylight": "",
 		"style_homerun": "",
 		"style_iconoclasm": "",
 		"style_instakill": "",
@@ -582,12 +598,14 @@
 		"style_interruption": "",
 		"style_kill": "",
 		"style_landyours": "",
+		"style_lightningbolt": "",
 		"style_limbshot": "",
 		"style_longwaydown": "",
 		"style_mauriced": "",
 		"style_multikill": "",
 		"style_nailbombed": "",
 		"style_overkill": "",
+		"style_oshaviolation": "",
 		"style_pancaked": "",
 		"style_parry": "",
 		"style_projectileboost": "",
@@ -623,6 +641,7 @@
 		"style_shredded": "",
 		"style_slipped": "",
 		"style_trampled": "",
+		"style_trashed": "",
 		"style_unchainedsaw": "",
 		"style_zapped": "",
 		"style_why": "",
@@ -641,6 +660,7 @@
 		"style_queenpromo": "",
 		"style_rookcapture": "",
 		"style_rookpromo": "",
+		"style_stophitting": "",
 		"style_ultravictory": "",
 		"style_whitewins": "",
 
@@ -706,7 +726,18 @@
 		"cybergrind_themesCustomTop": "",
 		"cybergrind_themesCustomGlowIntensity": "",
 
+		"cybergrind_themesCustomFog": "",
+		"cybergrind_themesCustomFogColor": "",
+		"cybergrind_themesCustomFogDisable": "",
+		"cybergrind_themesCustomFogStatic": "",
+		"cybergrind_themesCustomFogDynamic": "",
+		"cybergrind_themesCustomFogDisableDesc": "",
+		"cybergrind_themesCustomFogStart": "",
+		"cybergrind_themesCustomFogEnd": "",
+		"cybergrind_themesCustomFogDefault": "",
+
 		"cybergrind_musicTitle": "",
+		"cybergrind_musicType": "",
 		"cybergrind_musicCompleteChallengeRequirement": "",
 		"cybergrind_musicSeeEnemyRequirement": "",
 		"cybergrind_musicUnlockLevelRequirement": "",
@@ -721,12 +752,14 @@
 		"cybergrind_musicFolderNameAct3": "",
 		"cybergrind_musicFolderNameSecret": "",
 		"cybergrind_musicFolderNamePrime": "",
+		"cybergrind_musicFolderNameEncores": "",
 		"cybergrind_musicFolderNameMisc": "",
 
 		"cybergrind_patternsWarning": "",
 		"cybergrind_patternsTitle": "",
 		"cybergrind_patternsRefresh": "",
 		"cybergrind_patternsLaunchExternalEditor": "",
+		"cybergrind_patternsSwitchButton": "",
 
 		"cybergrind_wavesTitle": "",
 		"cybergrind_wavesDescription1": "",
@@ -928,6 +961,9 @@
 	},
 	"frontend": {
 		"mainmenu_earlyAccess": "",
+		"mainmenu_v1Init": "",
+		"mainmenu_initSocials": "",
+
 		"mainmenu_halloween": "",
 		"mainmenu_easter": "",
 		"mainmenu_christmas": "",
@@ -969,10 +1005,14 @@
 		"difficulty_brutalDescription3": "",
 
 		"chapter_title": "",
+
+		"chapter_type_primary": "",
 		"chapter_prelude": "",
 		"chapter_act1": "",
 		"chapter_act2": "",
 		"chapter_act3": "",
+
+		"chapter_type_secondary": "",
 		"chapter_prime": "",
 		"chapter_cyberGrind": "",
 		"chapter_sandbox": "",
@@ -1001,7 +1041,13 @@
 		"leaderboard_anyPercent": "",
 		"leaderboard_pPercent": "",
 		"leaderboard_noEntries": "",
-		"leaderboard_reminder": ""
+		"leaderboard_reminder": "",
+
+		"aboutEncoreTitle": "",
+		"aboutEncoreMain": "",
+		"aboutEncoreButton": "",
+		"encoreAvailableMainText": "",
+		"encoreAvailableButton": ""
 	},
 	"visualnovel": {
 		"visualnovel_mirageName1": "",
@@ -1301,6 +1347,13 @@
 		"controls_weaponTitle": "",
 		"controls_primaryFire": "",
 		"controls_secondaryFire": "",
+		"controls_nextVariation": "",
+		"controls_previousVariation": "",
+		"controls_revolver": "",
+		"controls_shotgun": "",
+		"controls_nailgun": "",
+		"controls_railcannon": "",
+		"controls_rocketLauncher": "",
 		"controls_spawnerArm": "",
 		"controls_nextWeapon": "",
 		"controls_previousWeapon": "",
@@ -1308,14 +1361,13 @@
 		"controls_variationSlot1": "",
 		"controls_variationSlot2": "",
 		"controls_variationSlot3": "",
-		"controls_nextVariation": "",
-		"controls_previousVariation": "",
-		"controls_arms": "",
+		"controls_fist": "",
 		"controls_punch": "",
-		"controls_changeArm": "",
+		"controls_changeFist": "",
 		"controls_punchFeedbacker": "",
 		"controls_punchKnuckleblaster": "",
 		"controls_whiplash": "",
+		"controls_boundMultiple": "",
 
 		"graphics_resolution": "",
 		"graphics_fullscreen": "",
@@ -1324,8 +1376,7 @@
 		"graphics_maxFps2x": "",
 		"graphics_vsync": "",
 		"graphics_fieldOfVision": "",
-		"graphics_gamma1": "",
-		"graphics_gamma2": "",
+		"graphics_gamma": "",
 		"graphics_filters": "",
 		"graphics_filtersDescription": "",
 		"graphics_pixelisation": "",
@@ -1360,7 +1411,9 @@
 		"graphics_performanceSimpleFire": "",
 		"graphics_performanceSimpleSpawn": "",
 		"graphics_performanceDisableEnviParticles": "",
-		"graphics_performanceSimpleNails": "",
+
+		"graphics_performanceDisableEnviHitParticles": "",
+		"graphics_performanceDisableHeatWaves": "",
 		"graphics_gore": "",
 		"graphics_goreNote": "",
 		"graphics_goreEnable": "",
@@ -1638,7 +1691,18 @@
 
 		"levelName_primeFirst": "",
 		"levelName_primeSecond": "",
-		"levelName_primeThird": ""
+		"levelName_primeThird": "",
+
+		"levelName_encorePrelude": "",
+		"levelName_encoreLimbo": "",
+		"levelName_encoreLust": "",
+		"levelName_encoreGluttony": "",
+		"levelName_encoreGreed": "",
+		"levelName_encoreWrath": "",
+		"levelName_encoreHeresy": "",
+		"levelName_encoreViolence": "",
+		"levelName_encoreFraud": "",
+		"levelName_encoreTreachery": ""
 
 	},
 	"levelChallenges": {
@@ -1748,9 +1812,22 @@
 		"leveltips_treacheryFirst": "",
 		"leveltips_treacherySecond": "",
 
+		"leveltips_encorePrelude1": "",
+		"leveltips_encorePrelude2": "",
+		"leveltips_encoreLimbo": "",
+		"leveltips_encoreLust": "",
+		"leveltips_encoreGluttony": "",
+		"leveltips_encoreGreed": "",
+		"leveltips_encoreWrath": "",
+		"leveltips_encoreHeresy": "",
+		"leveltips_encoreViolence": "",
+		"leveltips_encoreFraud": "",
+		"leveltips_encoreTreachery": "",
+
 		"leveltips_primeFirst1": "",
 		"leveltips_primeFirst2": "",
 		"leveltips_primeSecond": "",
+		"leveltips_primeThird": "",
 
 		"leveltips_cybergrind": "",
 		"leveltips_sandbox1": "",
@@ -1770,13 +1847,14 @@
 		"shop_soulOrbs": "",
 		"shop_moneyCount": "",
 		"shop_lotsOfMoney": "",
+		"shop_equipped": "",
+		"shop_unequipped": "",
 
 		"shop_cybergrindDescription1": "",
 		"shop_cybergrindDescription2": "",
 		"shop_cybergrindDescription3": "",
 		"shop_cybergrindEnterTitle": "",
 		"shop_cybergrindEnter": "",
-		"shop_cybergrindReturningTo": "",
 		"shop_cybergrindExitTitle": "",
 		"shop_cybergrindExit": "",
 
@@ -1784,6 +1862,8 @@
 		"shop_sandboxDescription1": "",
 		"shop_sandboxDescription2": "",
 		"shop_sandboxEnter": "",
+
+		"shop_returningTo": "",
 
 		"shop_back": "",
 		"shop_weaponInfo": "",
@@ -1966,6 +2046,7 @@
 
 		"shop_colorsPreset": "",
 		"shop_colorsCustom": "",
+		"shop_colorsStandard": "",
 		"shop_colorsAlternative": "",
 		"shop_colorsDone": "",
 		"shop_colorsCustomUnlockPrompt": ""
@@ -2002,6 +2083,11 @@
 		"enemyname_earthmoverMortar": "",
 		"enemyname_earthmoverRocketLauncher": "",
 		"enemyname_earthmoverTower": "",
+
+		"enemyname_radiant_swordsmachine": "",
+		"enemyname_radiant_cerberus": "",
+		"enemyname_radiant_hideousMass": "",
+
 
 		"enemyname_boss_cerberus": "",
 		"enemyname_boss_cancerousRodent": "",
@@ -2053,6 +2139,7 @@
 
 		"cheats_panelTitle": "",
 		"cheats_cheatsEnabled": "",
+		"cheats_cheatsOpenButtons": "",
 
 		"cheats_keepEnabled": "",
 		"cheats_spawnerArm": "",
@@ -2442,6 +2529,7 @@
 		"tutorial_introReminder": "",
 		"tutorial_systemsOperational": "",
 		"tutorial_introLoadStatus": "",
+		"tutorial_introStatusUpdate": "",
 		"tutorial_introID1": "",
 		"tutorial_introID2": "",
 		"tutorial_introLocation1": "",
@@ -2535,7 +2623,10 @@
 		"act1_lustFirst_knuckleblaster1": "",
 		"act1_lustFirst_knuckleblaster2": "",
 		"act1_lustFirst_dashjump": "",
+		"act1_lustFirst_crane": "",
+		"act1_lustFirst_elevator": "",
 
+		"act1_lustSecond_checkPoints": "",
 		"act1_lustSecond_feedbacker1": "",
 		"act1_lustSecond_feedbacker2": "",
 		"act1_lustSecond_railcannon": "",
@@ -2590,6 +2681,7 @@
 		"act3_violenceFirst_doorOpens": "",
 
 		"act3_violenceSecond_guttermanTutorial": "",
+		"act3_violenceSecond_guttermanTutorialNoKB": "",
 		"act3_violenceSecond_biggerBoom": "",
 		"act3_violenceSecond_gateControlTitle": "",
 		"act3_violenceSecond_gateControlOpen": "",
@@ -2611,11 +2703,27 @@
 		"act3_violenceThird_starOfTheShow": "",
 
 		"act3_violenceFourth_floodingWarning": "",
+		"act3_violenceFourth_magentaAttack": "",
 		"act3_violenceFourth_countdownTitle": "",
 
-		"act3_secretNotReady": ""
+		"act3_secretNotReady": "",
+		"act3_fraudThird_outOfOrder": "",
+		"act3_fraudSecond_errorResetPower": "",
+		"act3_fraudFourth_nope": ""
+	},
+	"encore": {
+		"encorePrelude_aboutRadiantEnemies": "",
+		"encorePrelude_heatResistanceWarn": "",
+		"encorePrelude_heatResistanceText": "",
+		"encorePrelude_heatResistanceTitle": "",
+		"encorePrelude_heatResistanceRepaired": "",
+		"encorePrelude_heatResistanceRepairedText": "",
+
+		"encoreLimbo_warningText": ""
 	},
 	"primeSanctum": {
+		"primeSanctum_first_insufficientlight": "",
+
 		"primeSanctum_first_secretText1": "",
 		"primeSanctum_first_secretText2": "",
 		"primeSanctum_first_secretText3": "",
@@ -2692,6 +2800,18 @@
 		"secretLevels_fifth_testament10": "",
 		"secretLevels_fifth_testament11": "",
 		"secretLevels_fifth_testament12": "",
+
+		"secretLevels_seventh_testamentTitle": "",
+		"secretLevels_seventh_testament1": "",
+		"secretLevels_seventh_testament2": "",
+		"secretLevels_seventh_testament3": "",
+		"secretLevels_seventh_testament4": "",
+		"secretLevels_seventh_testament5": "",
+		"secretLevels_seventh_testament6": "",
+		"secretLevels_seventh_testament7": "",
+		"secretLevels_seventh_testament8": "",
+		"secretLevels_seventh_testament9": "",
+		"secretLevels_seventh_testament10": "",
 
 		"secretLevels_complete1": "",
 		"secretLevels_complete2": ""
@@ -2872,8 +2992,37 @@
 		"subtitles_sisyphusPrime_defeated2": "",
 		"subtitles_sisyphusPrime_defeated3": "",
 		"subtitles_sisyphusPrime_defeated4": "",
-		"subtitles_sisyphusPrime_defeated5": ""
-	},
+		"subtitles_sisyphusPrime_defeated5": "",
+		
+		"subtitles_power_intro1": "",
+		"subtitles_power_intro2": "",
+		"subtitles_power_intro3": "",
+		"subtitles_power_intro4": "",
+		"subtitles_power_intro5": "",
+
+		"subtitles_power_enrage1": "",
+		"subtitles_power_enrage2": "",
+		"subtitles_power_enrage3": "",
+		"subtitles_power_enrage4": "",
+		"subtitles_power_enrage5": "",
+
+		"subtitles_power_taunt1": "",
+		"subtitles_power_taunt2": "",
+		"subtitles_power_taunt3": "",
+		"subtitles_power_taunt4": "",
+		"subtitles_power_taunt5": "",
+
+		"subtitles_power_cheapShot1": "",
+		"subtitles_power_cheapShot2": "",
+		"subtitles_power_cheapShot3": "",
+
+		"subtitles_power_rapier": "",
+		"subtitles_power_greatsword": "",
+		"subtitles_power_spear": "",
+		"subtitles_power_spearThrow": "",
+		"subtitles_power_glaive": "",
+		"subtitles_power_glaiveThrow": ""
+ },
 
 	"misc": {
 		"hud_noArm1": "",
@@ -2955,6 +3104,7 @@
 
 		"youDied1": "",
 		"youDied2": "",
+		"DeathSequence": "",
 
 		"classicHud_health": "",
 		"classicHud_stamina": "",
@@ -3016,7 +3166,10 @@
 
 		"earlyAccessEnd1": "",
 		"earlyAccessEnd2": "",
-		"earlyAccessEnd3": ""
+		"earlyAccessEnd3": "",
+
+		"violenceScreenText1": "",
+		"violenceScreenText2": ""
 	},
 
 	"weapon":{

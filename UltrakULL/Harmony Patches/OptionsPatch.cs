@@ -1,50 +1,95 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
 using System;
+using static UltrakULL.CommonFunctions;
+using SettingsMenu.Components;
+using UnityEngine;
 using TMPro;
 using UltrakULL.json;
 
 namespace UltrakULL.Harmony_Patches
 {
-    [HarmonyPatch(typeof(HUDOptions))]
-    public static class HUDOptionsPatch
+
+    [HarmonyPatch(typeof(PauseMenu))]
+    public static class PauseMenuPatch
     {
-        [HarmonyPatch("Start"), HarmonyPostfix]
-        public static void HUDOptionsStartPostfix(TMP_Dropdown ___iconPackDropdown)
+        [HarmonyPatch("OnEnable"), HarmonyPostfix]
+        public static void PauseMenuOnEnablePostfix(TMP_Text ___checkpointText)
         {
-            List<TMP_Dropdown.OptionData> iconsDropdownListText = ___iconPackDropdown.options;
             try
             {
-                iconsDropdownListText[0].text = LanguageManager.CurrentLanguage.sandbox.sandbox_shop_default;
-                iconsDropdownListText[1].text = LanguageManager.CurrentLanguage.sandbox.sandbox_shop_pitr;
+                if (___checkpointText.text.Contains("SKIP"))
+                {
+                    ___checkpointText.text = LanguageManager.CurrentLanguage.pauseMenu.pause_skip;
+                }
             }
             catch (Exception e)
-            { Logging.Warn("Failed to patch icons text in HUD options.");
+            { 
+                Logging.Warn("Failed to patch SKIP button in pause menu");
                 Logging.Warn(e.ToString());
             }
         }
     }
-    [HarmonyPatch(typeof(HudController))]
-    public static class HudControllerPatch
+    [HarmonyPatch(typeof(SettingsMenu.Components.SettingsPageBuilder))]
+    public static class OptionsPatch
     {
-        [HarmonyPatch("SetAlwaysOnTop"), HarmonyPrefix]
-        public static bool SetAlwaysOnTop_Prefix(TMP_Text[] ___textElements)
-        {
-            if (___textElements == null)
+        [HarmonyPatch("BuildPage"), HarmonyPostfix]
+        public static void OptionsSetSelectedPostfix(SettingsPageBuilder __instance) {
+            try
             {
-                return false;
-            }
-            TMP_Text[] array = ___textElements;
-            for (int i = 0; i < array.Length; i++)
-            {
-                if(!array[i].font.name.Contains("VCR_OSD_MONO_EXTENDED") && array[i].font.name.Contains("VCR_OSD_MONO"))
+                Logging.Debug("Patching Option menu...");
+                GameObject optionsObject = __instance.gameObject;
+                switch (__instance.name.ToUpper())
                 {
-                    return true;
+                    case "GENERAL":
+                        {
+                            Logging.Debug("GENERAL");
+                            Options.PatchGeneralOptions(optionsObject);
+                            break;
+                        }
+                    case "CONTROLS":
+                        {
+                            Logging.Debug("CONTROLS");
+                            Options.PatchControlOptions(optionsObject);
+                            break;
+                        }
+                    case "GRAPHICS":
+                        {
+                            Logging.Debug("GRAPHICS");
+                            Options.PatchGraphicsOptions(optionsObject);
+                            break;
+                        }
+                    case "AUDIO":
+                        {
+                            Logging.Debug("AUDIO");
+                            Options.PatchAudioOptions(optionsObject);
+                            break;
+                        }
+                    case "ASSIST":
+                        {
+                            Logging.Debug("ASSIST");
+                            Options.PatchAssistOptions(optionsObject);
+                            break;
+                        }
+                    case "HUD":
+                        {
+                            Logging.Debug("HUD");
+                            Options.PatchHUDOptions(optionsObject);
+                            break;
+                        }
+                    default:
+                        {
+                            Logging.Warn("Unknown Option page name: " + __instance.name);
+                            break;
+                        }
+
                 }
-                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                Logging.Error("Something went wrong while patching options.");
+                Logging.Error(e.ToString());
+            }
+
         }
     }
-
 }

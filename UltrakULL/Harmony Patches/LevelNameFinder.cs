@@ -16,8 +16,11 @@ namespace UltrakULL.Harmony_Patches
         {
             if(!isUsingEnglish())
             {
-                ___txt2.text = "<color=red>" + LanguageManager.CurrentLanguage.shop.shop_cybergrindReturningTo +
-                               "</color>:\n" + LevelNames.GetLevelName(__instance.otherLevelNumber);
+                //Now we dont need to check if the scene name contains "-E"
+                {
+                    ___txt2.text = "<color=red>" + LanguageManager.CurrentLanguage.shop.shop_returningTo +
+                                   ":</color>\n" + LevelNames.GetLevelName(__instance.otherLevelNumber);
+                }
 
             }
         }

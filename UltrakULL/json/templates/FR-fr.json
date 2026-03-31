@@ -147,11 +147,9 @@
 		"museum_bookQuetzalTirado3": "Plus tard, elle a improvisé un solo de saxophone pour la musique de 5-1, « Deep Blue ». J'ai ensuite modifié l'extrait en ce que vous pouvez entendre dans la version finale. Quetzal a aussi enregistré la clarinette basse utilisée dans le son de la corne de l'Insurrectioniste Sisyphéen.",
 		"museum_bookQuetzalTirado4": "« Ma mère a aimé la musique que j'ai aidé à faire pour Ultrakill, donc je pense que je peux me considérer comme une artiste talentueuse, non ? Aussi, merci beaucoup aux personnes homosexuelles, trouvez-moi dans le niveau où l'eau fiche en l'air la musique »",
 
-		"museum_bookSalad1": "<b><color=#20FF20>SALAD</color> - ARTISTE DE JAKITO</b>",
-		"museum_bookSalad2": "Salad a dessiné Jakito.",
-		"museum_bookSalad3": "Ses plus grandes contributions sont :",
-		"museum_bookSalad4": "- Jakito",
-		"museum_bookSalad5": "« Es-tu prêt ? »",
+		"museum_bookSalad1": "<b><color=#20FF20>SALAD</color> – MAIN SECOURABLE</b>",
+		"museum_bookSalad2": "Ayant déjà contribué au jeu en dessinant Jakito, Salad a rejoint temporairement l’équipe début 2025 pour aider à la création de la nouvelle interface utilisateur et à la programmation. Il s’est principalement concentré sur le système Smile OS 2.0 utilisé par les terminaux, mais a aussi dessiné le logo en pixel art en mode texte et la V1 du menu principal. Il a également soutenu l’équipe en participant quotidiennement aux discussions vocales pendant les sessions de développement, apportant motivation et idées.",
+		"museum_bookSalad3": "« Voyons comment tu serres les dents ! »",
 
 		"museum_bookJacobHHR1": "<b><color=#FFB2DC>JACOB H.H.R.</color> - ÉCRIVAIN (HISTOIRE ET DIALOGUES)</b>",
 		"museum_bookJacobHHR2": "Jacob s'est joint à l'équipe en début 2020 pour aider à l'écriture de l'histoire et les dialogues pour le jeu après que je l'ai rencontré à l'aide d'un ami mutuel qui est aussi développeur. Il est majoritairement responsable de l'écriture de la majorité des livres trouvés dans les niveaux, les dialogues de Gabriel et les textes dans les cinématiques entre les actes. Dans l'Acte I, je créais l'idée générale du contenu des textes et il y apportait des modifications jusqu'à ce qu'ils soient complétés, mais pour l'Acte II, le travail était beaucoup plus partagé en 50/50 entre nous.",
@@ -201,8 +199,8 @@
 		"museum_bookMandalore3": "J'ai originellement rencontré Mandalore en fin 2019 après sa critique de Dusk, quand je l'ai contacté pour qu'il puisse élaborer sur quelques-uns de ses points sur les rétroshooters. ULTRAKILL n'était qu'un petit projet sans nom, mais il a pourtant pris le temps de non seulement me répondre avec des explications très détaillées, mais aussi essayer la démo d'ULTRAKILL et me donner un retour très utile sur son expérience sur le jeu.",
 		"museum_bookMandalore4": "Pour le remercier, je voulais faire un petit boss parodique le mettant en lumière avec Joy, se basant sur des inside-jokes de leur live « Mystery of the Druids », utilisant des clips audios de sa critique sur EYE pour ses répliques. Quand il a vu le boss, il a non seulement offert de réenregistrer les répliques, mais en plus faire de toutes nouvelles avec Joy qu'ils ont improvisé ensemble.",
 		"museum_bookMandalore5": "Aussi, Mandalore a joué le sifflet de la mort aztèque pour la musique de 7-1 « Bull of Hell ».",
-		"museum_bookMandalore6": "« Rend-moi visite dans les tombeaux remplie de musique préenregistré. Quelle classe. Merci d'avoir joué ! »",
-		"museum_bookMandalore7": "« Ici pour un bon moment, pas un mauvais. »",
+		"museum_bookMandalore6": "<color=#e09e2e>« Venez me voir</color> <color=#9884bb>dans les tombes avec de la musique en fond. Quelle classe. Merci d’avoir joué ! »</color>",
+		"museum_bookMandalore7": "« Ici pour passer un bon moment, pas un mauvais »",
 
 		"museum_weaponsBeamcutter1": "<b><color=orange>[Beamcutter]</color></b>",
 		"museum_weaponsBeamcutter2": "Concept par Francis, Modèle provisoire par Victoria.",
@@ -492,45 +490,45 @@
 	},
 
 	"washing": {
-		"wash_fakeexittext1": "",
-		"wash_fakeexittext2": "",
-		"wash_fakeexittext3": "",
-		"wash_fakeexittext4": "",
-		"wash_fakeexittext5": "",
-		"wash_fakeexittext6": "",
+		"wash_fakeexittext1": "NETTOIE TON BORDEL !",
+		"wash_fakeexittext2": "La laveuse et l’aspirateur sont dans l’emplacement d’arme 6.",
+		"wash_fakeexittext3": "Les deux outils ont un mode de tir secondaire.",
+		"wash_fakeexittext4": "Les déchets trop gros pour être aspirés doivent être jetés manuellement.",
+		"wash_fakeexittext5": "Certains cadavres ne peuvent pas être déplacés et doivent être écrasés.",
+		"wash_fakeexittext6": "La porte s’ouvrira quand tout sera <color=red>PROPRE</color>.",
 
-		"wash_exitOpenText1": "",
-		"wash_exitOpenText2": "",
-		"wash_exitOpenText3": "",
+		"wash_exitOpenText1": "MERCI.",
+		"wash_exitOpenText2": "La sortie est maintenant ouverte.",
+		"wash_exitOpenText3": "Passez une <color=green> B O N N E </color> journée.",
 
-		"wash_Clean": "",
-		"wash_bloodClean": "",
-		"wash_ToDo": "",
+		"wash_Clean": "PROPRE",
+		"wash_bloodClean": "Sang nettoyé :",
+		"wash_ToDo": "À faire :",
 
-		"wash_roomCourtyard": "",
-		"wash_room": "",
-		"wash_roomLobby": "",
-		"wash_roomLounge": "",
-		"wash_roomSideroom": "",
+		"wash_roomCourtyard": "Cour",
+		"wash_roomLibrary": "Bibliothèque",
+		"wash_roomLobby": "Hall",
+		"wash_roomLounge": "Salon",
+		"wash_roomSideroom": "Pièce latérale",
 
-		"wash_littercount": "",
-		"wash_Dumpster": "",
-		"wash_Ground": "",
-		"wash_Pillars": "",
-		"wash_Walls": "",
-		"wash_BackBookshelf": "",
-		"wash_Bookcases": "",
-		"wash_Bookshelf": "",
-		"wash_Ceiling": "",
-		"wash_Desk": "",
-		"wash_FrontBookshelf": "",
-		"wash_Sconces": "",
-		"wash_Sidewall": "",
-		"wash_Walkway": "",
-		"wash_WindowWall": "",
-		"wash_Decor": "",
-		"wash_Floors": "",
-		"wash_Pond": ""
+		"wash_littercount": "Déchets restants :",
+		"wash_Dumpster": "Benne",
+		"wash_Ground": "Sol",
+		"wash_Pillars": "Piliers",
+		"wash_Walls": "Murs",
+		"wash_BackBookshelf": "Étagère arrière",
+		"wash_Bookcases": "Bibliothèques",
+		"wash_Bookshelf": "Étagère",
+		"wash_Ceiling": "Plafond",
+		"wash_Desk": "Bureau",
+		"wash_FrontBookshelf": "Étagère avant",
+		"wash_Sconces": "Appliques",
+		"wash_Sidewall": "Mur latéral",
+		"wash_Walkway": "Passage",
+		"wash_WindowWall": "Mur avec fenêtres",
+		"wash_Decor": "Décor",
+		"wash_Floors": "Sols",
+		"wash_Pond": "Étang"
 	},
 
 	"style": {
@@ -549,7 +547,7 @@
 		"style_cannonballed": "BOWLING",
 		"style_cannonballedfrombounce": "",
 		"style_cannonboost": "",
-		"style_catapaulted": "CATAPAULTÉ",
+		"style_catapulted": "CATAPAULTÉ",
 		"style_chargeback": "CHARGE RENVOYÉE",
 		"style_compressed": "COMPRESSÉ",
 		"style_conductor": "CONDUCTEUR",
@@ -574,17 +572,20 @@
 		"style_hammerHitRed": "",
 		"style_hammerHitYellow": "",
 		"style_headshot": "PLEINE TÊTE",
+		"style_heavylight": "",
 		"style_homerun": "BASEBALL",
 		"style_iconoclasm": "",
 		"style_instakill": "ÉLIMINATION INSTANTANÉE",
 		"style_insurrknockdown": "",
 		"style_interruption": "INTERROMPU",
 		"style_landyours": "LA VÔTRE",
+		"style_lightningbolt": "",
 		"style_limbshot": "MEMBRE PERDU",
 		"style_longwaydown": "",
 		"style_mauriced": "MAURICE",
 		"style_nailbombed": "CLOUÉ",
 		"style_overkill": "BOUT PORTANT",
+		"style_oshaviolation": "",
 		"style_pancaked": "CRÊPES",
 		"style_parry": "RENVOI",
 		"style_projectileboost": "PROJECTILE BOOSTÉ",
@@ -619,6 +620,8 @@
 		"style_shredded": "EN MIETTES",
 		"style_slipped": "GLISSÉ",
 		"style_trampled": "PIÉTINÉ",
+		"style_trashed": "À LA POUBELLE",
+		"style_unchainedsaw": "SCIE DÉCHAÎNÉE",
 		"style_zapped": "ZAPPÉ",
 		"style_why": "pourquoi fais-tu apparaître des ennemis ici",
 
@@ -636,6 +639,7 @@
 		"style_queenpromo": "PROMOTION EN REINE",
 		"style_rookcapture": "CAPTURE DE TOUR",
 		"style_rookpromo": "PROMOTION EN TOUR",
+		"style_stophitting": "ARRÊTE DE TE FRAPPER TOI-MÊME",
 		"style_ultravictory": "ULTRAVICTOIRE",
 		"style_whitewins": "BLANC GAGNE",
 
@@ -699,7 +703,17 @@
 		"cybergrind_themesCustomTop": "HAUT",
 		"cybergrind_themesCustomGlowIntensity": "INTENSITÉ",
 
+		"cybergrind_themesCustomFog": "",
+		"cybergrind_themesCustomFogColor": "",
+		"cybergrind_themesCustomFogDynamicDesc": "",
+		"cybergrind_themesCustomFogStart": "",
+		"cybergrind_themesCustomFogEnd": "",
+		"cybergrind_themesCustomFogDynamicEnable": "",
+		"cybergrind_themesCustomFogDynamicDisable": "",
+		"cybergrind_themesCustomFogDefault": "",
+
 		"cybergrind_musicTitle": "MUSIQUES",
+		"cybergrind_musicType": "",
 		"cybergrind_musicCompleteChallengeRequirement": "COMPLÉTEZ LE DÉFI POUR",
 		"cybergrind_musicSeeEnemyRequirement": "RENCONTREZ UN ADVERSAIRE INCONNU",
 		"cybergrind_musicUnlockLevelRequirement": "ATTEIGNEZ",
@@ -715,12 +729,14 @@
 		"cybergrind_musicFolderNameAct3": "ACTE 3",
 		"cybergrind_musicFolderNameSecret": "NIVEAUX SECRETS",
 		"cybergrind_musicFolderNamePrime": "SANCTUAIRES PRIMES",
+		"cybergrind_musicFolderNameEncores": "",
 		"cybergrind_musicFolderNameMisc": "EXTRAS",
 
 		"cybergrind_patternsWarning": "ATTENTION : VOTRE SCORE NE SERA PAS SAUVEGARDÉ LORSQUE VOUS UTILISEZ DES TERRAINS PERSONNALISÉES",
 		"cybergrind_patternsTitle": "TERRAINS",
 		"cybergrind_patternsRefresh": "ACTUALISER",
 		"cybergrind_patternsLaunchExternalEditor": "ÉDITEUR",
+		"cybergrind_patternsSwitchButton": "Activer",
 
 		"cybergrind_wavesTitle": "VAGUES",
 		"cybergrind_wavesDescription1": "SÉLECTIONNEZ UNE VAGUE DE DÉPART",
@@ -902,6 +918,9 @@
 	},
 	"frontend": {
 		"mainmenu_earlyAccess": "ACCÈS ANTICIPÉ",
+		"mainmenu_v1Init": "",
+		"mainmenu_initSocials": "",
+
 		"mainmenu_easter": "JOYEUSES PÂQUES",
 		"mainmenu_halloween": "JOYEUX HALLOWEEN",
 		"mainmenu_christmas": "JOYEUX NOËL",
@@ -911,6 +930,12 @@
 		"mainmenu_quit": "QUITTER",
 		"mainmenu_mods": "MODS",
 		"mainmenu_restart": "REDÉMARRER",
+		"wingModule": "MODULE D’AILE (8)\nVÉRIFICATION DE L’ÉTAT...\n\nSYSTÈME DE STOCKAGE POUR LA CONVERSION DE MATIÈRE ET D’ÉNERGIE : OK\nSYSTÈME DE PROPULSION INSTANTANÉE : OK\nSYSTÈME DE PROPULSION CONTINUE : OK\nSYSTÈME AUTOMATIQUE DE RÉORIENTATION DU CORPS : OK",
+		"armModuleFactory": "MODULE DE BRAS (PAR DÉFAUT)\nVÉRIFICATION DE L’ÉTAT...\n\nSYSTÈME DE CORRECTION DE L’INERTIE : OK\nSYSTÈME D’AUTO-ÉQUILIBRAGE DU CENTRE DE GRAVITÉ : OK",
+		"armModuleFeedbacker": "MODULE DE BRAS (\"FEEDBACKER\")\nVÉRIFICATION DU STATUT...\n\nSYSTÈME DE RÉORIENTATION DU VECTEUR : OK\nPROGRAMME \"CROSS-COUNTER\" : DÉTECTÉ",
+		"visualCortexModule": "MODULE DU CORTEX VISUEL\nVÉRIFICATION DE L’ÉTAT...\n\nSYSTÈME DE RALENTISSEMENT DU TRAITEMENT DES DONNÉES : OK\nPRÉCISION DU TRAITEMENT DES DONNÉES VISUELLES : MINIMALE",
+		"legModule": "MODULE DE JAMBE (PAR DÉFAUT) (2)\nVÉRIFICATION DE L’ÉTAT...\n\nSYSTÈME D’ATTÉNUATION DES CHUTES : OK\nSYSTÈME DE RÉPARTITION DU POIDS : OK\nSYSTÈME DE STOCKAGE D’ÉNERGIE POTENTIELLE : OK",
+
 
 
 		"difficulty_title": "DIFFICULTÉ",
@@ -939,15 +964,19 @@
 		"difficulty_violentDescription1": "Ennemis agressifs et rapides, et dégâts élevés.",
 		"difficulty_violentDescription2": "De bons réflexes, maîtrise des techniques de mouvement et connaissances des mécaniques du jeu sont essentiels.",
 		"difficulty_violentDescription3": "<color=red>Conseillé pour les joueurs qui sont habitués aux rythmes et mécaniques du jeu.</color>",
-		"difficulty_brutalDescription1": "",
-		"difficulty_brutalDescription2": "",
-		"difficulty_brutalDescription3": "",
+		"difficulty_brutalDescription1": "Ennemis extrêmement agressifs et dégâts élevés.",
+		"difficulty_brutalDescription2": "Un arsenal complet et une connaissance approfondie du jeu sont attendus. Toute erreur est sévèrement punie.",
+		"difficulty_brutalDescription3": "Recommandé aux joueurs ayant déjà une grande expérience du jeu et recherchant un nouveau défi.",
 
 		"chapter_title": "CHAPITRE",
+		"chapter_type_primary": "HISTOIRE PRINCIPALE",
+
 		"chapter_prelude": "PRÉLUDE",
 		"chapter_act1": "ACTE I - MORT INFINIE",
 		"chapter_act2": "ACTE II - HAINE IMPARFAITE",
 		"chapter_act3": "ACTE III - SUICIDE DIVIN",
+
+		"chapter_type_secondary": "SECONDAIRE",
 		"chapter_prime": "SANCTUAIRES PRIMES",
 		"chapter_cyberGrind": "LE CYBER GRIND",
 		"chapter_sandbox": "BAC À SABLE",
@@ -964,6 +993,7 @@
 		"layer_fraud": "CERCLE 8 - [FRAUD]",
 		"layer_treachery": "CERCLE 9 - [TREACHERY]",
 		"layer_prime": "LES SANCTUAIRES PRIMES",
+		"layer_encore": "",
 		"level_challenge": "DÉFI",
 		"level_challengeCompleted": "COMPLÉTÉ",
 		"level_fullIntroPrompt": "INTRO ENTIÈRE?",
@@ -973,7 +1003,13 @@
 		"leaderboard_anyPercent": "TOUS",
 		"leaderboard_pPercent": "P-RANK",
 		"leaderboard_noEntries": "[pas de temps enregistrés]",
-		"leaderboard_reminder": ""
+		"leaderboard_reminder": "",
+
+		"aboutEncoreTitle": "",
+		"aboutEncoreMain": "",
+		"aboutEncoreButton": "",
+		"encoreAvailableMainText": "",
+		"encoreAvailableButton": ""
 	},
 
 	"visualnovel": {
@@ -1246,6 +1282,11 @@
 		"controls_weaponTitle": "ARME",
 		"controls_primaryFire": "TIR PRINCIPAL",
 		"controls_secondaryFire": "TIR SECONDAIRE",
+		"controls_revolver": "",
+		"controls_shotgun": "",
+		"controls_nailgun": "",
+		"controls_railcannon": "",
+		"controls_rocketLauncher": "",
 		"controls_spawnerArm": "",
 		"controls_nextWeapon": "PROCHAINE ARME",
 		"controls_previousWeapon": "ARME PRÉCÉDENTE",
@@ -1255,12 +1296,13 @@
 		"controls_variationSlot3": "",
 		"controls_nextVariation": "",
 		"controls_previousVariation": "",
-		"controls_arms": "BRAS",
+		"controls_fist": "BRAS",
 		"controls_punch": "COUP DE POING",
 		"controls_punchFeedbacker": "",
 		"controls_punchKnuckleblaster": "",
 		"controls_whiplash": "GRAPPIN",
-		"controls_changeArm": "CHANGER DE BRAS",
+		"controls_boundMultiple": "",
+		"controls_changeFist": "CHANGER DE BRAS",
 		"controls_movementTitle": "MOUVEMENT",
 		"controls_resetDefault": "RÉINITIALISER",
 		"controls_forward": "AVANCER",
@@ -1287,8 +1329,8 @@
 		"graphics_maxFps2x": "2X FRÉQUENCE DU MONITEUR",
 		"graphics_vsync": "V-SYNC",
 		"graphics_fieldOfVision": "CHAMP DE VISION",
-		"graphics_gamma1": "GAMMA <size=12>(LUMINOSITÉ)",
-		"graphics_gamma2": "\n(pas vraiment)",
+		"graphics_gamma": "GAMMA <size=12>(LUMINOSITÉ)",
+		"graphics_disableNewShaders": "DÉSACTIVER LES NOUVEAUX SHADERS\n(NÉCESSITE UN REDÉMARRAGE)",
 		"graphics_filters": "FILTRES",
 		"graphics_filtersDescription": "(Abaisser pour plus de clarté visuelle)",
 		"graphics_pixelisation": "PIXELLISATION",
@@ -1323,6 +1365,8 @@
 		"graphics_performanceSimpleFire": "FEU SIMPLIFIÉ",
 		"graphics_performanceSimpleSpawn": "EFFETS D'APPARITION SIMPLIFIÉS",
 		"graphics_performanceDisableEnviParticles": "DÉSACTIVER LES EFFETS D'ENVIRONNEMENT",
+		"graphics_performanceDisableEnviHitParticles": "",
+		"graphics_performanceDisableHeatWaves": "",
 		"graphics_performanceSimpleNails": "PHYSIQUES DES CLOUS SIMPLIFIÉS",
 		"graphics_gore": "SANG ET GORE",
 		"graphics_goreNote": "(N'affecte pas le jeu)",
@@ -1479,11 +1523,13 @@
 		"advanced_level71": "NIVEAU 7-1",
 		"advanced_level73": "NIVEAU 7-3",
 		"advanced_level7S": "NIVEAU 7-S",
+		"advanced_levelP2": "NIVEAU P-2",
 		"advanced_52WaterScrolling": "DÉSACTIVER DÉROULEMENT DE L'EAU",
 		"advanced_52WaterWaves": "DÉSACTIVER VAGUES",
 		"advanced_71Dark": "TOUJOURS RESTER SOMBRE",
 		"advanced_73Grass": "DÉSACTIVER HERBE",
-		"advanced_7SHard": "",
+		"advanced_7SHard": "NÉCESSITE UNE GRANDE PRÉCISION",
+		"advanced_P2DisableTunnelScrolling": "DÉSACTIVER LE DÉFILEMENT DU TUNNEL ROUGE",
 
 		"save_warning1": "<color=red>Le jeu va recharger</color>.",
 		"save_warning2": "Si vous êtes dans une mission, tout progrès actuel sera perdu.",
@@ -1603,7 +1649,18 @@
 
 		"levelName_primeFirst": "L'ÂME SURVIVANTE",
 		"levelName_primeSecond": "LA DOULEUR DU MONDE",
-		"levelName_primeThird": "???"
+		"levelName_primeThird": "???",
+
+		"levelName_encorePrelude": "",
+		"levelName_encoreLimbo": "",
+		"levelName_encoreLust": "",
+		"levelName_encoreGluttony": "",
+		"levelName_encoreGreed": "",
+		"levelName_encoreWrath": "",
+		"levelName_encoreHeresy": "",
+		"levelName_encoreViolence": "",
+		"levelName_encoreFraud": "",
+		"levelName_encoreTreachery": ""
 	},
 
 	"levelChallenges": {
@@ -1701,6 +1758,8 @@
 
 		"leveltips_primeSecond": "Amusez-vous bien.",
 
+		"leveltips_primeThird": "",
+
 		"leveltips_wrathFirst": "Les chutes <color=orange>sous l'eau</color> sont lentes, mais un <color=orange>lancement au sol</color> permet de se retourner rapidement sur le sol.",
 		"leveltips_wrathSecond": "Les <color=orange>glissements</color> sur l'eau vous permettra d'y <color=orange>rebondir</color> sur sa surface.",
 		"leveltips_wrathThird": "Si un ennemi est <color=orange>béni</color> par un <color=orange>Idol</color>, une connexion visible et directe est formé entre les deux, permettant de <color=orange>retrouver</color> facilement et détruire le protecteur.",
@@ -1727,6 +1786,18 @@
 		"leveltips_treacheryFirst": "???",
 		"leveltips_treacherySecond": "???",
 
+		"leveltips_encorePrelude1": "",
+		"leveltips_encorePrelude2": "",
+		"leveltips_encoreLimbo": "",
+		"leveltips_encoreLust": "",
+		"leveltips_encoreGluttony": "",
+		"leveltips_encoreGreed": "",
+		"leveltips_encoreWrath": "",
+		"leveltips_encoreHeresy": "",
+		"leveltips_encoreViolence": "",
+		"leveltips_encoreFraud": "",
+		"leveltips_encoreTreachery": "",
+
 		"leveltips_cybergrind": "Si vous vous faites envoyer trop loin de l'arène, le surpompement du <color=green>SURCHARGEMENT</color> est une bonne façon d'y revenir.",
 		"leveltips_sandbox1": "<color=orange>LES TRICHES</color> peuvent être activés dans les autres niveaux en entrant les touches suivantes:",
 		"leveltips_sandbox2": "L'activation des triches désactive les rangs de fin de niveau.",
@@ -1746,13 +1817,14 @@
 		"shop_soulOrbs": "ORBES D'ÂMES",
 		"moneyCount": "<color=orange>P</color>",
 		"lotsOfMoney": "VRAIMENT BEAUCOUP DE ",
+		"shop_equipped": "",
+		"shop_unequipped": "",
 
 		"shop_cybergrindDescription1": "<color=red>Le Cyber Grind est un mode de survie sans fin</color>.",
 		"shop_cybergrindDescription2": "Une bonne performance donnera beaucoup de <color=red>points</color>.",
 		"shop_cybergrindDescription3": "<color=red>Tout progrès dans la mission actuelle sera perdu</color>.",
 		"shop_cybergrindEnterTitle": "LE CYBER GRIND",
 		"shop_cybergrindEnter": "ENTRER LE CYBER GRIND",
-		"shop_cybergrindReturningTo": "Retourner à:",
 		"shop_cybergrindExitTitle": "RETOURNER AU MISSION",
 		"shop_cybergrindExit": "QUITTER LE CYBER GRIND",
 
@@ -1760,6 +1832,8 @@
 		"shop_sandboxDescription1": "Le bac à sable est une zone vide que vous pouvez utiliser pour vous pratiquer.",
 		"shop_sandboxDescription2": "Tout progrès dans la mission actuelle sera perdu.",
 		"shop_sandboxEnter": "ENTRER LE BAC À SABLE",
+
+		"shop_ReturningTo": "Retourner à:",
 
 		"shop_back": "RETOUR",
 		"shop_weaponInfo": "INFO",
@@ -1940,6 +2014,7 @@
 
 		"shop_colorsPreset": "PRÉSET",
 		"shop_colorsCustom": "PERSONNALISÉ",
+		"shop_colorsStandard": "",
 		"shop_colorsAlternative": "ALTERNATIF",
 		"shop_colorsDone": "CONFIRMER",
 		"shop_colorsCustomUnlockPrompt": "DÉBLOQUER LES COULEURS PERSONNALISÉ POUR:"
@@ -1977,6 +2052,9 @@
 		"enemyname_earthmoverMortar": "",
 		"enemyname_earthmoverRocketLauncher": "",
 		"enemyname_earthmoverTower": "",
+
+		"enemyname_radiant_swordsmachine": "",
+		"enemyname_radiant_cerberus": "",
 
 		"enemyname_boss_cerberus": "CERBÈRE, GARDIEN DES ENFERS",
 		"enemyname_boss_fleshPrison": "PRISON DE CHAIR",
@@ -2408,6 +2486,7 @@
 		"tutorial_calibrationComplete2": "OPTIONS PRINCIPALES MISES À JOUR",
 		"tutorial_introReminder": "ASSISTANCES DISPONIBLES DANS LE MENU DE PAUSE",
 		"tutorial_introLoadStatus": "CHARGEMENT DE STATUT",
+		"tutorial_introStatusUpdate": "",
 		"tutorial_introID1": "IDENTIFIANT",
 		"tutorial_introID2": "V1",
 		"tutorial_introLocation1": "LOCALISATION",
@@ -2502,6 +2581,8 @@
 		"act1_lustFirst_knuckleblaster1": "<color=red>BOMBARDIER</color>: <color=orange>MAINTENIR</color>",
 		"act1_lustFirst_knuckleblaster2": "pour lancer un <color=orange>CHOC</color> qui repoussent les ennemis.",
 		"act1_lustFirst_dashjump": "<color=#11dfef>SAUT PROPULSÉE</color>: Gardez la vitesse <color=#11dfef>D'ESQUIVE</color> en y <color=orange>SAUTANT</color> en plein milieu d'esquive.",
+		"act1_lustFirst_crane": "CONTRÔLE\nDE LA GRUE",
+		"act1_lustFirst_elevator": "TEST\nDE L’ASCENSEUR",
 
 		"act1_lustSecond_feedbacker1": "Seul le <color=#11dfef>RENVOYEUR</color> peut déflecter les projectiles.",
 		"act1_lustSecond_feedbacker2": "Changez d'armes avec ",
@@ -2559,6 +2640,7 @@
 		"act3_violenceFirst_doorOpens": "Une porte s'ouvre.",
 
 		"act3_violenceSecond_guttermanTutorial": "Le <color=orange>BOUCLIER D'UN [Gutterman]</color> peut être <color=orange>BRISÉ</color> avec le <color=red>[KNUCKLEBLASTER]</color>. Changez de bras avec",
+		"act3_violenceSecond_guttermanTutorialNoKB": "",
 		"act3_violenceSecond_biggerBoom": "ON VA AVOIR BESOIN D'UN PLUS GROS BOUM",
 		"act3_violenceSecond_gateControlTitle": "PORTAILS",
 		"act3_violenceSecond_gateControlOpen": "OUVERT",
@@ -2580,12 +2662,26 @@
 		"act3_violenceThird_starOfTheShow": "C'EST TOI LA STAR DE LA SCÈNE MAINTENANT!",
 
 		"act3_violenceFourth_floodingWarning": "ATTENTION: INTRUS DÉTECTÉ\n-- RINÇAGE DE L'INTÉRIEUR --",
+		"act3_violenceFourth_magentaAttack": "",
 		"act3_violenceFourth_countdownTitle": "ERREUR CRITIQUE",
 
 		"act3_secretNotReady": "VOUS NE DEVRIEZ PAS ÊTRE ICI."
 	},
 
+	"encore": {
+		"encorePrelude_aboutRadiantEnemies": "",
+		"encorePrelude_heatResistanceWarn": "",
+		"encorePrelude_heatResistanceText": "",
+		"encorePrelude_heatResistanceTitle": "",
+		"encorePrelude_heatResistanceRepaired": "",
+		"encorePrelude_heatResistanceRepairedText": "",
+
+		"encoreLimbo_warningText": ""
+	},
+
 	"primeSanctum": {
+		"primeSanctum_first_insufficientlight": "",
+
 		"primeSanctum_first_secretText1": "DOCUMENT DU TERMINAL 01 <color=red>[CHIFFRÉ]</color>",
 		"primeSanctum_first_secretText2": "INTRODUCTION AUX TERMINAUX (<color=grey>BROUILLON! À NE PAS ENVOYER ! //todo: AJOUTER DES DESSINS POUR ÉVITER QUE LES PAUVRE CONS CHEZ L'ENTREPRISE DORMENT COMME LA DERNIÈRE FOIS</color>)",
 		"primeSanctum_first_secretText3": "Les terminaux chez les ascenseurs sont un réseau interconnecté complexe, construit pour le transfert des matériaux et outils entre les zones différentes. Ils sont capables de transférer de la matière physique par moyenne de signal radio, auquel les autres terminaux puissent reçevoir et reconstruire les objets envoyés. L'objet original est détruit puisqu'il est transformé en énergie qui est utilisé pour transmettre l'information de la matière, et le processus est ralenti à cause de la quantité d'information que la matière physique porte.",
@@ -2663,6 +2759,18 @@
 		"secretLevels_fifth_testament10": "JE NE POUVAIT PLUS QUE ME LAMENTER",
 		"secretLevels_fifth_testament11": "PENDANT QUE JE SOMBRAIT AU FOND DU DÉSESPOIR...",
 		"secretLevels_fifth_testament12": "PROFOND, Ô SI PROFOND",
+
+		"secretLevels_seventh_testamentTitle": "",
+		"secretLevels_seventh_testament1": "",
+		"secretLevels_seventh_testament2": "",
+		"secretLevels_seventh_testament3": "",
+		"secretLevels_seventh_testament4": "",
+		"secretLevels_seventh_testament5": "",
+		"secretLevels_seventh_testament6": "",
+		"secretLevels_seventh_testament7": "",
+		"secretLevels_seventh_testament8": "",
+		"secretLevels_seventh_testament9": "",
+		"secretLevels_seventh_testament10": "",
 
 		"secretLevels_complete1": "MISSION",
 		"secretLevels_complete2": "ACCOMPLIE"
@@ -2983,9 +3091,12 @@
 
 		"earlyAccessEnd1": "MERCI D'AVOIR JOUÉ",
 		"earlyAccessEnd2": "Le 8e cercle : [Fraud] est encore en développement.",
-		"earlyAccessEnd3": "Pour avoir des nouvelles sur le développement, suivez-nous sur : "
+		"earlyAccessEnd3": "Pour avoir des nouvelles sur le développement, suivez-nous sur : ",
+
+		"violenceScreenText1": "Ce jeu contient des scènes\nde violence explicite et de gore.</size>",
+		"violenceScreenText2": "Ce jeu contient des scènes\nde <color=red>violence</color> explicite et de <color=red>gore</color>.</size>"
 	},
-	"weapon":{
+	"weapon": {
 		"weapon_nailgunZapperReady": "",
 		"weapon_nailgunZapperAlternateTooFar": "",
 		"weapon_nailgunZapperOutOfRange": "",

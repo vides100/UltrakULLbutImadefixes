@@ -12,9 +12,10 @@ namespace UltrakULL
         public static void PatchStats(ref GameObject canvasObj)
         {
             GameObject levelStatsWindow = GetGameObjectChild(GetGameObjectChild(canvasObj, "Level Stats Controller"), "Level Stats (1)");
-            
-            TextMeshProUGUI levelName = GetTextMeshProUGUI(GetGameObjectChild(levelStatsWindow, "Title"));
-            levelName.text = LevelNames.GetDiscordLevelName(GetCurrentSceneName());
+
+            // Now Level name directly gets the name from the GetMissionName.cs
+            //TextMeshProUGUI levelName = GetTextMeshProUGUI(GetGameObjectChild(levelStatsWindow, "Title"));
+            //levelName.text = LevelNames.GetDiscordLevelName(GetCurrentSceneName());
 
             //Secret levels will only have a timer, or something else.
             TextMeshProUGUI timeName = GetTextMeshProUGUI(GetGameObjectChild(levelStatsWindow, "Time Title"));
@@ -39,6 +40,11 @@ namespace UltrakULL
             {
                 TextMeshProUGUI cratesName = GetTextMeshProUGUI(GetGameObjectChild(levelStatsWindow, "Crates Counter"));
                 cratesName.text = LanguageManager.CurrentLanguage.misc.levelstats_boxes;
+            }
+            if (GetCurrentSceneName() == "Endless")
+            {
+                killsName.text = LanguageManager.CurrentLanguage.cyberGrind.cybergrind_currentWave;
+                styleName.text = LanguageManager.CurrentLanguage.cyberGrind.cybergrind_enemiesRemaining;
             }
         }
     }

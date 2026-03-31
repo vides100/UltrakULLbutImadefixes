@@ -31,7 +31,7 @@ namespace UltrakULL
             {
                 return LanguageManager.CurrentLanguage.act1.act1_limboSecond_blueAttack;
             }
-            return "Unknown 1-2 string";
+            return ("Unimplemented string");
         }
         //1-3 - Hall Of Sacred Remains
         private static string Level13(string message, string message2)
@@ -41,7 +41,7 @@ namespace UltrakULL
             {
                 return LanguageManager.CurrentLanguage.act1.act1_limboThird_splitDoor1 + "\n" + LanguageManager.CurrentLanguage.act1.act1_limboThird_splitDoor2;
             }
-            return "Unknown 1-3 string";
+            return ("Unimplemented string");
         }
         //1-4 - Clair De Lune
         private static string Level14(string message, string message2, string input)
@@ -71,7 +71,7 @@ namespace UltrakULL
                 return LanguageManager.CurrentLanguage.act1.act1_limboFourth_newArm + " '<color=orange>" + input + "'</color>.";
             }
 
-            return "Unknown 1-4 string";
+            return ("Unimplemented string");
         }
         //1-S - The Witless
         private static string Level1Secret(string message, string message2)
@@ -82,7 +82,7 @@ namespace UltrakULL
                 return LanguageManager.CurrentLanguage.act1.act1_limboSecret_noclipSkip;
             }
 
-            return "Unknown 1-S string";
+            return ("Unimplemented string");
         }
         //2-1 - Bridgeburner
         private static string Level21(string message, string message2, string input)
@@ -97,7 +97,7 @@ namespace UltrakULL
                 return (LanguageManager.CurrentLanguage.act1.act1_lustFirst_dashJump);
             }
 
-            return "Unknown 2-1 string";
+            return ("Unimplemented string");
         }
         //2-2 - Death at 20,000 Volts
         private static string Level22(string message, string message2, string input)
@@ -111,8 +111,11 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act1.act1_lustSecond_railcannon);
             }
-
-            return ("Unknown 2-2 string");
+            if (fullMessage.Contains("CHECKPOINTS"))
+            {
+                return (LanguageManager.CurrentLanguage.act1.act1_lustSecond_checkPoints);
+            }
+            return ("Unimplemented string");
         }
         //2-3 - Sheer Heart Attack
         private static string Level23(string message, string message2)
@@ -122,30 +125,42 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act1.act1_lustThird_water);
             }
-            return "Unknown 2-3 string";
+            return ("Unimplemented string");
         }
         //2-4 - Court Of The Corpse King
         //This level has no HUD box strings.
-        private static string Level24()
+        private static string Level24(string message, string message2)
         {
-            return "Unknown 2-4 string";
+            string fullMessage = message + message2;
+            if (fullMessage.Contains("OFF THE BEATEN TRACK"))
+            {
+                return (LanguageManager.CurrentLanguage.act1.act1_lustFourth_offTheBeatenTrack);
+            }
+            return ("Unimplemented string");
         }
         //2-S
-        private static string Level2Secret()
+        private static string Level2Secret(string message, string message2)
         {
-            return "Unknown 2-S string";
+            string fullMessage = message + message2;
+            return ("Unimplemented string");
         }
         //3-1 - Belly Of The Beast
         //This level has no HUD box strings.
-        private static string Level31()
+        private static string Level31(string message, string message2)
         {
-            return "Unknown 3-1 string";
+            string fullMessage = message + message2;
+            if (fullMessage.Contains("YUP, THAT'S A CAVITY"))
+            {
+                return (LanguageManager.CurrentLanguage.act1.act1_greedFirst_cavity);
+            }
+            return ("Unimplemented string");
         }
         //3-2 - In The Flesh
         //This level has no HUD box strings.
-        private static string Level32()
+        private static string Level32(string message, string message2)
         {
-            return "Unknown 3-2 string";
+            string fullMessage = message + message2;
+            return ("Unimplemented string");
         }
 
 
@@ -200,21 +215,25 @@ namespace UltrakULL
                     }
                 case "Level 2-4":
                     {
-                        return Level24();
+                        return Level24(message, message2);
                     }
                 case "Level 2-S":
                     {
-                        return Level2Secret();
+                        return Level2Secret(message, message2);
                     }
                 case "Level 3-1":
                     {
-                        return Level31();
+                        return Level31(message, message2);
                     }
                 case "Level 3-2":
                     {
-                        return Level32();
+                        return Level32(message, message2);
                     }
-                default: return "Unimplemented Act 1 string";
+                default:
+                    {
+                        //Console.WriteLine("Unknown ACT 1 string in " + currentLevel + ": \n" + message + message2);
+                        return ("Unimplemented string");
+                    }
             }
         }
 

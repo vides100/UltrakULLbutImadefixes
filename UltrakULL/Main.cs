@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using UltrakULL.json;
 using BepInEx;
+using BepInEx.Configuration;
 using static UltrakULL.CommonFunctions;
 using System.Reflection;
 
@@ -58,13 +59,13 @@ namespace UltrakULL
 	{
 		private const string Guid = "clearwater.ultrakill.ultrakull";
 		private const string InternalName = "clearwater.ultrakull.ultrakULL";
-		private const string InternalVersion = "1.3.0";
+		private const string InternalVersion = "1.3.1"; //Why was the mod version still 1.3.0?
 
 		public static MainPatch Instance;
 		public bool ready;
+        // Using inherited Config from BaseUnityPlugin
 
 		public static string ModFolder => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
 		public MainPatch()
 		{
 			Instance = this;

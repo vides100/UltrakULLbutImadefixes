@@ -25,56 +25,62 @@ namespace UltrakULL.Harmony_Patches.AudioSwaps
             AudioClip[] minosPrimeKick = __instance.riderKickVoice;
             for(int x = 0; x < minosPrimeKick.Length; x++)
             {
-                string minosPrimeKickString = minosPrimeFolder + "minosPrimeDie" + (x+1).ToString();
-                minosPrimeKick[x] =  AudioSwapper.SwapClipWithFile(minosPrimeKick[x], minosPrimeKickString);
+                int ix = x;
+                string minosPrimeKickString = minosPrimeFolder + "minosPrimeDie" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimeKick[ix], minosPrimeKickString, (clip) => { try { minosPrimeKick[ix] = clip; } catch { } });
             }
             
             //Dropkick (Judgement)
             AudioClip[] minosPrimeJudgement = __instance.dropkickVoice;
             for(int x = 0; x < minosPrimeJudgement.Length; x++)
             {
-                string minosPrimeJudgementString = minosPrimeFolder + "minosPrimeJudgement" + (x+1).ToString();
-                minosPrimeJudgement[x] =  AudioSwapper.SwapClipWithFile(minosPrimeJudgement[x], minosPrimeJudgementString);
-                
+                int ix = x;
+                string minosPrimeJudgementString = minosPrimeFolder + "minosPrimeJudgement" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimeJudgement[ix], minosPrimeJudgementString, (clip) => { try { minosPrimeJudgement[ix] = clip; } catch { } });
             }
             
             //Crush attack (Crush)
             AudioClip[] minosPrimeCrush = __instance.dropAttackVoice;
             for(int x = 0; x < minosPrimeCrush.Length; x++)
             {
-                string minosPrimeCrushString = minosPrimeFolder + "minosPrimeCrush" + (x+1).ToString();
-                minosPrimeCrush[x] =  AudioSwapper.SwapClipWithFile(minosPrimeCrush[x], minosPrimeCrushString);
+                int ix = x;
+                string minosPrimeCrushString = minosPrimeFolder + "minosPrimeCrush" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimeCrush[ix], minosPrimeCrushString, (clip) => { try { minosPrimeCrush[ix] = clip; } catch { } });
             }
             
             //Punches/Boxing (Thy end is now)
             AudioClip[] minosPrimePunch = __instance.boxingVoice;
             for(int x = 0; x < minosPrimePunch.Length; x++)
             {
-                string minosPrimePunchString = minosPrimeFolder + "minosPrimeThyEndIsNow" + (x+1).ToString();
-                minosPrimePunch[x] =  AudioSwapper.SwapClipWithFile(minosPrimePunch[x], minosPrimePunchString);
+                int ix = x;
+                string minosPrimePunchString = minosPrimeFolder + "minosPrimeThyEndIsNow" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimePunch[ix], minosPrimePunchString, (clip) => { try { minosPrimePunch[ix] = clip; } catch { } });
             }
             
             //Combo (prepare thyself)
             AudioClip[] minosPrimeCombo = __instance.comboVoice;
             for(int x = 0; x < minosPrimeCombo.Length; x++)
             {
-                string minosPrimeComboString = minosPrimeFolder + "minosPrimePrepareThyself" + (x+1).ToString();
-                minosPrimeCombo[x] =  AudioSwapper.SwapClipWithFile(minosPrimeCombo[x], minosPrimeComboString);
+                int ix = x;
+                string minosPrimeComboString = minosPrimeFolder + "minosPrimePrepareThyself" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimeCombo[ix], minosPrimeComboString, (clip) => { try { minosPrimeCombo[ix] = clip; } catch { } });
             }
             
             
             //Phase change - need to use ref otherwise it gets swapped back to original
-            ref AudioClip minosPrimePhaseChange = ref __instance.phaseChangeVoice;
+            var inst = __instance;
+            AudioClip tmpPhase = inst.phaseChangeVoice;
             string minosPrimePhaseChangeString = minosPrimeFolder + "minosPrimePhaseChange";
-            minosPrimePhaseChange = AudioSwapper.SwapClipWithFile(minosPrimePhaseChange, minosPrimePhaseChangeString);
+            AudioSwapper.SwapClipWithFileAsync(tmpPhase, minosPrimePhaseChangeString, (clip) => { try { inst.phaseChangeVoice = clip; } catch { } });
             
             
             //Hurt
             AudioClip[] minosPrimeHurt = __instance.hurtVoice;
             for(int x = 0; x < minosPrimeHurt.Length; x++)
             {
-                string minosPrimeHurtString = minosPrimeFolder + "minosPrimeHurt" + (x+1).ToString();
-                minosPrimeHurt[x] =  AudioSwapper.SwapClipWithFile(minosPrimeHurt[x], minosPrimeHurtString);
+                int ix = x;
+                string minosPrimeHurtString = minosPrimeFolder + "minosPrimeHurt" + (ix+1).ToString();
+                AudioSwapper.SwapClipWithFileAsync(minosPrimeHurt[ix], minosPrimeHurtString, (clip) => { try { minosPrimeHurt[ix] = clip; } catch { } });
             }
         }
     }

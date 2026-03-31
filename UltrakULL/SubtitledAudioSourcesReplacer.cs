@@ -13,8 +13,7 @@ namespace UltrakULL
 {
     public static class SubtitledAudioSourcesReplacer
     {
-        public static string SpeechFolder = Combine(Paths.ConfigPath,"ultrakull", "audio", LanguageManager.CurrentLanguage.metadata
-            .langName);
+        public static string SpeechFolder = Combine(Paths.ConfigPath,"ultrakull", "audio", LanguageManager.CurrentLanguage.metadata.langName);
         
         public static SubtitledSourcesConfig Config;
 
@@ -28,19 +27,42 @@ namespace UltrakULL
         {
             if (!TryLoadMetadata(out var objectReferences)) 
                 return;
-            
+
             foreach (var objectReference in objectReferences)
             {
                 foreach (var gameObject in objectReference.Objects)
                 {
-                    var subtitledAudioSource = GetObject(gameObject).GetComponent<SubtitledAudioSource>();
-                    var audioSource = GetObject(gameObject).GetComponentInChildren<AudioSource>();
-    
+                    var obj = GetObject(gameObject);
+                    if (obj == null)
+                    {
+                        Logging.Warn($"[UAK] GetObject('{gameObject}') return NULL");
+                        continue;
+                    }
+
+                    var subtitledAudioSource = obj.GetComponent<SubtitledAudioSource>();
+                    var audioSource = obj.GetComponentInChildren<AudioSource>();
+
                     if (ActiveDubbingEnabled())
-                        audioSource.clip = SwapClipWithFile(audioSource.clip, Combine(SpeechFolder, objectReference.AudioPath));
-                    
+                    {
+                        if (audioSource != null)
+                        {
+                            var src = audioSource;
+                            SwapClipWithFileAsync(src.clip, Combine(SpeechFolder, objectReference.AudioPath), (newClip) => { try { src.clip = newClip; } catch { } });
+                        }
+                        else
+                        {
+                            Logging.Warn($"[UAK] AudioSource not founded in '{obj.name}'");
+                        }
+                    }
+
                     if (subtitledAudioSource != null)
+                    {
                         SetPrivate(subtitledAudioSource, typeof(SubtitledAudioSource), "subtitles", objectReference.ToSubtitleData());
+                    }
+                    else
+                    {
+                        Logging.Warn($"[UAK] SubtitledAudioSource not founded in '{obj.name}'");
+                    }
                 }
             }
         }

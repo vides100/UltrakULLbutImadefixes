@@ -1,7 +1,113 @@
+1.3.1:
+
+ADDED:
+New category: encore
+
+frontend: mainmenu_v1Init
+frontend: mainmenu_initSocials
+frontend: chapter_type_primary
+frontend: chapter_type_secondary
+frontend: chapter_encore
+frontend: aboutEncoreTitle
+frontend: aboutEncoreMain
+frontend: aboutEncoreButton
+frontend: encoreAvailableMainText
+frontend: encoreAvailableButton
+leveltips: leveltips_encorePrelude1
+leveltips: leveltips_encorePrelude2
+leveltips: leveltips_encoreLimbo
+leveltips: leveltips_encoreLust
+leveltips: leveltips_encoreGluttony
+leveltips: leveltips_encoreGreed
+leveltips: leveltips_encoreWrath
+leveltips: leveltips_encoreHeresy
+leveltips: leveltips_encoreViolence
+leveltips: leveltips_encoreFraud
+leveltips: leveltips_encoreTreachery
+leveltips: leveltips_primeThird
+shop: shop_equipped
+shop: shop_unequipped
+shop: shop_colorsStandard
+act1: act1_lustSecond_checkPoints
+act3: act3_violenceSecond_guttermanTutorialNoKB
+act3: act3_violenceFourth_magentaAttack
+encore: encorePrelude_heatResistanceWarn
+encore: encorePrelude_heatResistanceText
+encore: encorePrelude_heatResistanceTitle
+encore: encorePrelude_heatResistanceRepaired
+encore: encorePrelude_heatResistanceRepairedText
+encore: encoreLimbo_warningText
+primeSanctum: primeSanctum_first_insufficientlight
+levelNames: levelName_encorePrelude
+levelNames: levelName_encoreLimbo
+levelNames: levelName_encoreLust
+levelNames: levelName_encoreGluttony
+levelNames: levelName_encoreGreed
+levelNames: levelName_encoreWrath
+levelNames: levelName_encoreHeresy
+levelNames: levelName_encoreViolence
+levelNames: levelName_encoreFraud
+levelNames: levelName_encoreTreachery
+style: style_lightningbolt
+style: style_heavylight
+style: style_oshaviolation
+cyberGrind: cybergrind_themesCustomFog
+cyberGrind: cybergrind_themesCustomFogColor
+cyberGrind: cybergrind_themesCustomFogDisable
+cyberGrind: cybergrind_themesCustomFogStatic
+cyberGrind: cybergrind_themesCustomFogDynamic
+cyberGrind: cybergrind_themesCustomFogDisableDesc
+cyberGrind: cybergrind_themesCustomFogStart
+cyberGrind: cybergrind_themesCustomFogEnd
+cyberGrind: cybergrind_themesCustomFogDefault
+cyberGrind: cybergrind_musicType
+cyberGrind: cybergrind_musicFolderNameEncores
+tutorial: tutorial_introStatusUpdate
+options: controls_boundMultiple
+options: controls_revolver
+options: controls_shotgun
+options: controls_nailgun
+options: controls_railcannon
+options: controls_rocketLauncher
+options: controls_spawnerArm
+options: controls_rocketLauncher
+options: graphics_disableNewShaders
+misc: DeathSequence
+devMuseum: museum_bookKingGizzard1
+devMuseum: museum_bookKingGizzard2
+devMuseum: museum_bookKingGizzard3
+devMuseum: museum_bookKingGizzard4
+devMuseum: museum_bookKingGizzard5
+devMuseum: museum_bookKingGizzard6
+devMuseum: museum_bookKingGizzard7
+devMuseum: museum_bookKingGizzard8
+devMuseum: museum_bookKingGizzard9
+devMuseum: museum_bookKingGizzard10
+devMuseum: museum_bookKingGizzard11
+devMuseum: museum_bookKingGizzard12
+devMuseum: museum_plaquesKingGizzard1
+devMuseum: museum_plaquesKingGizzard2
+enemyNames: enemyname_radiant_swordsmachine
+enemyNames: enemyname_radiant_cerberus
+enemyNames: enemyname_radiant_hideousMass
+
+MODIFIED:
+style: style_catapaulted -> style_catapulted
+shop: shop_cybergrindReturningTo -> shop_returningTo
+options: control_arms -> controls_fist
+options: controls_changeArm -> controls_changeFist
+options: graphics_gamma1 -> graphics_gamma
+
+REMOVED:
+options: graphics_gamma2
+options: graphics_performanceSimpleNails
+cyberGrind: cybergrind_themesCustomFogDynamicDesc
+cyberGrind: cybergrind_themesCustomFogDynamicDisable
+cyberGrind: cybergrind_themesCustomFogDynamicEnable
+
 1.3.0:
 
 ADDED:
-
 New category: act3
 New category: washing
 New category: ranks
@@ -21,7 +127,7 @@ books: violenceFirst(1-9), violenceFirst_Slate(1-4), violenceSecond(1-2), violen
 cheats: invincibility, enemiesHateEnemies, enemiesIgnorePlayer, hide(Weapons, Ui), ghostDroneMode, categoryVisual, loadLatestSave, dupesOverWriteWarn
 shop: shotgunSawedOn, shotgunSawedOnDescription(1-3), nailgunJumpStart, nailgunJumpStartDescription(1-2), rocketLauncherFireStarter, rocketLauncherFireStarterDescription(1-2), menu
 enemyAlter: hookPointTitle, sandboxTitle, enrage, enrageEternal, sandified, puppeted, ignorePlayer, attackEnemies, hasSkull, altarType, metaDisallowFreezing, metaDisallowManipulation, dualWieldPickup, juice, infiniteUses, materialBlock, hurtzone, hurtCooldown, alter(Red, Blue, Stone), alteredDestroyed
-style: cannonboost, cannonballedfrombounce, drillpunch, drillpunchkill, iconoclasm, insurrknockdown, landyours, rocketreturn, roundtrip, screwed, served, strike, boiled, fireforksweak, forthee, guardbreak, hammerHitGreen, hammerHitHeavy, hammerHitRed, hammerHitYellow ,longwaydown, lost, m_a_d, pancaked, roadkill, slipped, trampled
+style: cannonboost, cannonballedfrombounce, drillpunch, drillpunchkill, iconoclasm, insurrknockdown, landyours, rocketreturn, roundtrip, screwed, served, strike, boiled, fireworksweak, forthee, guardbreak, hammerHitGreen, hammerHitHeavy, hammerHitRed, hammerHitYellow ,longwaydown, lost, m_a_d, pancaked, roadkill, slipped, trampled
 style: bishopcapture, bishoppromo, blackwins, bongcloud, castled, enpassant, foolsmate, pawncapture, knightcapture, knightpromo, queencapture, queenpromo, rookcapture, rookpromo, ultravictory, whitewins
 frontEnd: layer_(violence, fraud, treachery), difficulty_brutalDescription(1-3), leaderboard_reminder
 levelTips: leveltips_violence(First, Second, Third, Fourth, Secret)
@@ -43,6 +149,9 @@ weapon: weapon_nailgunZapper(Ready, OutOfRange, NoTarget, Blocked, Distance, Rec
 ranks: rank_letter_(d, c, b, a, s, p)
 sandbox: shop_stats, navmeshWarn
 washing: wash_(fakeexittext(1-6), wash_exitOpenText(1-3), Clean, ToDo, bloodClean, roomCourtyard, roomLibrary, roomLobby, roomLounge, roomSideroom, littercount, Dumpster, Ground, Pillars, Walls, BackBookshelf, Ceiling, Bookshelf, Bookcases, Desk, FrontBookshelf, Sconces, Sidewall, Walkway, WindowWall, Decor, Floors, Pond)
+secletLevels: secretLevels_seventh_testamentTitle
+secletLevels: secretLevels_seventh_testament(1-10)
+
 
 MODIFIED:
 enemyName: enemyname_minosPrime -> enemyname_boss_minosPrime, enemyname_fleshPrison -> enemyname_boss_fleshPrison

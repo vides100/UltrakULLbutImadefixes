@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using UltrakULL.json;
+using UltrakULL;
 
 using static UltrakULL.CommonFunctions;
 
@@ -24,75 +25,59 @@ namespace UltrakULL.Harmony_Patches
         }
     }
 
-    [HarmonyPatch(typeof(HudMessage), "Update")]
-    public static class HudMessageUpdatePatch
-    {
-        [HarmonyPrefix]
-        public static bool Update_MyPatch(HudMessage __instance, Image ___img, Text ___text)
-        {
-            if(isUsingEnglish())
-            {
-                return false;
-            }
-            
-            if(___img != null && ___text != null)
-            {
-                return true;
-            }
-            return false;
-        }
-    }
-
     [HarmonyPatch(typeof(HudMessageReceiver),"SendHudMessage")]
     public static class SendHudMessagePatch
     {
         [HarmonyPrefix]
-        public static bool SendHudMessage_Prefix(ref string newmessage, string newinput = "", string newmessage2 = "", int delay = 0, bool silent = false)
+        public static bool SendHudMessage_Prefix(ref string newmessage,ref string newinput,ref string newmessage2, int delay = 0, bool silent = false)
         {
-            if(!isUsingEnglish())
+            if (!isUsingEnglish())
             {
-                newmessage = HUDMessages.GetHUDToolTip(newmessage);
+                if ((newmessage != null) && (newmessage2 != null) && (newinput != null))
+                {
+                    newmessage = StringsParent.GetMessage(newmessage, newmessage2, newinput);
+                    newmessage2 = "";
+                    newinput = "";
+                }
+                else
+                {
+                    newmessage = HUDMessages.GetHUDToolTip(newmessage);
+                }
             }
-            
             return true;
         }
     }
 
-    //@Override
-    //Overrides the PlayMessage method from the HudMessage class. This is needed for swapping text in message boxes.
-    [HarmonyPatch(typeof(HudMessage), "PlayMessage")]
-    public static class LocalizeHudMessage
+    [HarmonyPatch(typeof(HudMessageReceiver),"SendHudMessage2")]
+    public static class SendHudMessage2Patch
     {
-        [HarmonyPostfix]
-        public static void PlayMessage_MyPatch(HudMessage __instance, bool ___activated, HudMessageReceiver ___messageHud, TMP_Text ___text, Image ___img)
+        [HarmonyPrefix]
+        public static bool SendHudMessage2_Prefix(ref string format, ref string[] newinputs, int delay, bool silent, ref bool inputBeenProcessed, bool automaticTimer)
         {
-            if(isUsingEnglish())
+            if (!isUsingEnglish())
             {
-                return;
-            }
-            //The HUD display uses 2 kinds of messages.
-            //One for messages that displays KeyCode inputs (for controls), and one that doesn't.
-            //Get the string table based on the area of the game we're currently in.
-            
-            ___messageHud = MonoSingleton<HudMessageReceiver>.Instance;
-            ___text = ___messageHud.text;
-            if(__instance.actionReference == null)
-            {
-                string newMessage = StringsParent.GetMessage(__instance.message, __instance.message2, "");
-                ___text.text = newMessage;
-            }
-            
-            else
-            {
-                string bindingString = MonoSingleton<InputManager>.Instance.GetBindingString(__instance.actionReference.action.id);
+                // Локализуем каждый input, если они есть
+                if (newinputs != null)
+                {
+                    for (int i = 0; i < newinputs.Length; i++)
+                    {
+                        newinputs[i] = GetLocalizedInput(newinputs[i]);
+                    }
+                }
 
-                //Messages that get input.
-                //Compare the start of the first message with the string table.
-                __instance.message = StringsParent.GetMessage(__instance.message, __instance.message2, bindingString);
-                
-                ___text.text = __instance.message;
+                // Если это сообщение о свободном падении на уровне 8-4, заменяем format на переведённый вариант
+                if (format.Contains("WARNING:") && format.Contains("free fall"))
+                {
+                    string translated = Act3Strings.Level84(format, "", newinputs);
+                    if (translated != "Unimplemented string")
+                    {
+                        format = translated;
+                        newinputs = null; // чтобы оригинальный метод не пытался форматировать снова
+                        inputBeenProcessed = true;
+                    }
+                }
             }
-            ___text.text = ___text.text.Replace('$', '\n');
+            return true;
         }
     }
 }

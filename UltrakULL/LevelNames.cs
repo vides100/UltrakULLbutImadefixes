@@ -65,22 +65,24 @@ namespace UltrakULL
 			if (missionName.Contains("9-1")) { return "9-1: " + LanguageManager.CurrentLanguage.levelNames.levelName_treacheryFirst; }
 			if (missionName.Contains("9-2")) { return "9-2: " + LanguageManager.CurrentLanguage.levelNames.levelName_treacherySecond; }
 			
-			if (missionName.Contains("P-1")) { return "P-1: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeFirst; }
+			if (missionName.Contains("0-E")) { return "0-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encorePrelude; }
+            if (missionName.Contains("1-E")) { return "1-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreLimbo; }
+            if (missionName.Contains("P-1")) { return "P-1: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeFirst; }
 			if (missionName.Contains("P-2")) { return "P-2: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeSecond; }
 			if (missionName.Contains("P-3")) { return "P-3: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeThird; }
 
-			if (missionName.Contains("Intermission")) { return "???"; }
+			if (missionName.Contains("Intermission") || missionName.Contains("EarlyAccessEnd")) { return "???"; }
 
 	        Logging.Warn("Unknown level name: " + missionName);
 			return missionName;
         }
 
-		public static string GetLevelName(int missionNum)
-		{
-			if (SceneHelper.IsPlayingCustom)
-			{
-				return MapInfoBase.InstanceAnyType.levelName;
-			}
+		public static string GetLevelName(int missionNum, string levelname="None") //We get the original name of the level, and if we couldn't change it, we return it back.
+        {
+			//if (SceneHelper.IsPlayingCustom)
+			//{
+			//	return MapInfoBase.InstanceAnyType.levelName;
+			//}
 			if (!LanguageManager.UsingHinduNumbers)
 			{
 				switch (missionNum)
@@ -159,15 +161,39 @@ namespace UltrakULL
 						return "9-2: " + LanguageManager.CurrentLanguage.levelNames.levelName_treacherySecond;
 					default:
 						switch (missionNum)
-						{
-							case 666:
-								return "P-1: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeFirst;
-							case 667:
-								return "P-2: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeSecond;
-							case 668:
-								return "P-3: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeThird;
+						{//Just like P-n uses 666~668. Encore levels use 100~109. for some reasons the devs set to use same id as first one in LevelSelectPanel. And also
+                            case 100:
+                                return "0-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encorePrelude;
+                            case 101:
+								return "1-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreLimbo;
+							case 102:
+								return "2-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreLust;
+							case 103:
+								return "3-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreGluttony;
+							case 104:
+								return "4-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreGreed;
+							case 105:
+								return "5-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreWrath;
+							case 106:
+								return "6-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreHeresy;
+							case 107:
+								return "7-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreViolence;
+							case 108:
+								return "8-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreFraud;
+							case 109:
+								return "9-E: " + LanguageManager.CurrentLanguage.levelNames.levelName_encoreTreachery;
 							default:
-								return "MISSION NAME NOT FOUND";
+								switch (missionNum)
+								{
+									case 666:
+										return "P-1: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeFirst;
+									case 667:
+										return "P-2: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeSecond;
+									case 668:
+										return "P-3: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeThird;
+									default:
+										return levelname;
+								}
 						}
 				}
 			}
@@ -257,7 +283,7 @@ namespace UltrakULL
 							case 668:
 								return "P-٣: " + LanguageManager.CurrentLanguage.levelNames.levelName_primeThird;
 							default:
-								return "MISSION NAME NOT FOUND";
+								return levelname;
 						}
 				}
 			}

@@ -1,5 +1,6 @@
 ﻿using UltrakULL.json;
 using static UltrakULL.CommonFunctions;
+using static UnityEngine.InputSystem.InputRemoting;
 
 namespace UltrakULL
 {
@@ -7,9 +8,10 @@ namespace UltrakULL
     {
         private static string _previousMessage = "";
 
-        private static string Level41()
+        private static string Level41(string message, string message2)
         {
-            return "Unknown 4-1 string";
+            string fullMessage = message + message2;
+            return ("Unimplemented string");
         }
         
         private static string Level42(string message, string message2)
@@ -19,7 +21,7 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_greedSecond_sand);
             }
-            return "Unknown 4-2 string";
+            return ("Unimplemented string");
         }
         
         private static string Level43(string message, string message2)
@@ -41,7 +43,7 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_greedThird_tombOfKings);
             }
-            return "Unknown 4-3 string";
+            return ("Unimplemented string");
         }
 
         private static string Level44(string message, string message2, string input)
@@ -87,7 +89,7 @@ namespace UltrakULL
                 return LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage1 + "\n"
                 + LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage2;
             }
-            return "Unknown 4-4 string";
+            return ("Unimplemented string");
         }
 
         private static string Level4Secret(string message, string message2, string input)
@@ -98,7 +100,7 @@ namespace UltrakULL
                 return (LanguageManager.CurrentLanguage.act2.act2_greedSecret_holdToJump1 + "<color=orange> " + input + " </color>" + LanguageManager.CurrentLanguage.act2.act2_greedSecret_holdToJump2);
             }
 
-            return (LanguageManager.CurrentLanguage.act2.act2_greedSecret_holdToJump1 + "<color=orange> " + input + " </color>" + LanguageManager.CurrentLanguage.act2.act2_greedSecret_holdToJump2);
+            return ("Unimplemented string");
         }
 
         private static string Level51(string message, string message2)
@@ -121,7 +123,7 @@ namespace UltrakULL
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathFirst_waterDrained);
             }
 
-            return "Unknown 5-1 string";
+            return ("Unimplemented string");
         }
 
         private static string Level52(string message, string message2)
@@ -147,7 +149,7 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathSecond_idol);
             }
-            return "Unknown 5-2 string";
+            return ("Unimplemented string");
         }
 
         private static string Level53(string message, string message2)
@@ -171,12 +173,13 @@ namespace UltrakULL
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathThird_hank);
             }
 
-            return "Unknown 5-3 string";
+            return ("Unimplemented string");
         }
 
-        private static string Level54()
+        private static string Level54(string message, string message2)
         {
-            return "Unknown 5-4 string";
+            string fullMessage = message + message2;
+            return ("Unimplemented string");
         }
 
         private static string Level5Secret(string message)
@@ -209,9 +212,9 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.fishing.fish_noFishBiting);
             }
-            
-            
-            return "Unknown 5-S string";
+
+
+            return ("Unimplemented string");
         }
 
         private static string Level61(string message, string message2)
@@ -222,12 +225,13 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_heresyFirst_armboy);
             }
-            return "Unknown 6-1 string";
+            return ("Unimplemented string");
         }
 
-        private static string Level62()
+        private static string Level62(string message, string message2)
         {
-            return "Unknown 6-2 string";
+            string fullMessage = message + message2;
+            return ("Unimplemented string");
         }
 
         public static string GetMessage(string message, string message2, string input)
@@ -244,7 +248,7 @@ namespace UltrakULL
             {
                 case "Level 4-1":
                     {
-                        return Level41();
+                        return Level41(message, message2);
                     }
                 case "Level 4-2":
                     {
@@ -276,7 +280,7 @@ namespace UltrakULL
                     }
                 case "Level 5-4":
                     {
-                        return Level54();
+                        return Level54(message, message2);
                     }
                 case "Level 5-S":
                     {
@@ -288,9 +292,13 @@ namespace UltrakULL
                     }
                 case "Level 6-2":
                     {
-                        return Level62();
+                        return Level62(message, message2);
                     }
-                default: return "Unimplemented Act 2 string";
+                default:
+                    {
+                        //Console.WriteLine("Unknown ACT 2 string in " + currentLevel + ": \n" + message + message2);
+                        return ("Unimplemented string");
+                    }
             }
         }
 
