@@ -81,14 +81,7 @@ namespace UltrakULL
                 _previousMessage = LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplash3;
                 return LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplash3;
             }
-            if (fullMessage.Contains("HARD DAMAGE"))
-            {
-                _previousMessage = LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage1 + "\n"
-                    + LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage2;
-
-                return LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage1 + "\n"
-                + LanguageManager.CurrentLanguage.act2.act2_greedFourth_whiplashHardDamage2;
-            }
+           
             return ("Unimplemented string");
         }
 
@@ -110,10 +103,10 @@ namespace UltrakULL
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathFirst_slingshot);
             }
-            if (fullMessage.Contains("WHIPLASH"))
+            /*if (fullMessage.Contains("WHIPLASH")) // We disable, not delete, this condition and key. It is not guaranteed that the game will not return this message.
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathFirst_whiplashUnderwater);
-            }
+            }*/
             if (fullMessage.Contains("SENTRIES"))
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathFirst_sentry);
@@ -121,6 +114,11 @@ namespace UltrakULL
             if (fullMessage.Contains("drained"))
             {
                 return (LanguageManager.CurrentLanguage.act2.act2_wrathFirst_waterDrained);
+            }
+            if (fullMessage.Contains("HARD DAMAGE")) 
+            {
+                return LanguageManager.CurrentLanguage.act2.act2_wrathFirst_whiplashHardDamage1 + "\n" // Renamed to act2_wrathFirst_whiplashHardDamage1 because message moved from 4-4 to 5-1
+                + LanguageManager.CurrentLanguage.act2.act2_wrathFirst_whiplashHardDamage2; // Renamed to act2_wrathFirst_whiplashHardDamage2 because message moved from 4-4 to 5-1
             }
 
             return ("Unimplemented string");

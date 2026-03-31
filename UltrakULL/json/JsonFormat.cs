@@ -2663,9 +2663,6 @@ namespace UltrakULL.json
         public string act2_greedFourth_whiplash2;
         public string act2_greedFourth_whiplash3;
 
-        public string act2_greedFourth_whiplashHardDamage1;
-        public string act2_greedFourth_whiplashHardDamage2;
-
         public string act2_greedSecret_holdToJump1;
         public string act2_greedSecret_holdToJump2;
 
@@ -2674,6 +2671,8 @@ namespace UltrakULL.json
 
         public string act2_greed_secretDoor;
 
+        public string act2_wrathFirst_whiplashHardDamage1;
+        public string act2_wrathFirst_whiplashHardDamage2;
         public string act2_wrathFirst_slingshot;
         public string act2_wrathFirst_whiplashUnderwater;
         public string act2_wrathFirst_waterDrained;
