@@ -417,6 +417,7 @@ namespace UltrakULL.json
         public string style_rocketreturn;
         public string style_roundtrip;
         public string style_terminalvelocity;
+        public string style_heartbreak;
         public string style_scrindonguloded;
         public string style_scrongled;
         public string style_scrongbongled;

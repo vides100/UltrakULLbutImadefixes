@@ -108,6 +108,39 @@ namespace UltrakULL
 			}
 		}
 
+		private static bool IsAprilFoolsPeriod()
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                return now.Month == 4 && (now.Day == 1 || now.Day == 2 || now.Day == 3);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+		private static string AprilFoolsMessage()
+        {
+            int randomNumber = UnityEngine.Random.Range(1, 6); // second parameter is exclusive upper bound, so 6
+
+            switch (randomNumber)
+            {
+                case 1:
+                    return "Your mod collection conflicts as hard as V1 and its will to survive. The console is about to cry blood.";
+                case 2:
+                    return "We added a hidden feature: if you die 100 times in a row, the game will format your C: drive. Just kidding. Or not? Try it yourself.";
+                case 3:
+                    return "You thought a memory leak was a bug? No, it's a feature for a more realistic memory experience — just like a killer robot.";
+                case 4:
+                    return "Ultrakill now charges you for every death: $0.99 will be deducted from your card. Don't worry, it's just an April Fools' joke from your modder. Or is it?";
+                case 5:
+                    return "Attention: all your saves have been deleted. But don't worry, it's just a console glitch. What if it's not? Ha-ha, April Fools' paranoia mode activated.";
+                default:
+                    return "Default message (this should never happen — unless reality itself is bugged).";
+            }
+        }
 		public async void PostInitPatches(GameObject canvasObj)
 		{
 			await Task.Delay(250);
@@ -149,6 +182,11 @@ namespace UltrakULL
 				harmony.PatchAll();
 
 				Logging.Warn(" --- All done. Enjoy! ---");
+				if (IsAprilFoolsPeriod())
+                {
+                    Logging.Error(AprilFoolsMessage());      
+                }
+
 				SceneManager.sceneLoaded += onSceneLoaded;
 				SceneManager.sceneLoaded += SubtitledAudioSourcesReplacer.OnSceneLoaded;
 				this.ready = true;
