@@ -268,6 +268,7 @@
     <Compile Include="Harmony Patches\TexturePatcher.cs" />
     <Compile Include="Harmony Patches\TextGetControlPatch.cs" />
     <Compile Include="Harmony Patches\VariationInfo.cs" />
+    <Compile Include="Harmony Patches\Level84ImageReplacementPatch.cs" />
     <Compile Include="json\LanguageManager.cs" />
     <Compile Include="Harmony Patches\LanguageOptions.cs" />
     <Compile Include="json\UpdateInfo.cs" />

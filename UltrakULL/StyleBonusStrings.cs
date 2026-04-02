@@ -170,6 +170,8 @@ namespace UltrakULL
 				return "<color=green>" + LanguageManager.CurrentLanguage.style.style_roundtrip + "</color>";
 			case "ultrakill.terminalvelocity":
 				return "<color=green>" + LanguageManager.CurrentLanguage.style.style_terminalvelocity;
+			case "ultrakill.heartbreak":
+				return "<color=green>" + LanguageManager.CurrentLanguage.style.style_heartbreak;
 			case "ultrakill.drillhit":
 				return "";
 			case "ultrakill.hammerhit":
