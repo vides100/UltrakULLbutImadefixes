@@ -53,9 +53,13 @@ namespace UltrakULL
 			{
 				return LanguageManager.CurrentLanguage.devMuseum.museum_bookMaximilianOvesson1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMaximilianOvesson2 + "\n\n<i><color=#8f65da>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMaximilianOvesson3 + "</color></i>\n\n";
 			}
+			if (originalText.Contains("RHIANNON MITCHELL</color> - UI ARTIST</b>"))
+			{
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookRhiannonMitchell1 + "\n\n<color=#dabfff><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookRhiannonMitchell2 + "</i></color>";
+			}
 			if (originalText.Contains("VICTORIA HOLLAND</color> - LEAD 3D ARTIST AND GRAPHICS PROGRAMMER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland3 + "\n\n<size=18>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland5 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland6 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland7 + "</size>\n\n<i><color=#F5ABB9>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland8 + "</color></i>\n\n";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland3 + "\n\n<size=18>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland5 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland6 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland7 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland8 + "</size>\n\n<i><color=#F5ABB9>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVictoriaHolland9 + "</color></i>\n\n";
 			}
 			if (originalText.Contains("TONI STIGELL</color> - 3D ARTIST</b>"))
 			{
@@ -69,13 +73,17 @@ namespace UltrakULL
 			{
 				return LanguageManager.CurrentLanguage.devMuseum.museum_bookSamuelJamesBryan1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSamuelJamesBryan2 + "\n\n<i><color=orange>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSamuelJamesBryan3 + "</color></i>";
 			}
+			if (originalText.Contains("DOMENICO ANTONAZZO</color> - RIGGING</b>")) //Additional art
+			{
+				return "<b><color=#979283>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt1 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt2 + "\n\n<color=#979283><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt3 + "\"</i></color>\n\n<b><color=#c7a6ef>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt4 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt5 + "\n\n<color=#c7a6ef><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt6 + "\"</i></color>\n\n<b><color=#b12b39>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt7 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt8 + "\n\n<color=#b12b39><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt9 + "\"</i></color>";
+			}
 			if (originalText.Contains("<b><color=red>CAMERON MARTIN</color> - QUALITY ASSURANCE LEAD"))
 			{
 				return "<b>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamLine1 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamLine2 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamLine3 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamLine4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamLine5 + "</b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamDesc1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamDesc2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamDesc3 + "\n\n<color=red><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamQuote1 + "</i></color>\n\n<color=#6a36be><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamQuote2 + "</i></color>\n\n<color=#11c324><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamQuote3 + "</i></color>\n\n<color=#e28eb6><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamQuote4 + "</i></color>\n\n<color=#4480e6><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQATeamQuote5 + "</i></color>";
 			}
 			if (originalText.Contains("<b><color=orange>PITR</color> - LEAD PROGRAMMER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr3 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr4 + "\n\n<size=18>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr5 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr6 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr7 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr8 + "</size>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr3 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr4 + "\n\n<size=18>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr5 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr6 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr7 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPitr8;
 			}
 			if (originalText.Contains("<b><color=orange>HECKTECK</color> - LEAD PROGRAMMER</b>"))
 			{
@@ -87,11 +95,11 @@ namespace UltrakULL
 			}
 			if (originalText.Contains("CHIZHOV</color> - ADDITIONAL PROGRAMMER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow2 + "\n\n<i><color=#c0c0c0ff>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow3 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow2 + "\n\n<i><color=#c0c0c0ff>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow3 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookCabalcrow4 + "</color></i>";
 			}
 			if (originalText.Contains("LUCAS VARNEY</color> - ADDITIONAL PROGRAMMER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney2 + "\n\n<i><color=#BD8BF3>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney3 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney2 + "\n\n<i><color=#BD8BF3>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney3 + LanguageManager.CurrentLanguage.devMuseum.museum_bookLucasVarney4 + "</color></i>";
 			}
 			if (originalText.Contains("BEN MOIR</color> - ADDITIONAL PROGRAMMER</b>"))
 			{
@@ -113,13 +121,17 @@ namespace UltrakULL
 			{
 				return LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard2 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard3 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard5 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard6 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard7 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard8 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard9 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard10 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard11 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKingGizzard12;
 			}
+			if (originalText.Contains("VYLET PONY</color> - GUEST COMPOSER</b>"))
+			{
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVyletPony1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVyletPony2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVyletPony3 + "\n\n<i><color=# add later>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVyletPony4 + "\n\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVyletPony5 + "</color></i>";
+			}
 			if (originalText.Contains("QUETZAL TIRADO</color> - GUEST MUSICIAN</b>"))
 			{
 				return LanguageManager.CurrentLanguage.devMuseum.museum_bookQuetzalTirado1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQuetzalTirado2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQuetzalTirado3 + "\n\n<i><color=#AA4CAD>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookQuetzalTirado4 + "</color></i>";
 			}
 			if (originalText.Contains("SALAD</color> - HELPING HAND</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad2 + "</size>\n\n<i><color=#20FF20>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad3 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad2 + "\n\n<i><color=#20FF20>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookSalad3 + "</color></i>";
 			}
 			if (originalText.Contains("JACOB H.H.R.</color> - WRITER (PROSE & DIALOGUE)</b>"))
 			{
@@ -127,19 +139,19 @@ namespace UltrakULL
 			}
 			if (originalText.Contains("VVIZARD</color> - MUSEUM DEVELOPER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard3 + "\n\n<i><color=#ee0c47>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard4 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard3 + "\n\n<i><color=#ee0c47>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard4 + "\n\n\n" + LanguageManger.CurrentLanguage.devMuseum.museum_bookVVizard5 + "</color></i>";
 			}
 			if (originalText.Contains("ADDITIONAL MUSIC CREDITS"))
 			{
 				return LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic3 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic4 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic5 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic6 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic7 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic8 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic9 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic10 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic11 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalMusic12;
 			}
-			if (originalText.Contains("COMMUNITY CYBER GRIND"))
+			if (originalText.Contains("COMMUNITY CYBER GRIND")) //Additional credits
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits3 + "\n\nNO LOAFING\nDood\nSplendidLedraps\nJandy\nStuon\nDryzalar\nWakan\nSlimer\nWilliam\nBobot\nSpruce\nJacob\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits4 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits5 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits6 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits7 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits8 + "\n\n<b><color=orange>UltrakULL CREDITS</color>:</b>\n\nMod created by <color=orange>Clearwater</color>\nAdditional code contributions by <color=orange>Temperz87</color>, <color=orange>CoatlessAli</color> and <color=orange>Frizou</color>\nTranslations by various community members of the <color=orange>UltrakULL Translation Team</color>\nDocumentation contributions by <color=orange>Frizou</color>\n\n<color=orange>" + LanguageManager.CurrentLanguage.metadata.langDisplayName + "</color>:\n" + LanguageManager.CurrentLanguage.metadata.langAuthor;
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits3 + "\n\nNO LOAFING\nDood\nSplendidLedraps\nJandy\nStuon\nDryzalar\nWakan\nSlimer\nWilliam\nBobot\nSpruce\nJacob\n\n<size=wtfkindasizeisthat how do you find it?!>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits5 + "\n\n<b>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits6 + "</b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits7 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits8 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits9 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits10 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalCredits11 + "\n\n<b><color=orange>UltrakULL CREDITS</color>:</b>\n\nMod created by <color=orange>Clearwater</color>\nAdditional code contributions by <color=orange>Temperz87</color>, <color=orange>CoatlessAli</color> and <color=orange>Frizou</color>\nTranslations by various community members of the <color=orange>UltrakULL Translation Team</color>\nDocumentation contributions by <color=orange>Frizou</color>\n\n<color=orange>" + LanguageManager.CurrentLanguage.metadata.langDisplayName + "</color>:\n" + LanguageManager.CurrentLanguage.metadata.langAuthor;
 			}
 			if (originalText.Contains("STEPHAN WEYTE</color> - VOICE OF MINOS PRIME</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte3 + "\n\n";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookStephanWeyte3;
 			}
 			if (originalText.Contains("LENVAL BROWN</color> - VOICE OF SISYPHUS PRIME</b>"))
 			{
@@ -151,19 +163,11 @@ namespace UltrakULL
 			}
 			if (originalText.Contains("MANDALORE</color> <color=#9884bb>HERRINGTON</color> - VOICE OF MYSTERIOUS DRUID KNIGHT</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore1 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore3 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore4 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore5 + "\n\n<i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore6 + "</i>\n\n<i><color=#eabbd7>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore7 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore1 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore3 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore4 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore5 + "\n\n<i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore6 + "\n\n<color=#eabbd7>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookMandalore7 + "</color></i>";
 			}
 			if (originalText.Contains("KENNADY RAY</color> - VOICE OF POWER</b>"))
 			{
-				return "<b><color=#FF00A1>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower1 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower2 + "\n\n<color=#FF00A1><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower3 + "\"</i></color>";
-			}
-			if (originalText.Contains("VYLET PONY</color> - GUEST COMPOSER</b>"))
-			{
-				return "<b><color=#A26ADE>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVylet1 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVylet2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVylet3 + "\n\n<color=#A26ADE><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVylet4 + "\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVylet5 + "\"</i></color>";
-			}
-			if (originalText.Contains("DOMENICO ANTONAZZO</color> - RIGGING</b>"))
-			{
-				return "<b><color=#979283>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt1 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt2 + "\n\n<color=#979283><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt3 + "\"</i></color>\n\n<b><color=#c7a6ef>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt4 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt5 + "\n\n<color=#c7a6ef><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt6 + "\"</i></color>\n\n<b><color=#b12b39>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt7 + "</color></b>\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt8 + "\n\n<color=#b12b39><i>\"" + LanguageManager.CurrentLanguage.devMuseum.museum_bookAdditionalArt9 + "\"</i></color>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookPower1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower2 + "\n\n<color=#FF00A1><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower3 + "</i></color>";
 			}
 			if (originalText.Contains("FILTH</color>"))
 			{
@@ -283,115 +287,40 @@ namespace UltrakULL
 				Logging.Info($"  Initial Text (1): '{initialText1}'");
 				
 				// Apply translations based on initial text content
-				if (initialText.Contains("KING GIZZARD"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKingGizzard1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKingGizzard2;
-				}
-				else if (initialText.Contains("Stephan Weyte"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesStephanWeyte1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesStephanWeyte2;
-				}
-				else if (initialText.Contains("Lenval Brown"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLenvalBrown1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLenvalBrown2;
-				}
-				else if (initialText.Contains("Keygen Church"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKeygenChurch1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKeygenChurch2;
-				}
-				else if (initialText.Contains("Meganeko"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMeganeko1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMeganeko2;
-				}
-				else if (initialText.Contains("Salad"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSalad1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSalad2;
-				}
-				else if (initialText.Contains("Jacob H.H.R."))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJacobHHR1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJacobHHR2;
-				}
-				else if (initialText.Contains("Vvizard"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVVizard1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVVizard2;
-				}
-				else if (initialText.Contains("Mandalore Herrington"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMandalore1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMandalore2;
-				}
-				else if (initialText.Contains("Joy Young"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJoyYoung1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJoyYoung2;
-				}
-				else if (initialText.Contains("Arsi \"Hakita\" Patala"))
+				if (initialText.Contains("Arsi \"Hakita\" Patala"))
 				{
 					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHakita1;
 					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHakita2;
 				}
-				else if (initialText.Contains("Emanuil \"Cabalcrow\" Chizhov"))
+				else if (initialText.Contains("Francis Xie"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesCabalcrow1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesCabalcrow2;
-				}
-				else if (initialText.Contains("Ben Moir"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBenMoir1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBenMoir2;
-				}
-				else if (initialText.Contains("Lucas Varney"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLucasVarney1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLucasVarney2;
-				}
-				else if (initialText.Contains("Hazeluff"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHazeluff1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHazeluff2;
-				}
-				else if (initialText.Contains("KENNADY RAY"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKennadyRay1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKennadyRay2;
-				}
-				else if (initialText.Contains("Heckteck"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck2;
-				}
-				else if (initialText.Contains("Maximilian Ovesson"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMaxOvesson1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMaxOvesson2;
-				}
-				else if (initialText.Contains("RHIANNON MITCHELL"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland2;
-				}
-				else if (initialText.Contains("BigRockBMP"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBigRockBMP1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBigRockBMP2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesFrancisXie1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesFrancisXie2;
 				}
 				else if (initialText.Contains("JERICHO_RUS"))
 				{
 					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJerichoRus1;
 					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJerichoRus2;
 				}
-				else if (initialText.Contains("Francis Xie"))
+				else if (initialText.Contains("BigRockBMP"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesFrancisXie1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesFrancisXie2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBigRockBMP1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBigRockBMP2;
+				}
+				else if (initialText.Contains("Maximilian Ovesson"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMaximilianOvesson1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMaximilianOvesson2;
+				}
+				else if (initialText.Contains("RHIANNON MITCHELL"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland2;
+				}
+				else if (initialText.Contains("Victoria Holland"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland2;
 				}
 				else if (initialText.Contains("Toni Stigell"))
 				{
@@ -408,24 +337,9 @@ namespace UltrakULL
 					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSamuelJamesBryan1;
 					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSamuelJamesBryan2;
 				}
-				else if (initialText.Contains("Additional Music"))
+				else if (initialText.Contains("Additonal ART"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalMusic;
-				}
-				else if (initialText.Contains("VYLET PONY"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVyletPony1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVyletPony2;
-				}
-				else if (initialText.Contains("QUETZAL TIRADO"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesQuetzalTirado1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesQuetzalTirado2;
-				}
-				else if (initialText.Contains("HEALTH"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHealth1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHealth2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalArt;
 				}
 				else if (initialText.Contains("Cameron Martin"))
 				{
@@ -452,33 +366,118 @@ namespace UltrakULL
 					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAaronBurzynski1;
 					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAaronBurzynski2;
 				}
-				else if (initialText.Contains("Victoria Holland"))
+				else if (initialText.Contains("PITR"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesPitr1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesPitr2;
+				}
+				else if (initialText.Contains("Heckteck"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck2;
+				}
+				else if (initialText.Contains("Hazeluff"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHazeluff1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHazeluff2;
+				}
+				else if (initialText.Contains("Emanuil \"Cabalcrow\" Chizhov"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesCabalcrow1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesCabalcrow2;
+				}
+				else if (initialText.Contains("Lucas Varney"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLucasVarney1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLucasVarney2;
+				}
+				else if (initialText.Contains("Ben Moir"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBenMoir1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesBenMoir2;
+				}
+				else if (initialText.Contains("Meganeko"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMeganeko1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMeganeko2;
+				}
+				else if (initialText.Contains("Keygen Church"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKeygenChurch1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKeygenChurch2;
+				}
+				else if (initialText.Contains("HEALTH"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHealth1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHealth2;
+				}
+				else if (initialText.Contains("KING GIZZARD"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKingGizzard1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKingGizzard2;
+				}
+				else if (initialText.Contains("VYLET PONY"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVyletPony1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVyletPony2;
+				}
+				else if (initialText.Contains("QUETZAL TIRADO"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesQuetzalTirado1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesQuetzalTirado2;
+				}
+				else if (initialText.Contains("Additional Music"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalMusic;
+				}
+				else if (initialText.Contains("Additonal credits"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalCredits;
+				}
+				else if (initialText.Contains("Salad"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSalad1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesSalad2;
+				}
+				else if (initialText.Contains("Jacob H.H.R."))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJacobHHR1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJacobHHR2;
+				}
+				else if (initialText.Contains("Vvizard"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVVizard1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVVizard2;
+				}
+				else if (initialText.Contains("Stephan Weyte"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesStephanWeyte1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesStephanWeyte2;
+				}
+				else if (initialText.Contains("Lenval Brown"))
+				{
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLenvalBrown1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesLenvalBrown2;
 				}
 				else if (initialText.Contains("Gianni Matragrano"))
 				{
 					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesGianniMatragrano1;
 					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesGianniMatragrano2;
 				}
-				else if (initialText.Contains("PITR"))
+				else if (initialText.Contains("KENNADY RAY"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesPitr1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesPitr2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKennadyRay1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesKennadyRay2;
 				}
-				else if (initialText.Contains("HECKTECK"))
+				else if (initialText.Contains("Joy Young"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesHeckteck2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJoyYoung1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesJoyYoung2;
 				}
-				else if (initialText.Contains("Additonal credits"))
+				else if (initialText.Contains("Mandalore Herrington"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalCredits;
-				}
-				else if (initialText.Contains("Additonal ART"))
-				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesAdditionalArt;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMandalore1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesMandalore2;
 				}
 				else
 				{
