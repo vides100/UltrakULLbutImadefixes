@@ -139,7 +139,7 @@ namespace UltrakULL
 			}
 			if (originalText.Contains("VVIZARD</color> - MUSEUM DEVELOPER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard3 + "\n\n<i><color=#ee0c47>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard4 + "\n\n\n" + LanguageManger.CurrentLanguage.devMuseum.museum_bookVVizard5 + "</color></i>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard2 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard3 + "\n\n<i><color=#ee0c47>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard4 + "\n\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookVVizard5 + "</color></i>";
 			}
 			if (originalText.Contains("ADDITIONAL MUSIC CREDITS"))
 			{
@@ -167,7 +167,7 @@ namespace UltrakULL
 			}
 			if (originalText.Contains("KENNADY RAY</color> - VOICE OF POWER</b>"))
 			{
-				return LanguageManager.CurrentLanguage.devMuseum.museum_bookPower1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower2 + "\n\n<color=#FF00A1><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookPower3 + "</i></color>";
+				return LanguageManager.CurrentLanguage.devMuseum.museum_bookKennadyRay1 + "\n\n" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKennadyRay2 + "\n\n<color=#FF00A1><i>" + LanguageManager.CurrentLanguage.devMuseum.museum_bookKennadyRay3 + "</i></color>";
 			}
 			if (originalText.Contains("FILTH</color>"))
 			{
@@ -314,8 +314,8 @@ namespace UltrakULL
 				}
 				else if (initialText.Contains("RHIANNON MITCHELL"))
 				{
-					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland1;
-					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesVictoriaHolland2;
+					textComponent.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesRhiannonMitchell1;
+					text1Component.text = LanguageManager.CurrentLanguage.devMuseum.museum_plaquesRhiannonMitchell2;
 				}
 				else if (initialText.Contains("Victoria Holland"))
 				{

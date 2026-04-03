@@ -2919,6 +2919,9 @@ namespace UltrakULL.json
         public string museum_bookMaximilianOvesson1;
         public string museum_bookMaximilianOvesson2;
         public string museum_bookMaximilianOvesson3;
+
+        public string museum_bookRhiannonMitchell1;
+        public string museum_bookRhiannonMitchell2;
         
         public string museum_bookVictoriaHolland1;
         public string museum_bookVictoriaHolland2;
@@ -2928,6 +2931,7 @@ namespace UltrakULL.json
         public string museum_bookVictoriaHolland6;
         public string museum_bookVictoriaHolland7;
         public string museum_bookVictoriaHolland8;
+        public string museum_bookVictoriaHolland9;
         
         public string museum_bookToniStigell1;
         public string museum_bookToniStigell2;
@@ -2947,6 +2951,30 @@ namespace UltrakULL.json
         public string museum_bookSamuelJamesBryan1;
         public string museum_bookSamuelJamesBryan2;
         public string museum_bookSamuelJamesBryan3;
+
+        public string museum_bookAdditionalArt1;
+        public string museum_bookAdditionalArt2;
+        public string museum_bookAdditionalArt3;
+        public string museum_bookAdditionalArt4;
+        public string museum_bookAdditionalArt5;
+        public string museum_bookAdditionalArt6;
+        public string museum_bookAdditionalArt7;
+        public string museum_bookAdditionalArt8;
+        public string museum_bookAdditionalArt9;
+
+        public string museum_bookQATeamLine1;
+        public string museum_bookQATeamLine2;
+        public string museum_bookQATeamLine3;
+        public string museum_bookQATeamLine4;
+        public string museum_bookQATeamLine5;
+        public string museum_bookQATeamDesc1;
+        public string museum_bookQATeamDesc2;
+        public string museum_bookQATeamDesc3;
+        public string museum_bookQATeamQuote1;
+        public string museum_bookQATeamQuote2;
+        public string museum_bookQATeamQuote3;
+        public string museum_bookQATeamQuote4;
+        public string museum_bookQATeamQuote5;
         
         public string museum_bookPitr1;
         public string museum_bookPitr2;
@@ -2960,14 +2988,20 @@ namespace UltrakULL.json
         public string museum_bookHeckteck1;
         public string museum_bookHeckteck2;
         public string museum_bookHeckteck3;
+
+        public string museum_bookHazeluff1;
+        public string museum_bookHazeluff2;
+        public string museum_bookHazeluff3;
         
         public string museum_bookCabalcrow1;
         public string museum_bookCabalcrow2;
         public string museum_bookCabalcrow3;
+        public string museum_bookCabalcrow4;
         
         public string museum_bookLucasVarney1;
         public string museum_bookLucasVarney2;
         public string museum_bookLucasVarney3;
+        public string museum_bookLucasVarney4;
         
         public string museum_bookBenMoir1;
         public string museum_bookBenMoir2;
@@ -3004,6 +3038,12 @@ namespace UltrakULL.json
         public string museum_bookKingGizzard11;
         public string museum_bookKingGizzard12;
 
+        public string museum_bookVyletPony1;
+        public string museum_bookVyletPony2;
+        public string museum_bookVyletPony3;
+        public string museum_bookVyletPony4;
+        public string museum_bookVyletPony5;
+
         public string museum_bookQuetzalTirado1;
         public string museum_bookQuetzalTirado2;
         public string museum_bookQuetzalTirado3;
@@ -3012,6 +3052,7 @@ namespace UltrakULL.json
         public string museum_bookSalad1;
         public string museum_bookSalad2;
         public string museum_bookSalad3;
+        // why is this commented out?
         //public string museum_bookSalad4;
         //public string museum_bookSalad5;
         
@@ -3023,6 +3064,7 @@ namespace UltrakULL.json
         public string museum_bookVVizard2;
         public string museum_bookVVizard3;
         public string museum_bookVVizard4;
+        public string museum_bookVVizard5;
         
         public string museum_bookAdditionalMusic1;
         public string museum_bookAdditionalMusic2;
@@ -3045,6 +3087,9 @@ namespace UltrakULL.json
         public string museum_bookAdditionalCredits6;
         public string museum_bookAdditionalCredits7;
         public string museum_bookAdditionalCredits8;
+        public string museum_bookAdditionalCredits9;
+        public string museum_bookAdditionalCredits10;
+        public string museum_bookAdditionalCredits11;
         
         public string museum_bookStephanWeyte1;
         public string museum_bookStephanWeyte2;
@@ -3052,12 +3097,15 @@ namespace UltrakULL.json
         
         public string museum_bookLenvalBrown1;
         public string museum_bookLenvalBrown2;
-        public string museum_bookLenvalBrown3;
         
         public string museum_bookGianniMatragrano1;
         public string museum_bookGianniMatragrano2;
         public string museum_bookGianniMatragrano3;
         public string museum_bookGianniMatragrano4;
+
+        public string museum_bookKennadyRay1;
+        public string museum_bookKennadyRay2;
+        public string museum_bookKennadyRay3;
         
         public string museum_bookMandalore1;
         public string museum_bookMandalore2;
@@ -3066,6 +3114,42 @@ namespace UltrakULL.json
         public string museum_bookMandalore5;
         public string museum_bookMandalore6;
         public string museum_bookMandalore7;
+
+        public string museum_enemiesFilth1;
+        public string museum_enemiesFilth2;
+        public string museum_enemiesFilth3;
+        public string museum_enemiesFilth4;
+        public string museum_enemiesFilth5;
+        public string museum_enemiesFilth6;
+        public string museum_enemiesFilth7;
+        
+        public string museum_enemiesStray1;
+        public string museum_enemiesStray2;
+        public string museum_enemiesStray3;
+        public string museum_enemiesStray4;
+        public string museum_enemiesStray5;
+        
+        public string museum_enemiesSchism1;
+        public string museum_enemiesSchism2;
+        public string museum_enemiesSchism3;
+        public string museum_enemiesSchism4;
+        public string museum_enemiesSchism5;
+        public string museum_enemiesSchism6;
+        
+        public string museum_enemiesSwordsmachine1;
+        public string museum_enemiesSwordsmachine2;
+        public string museum_enemiesSwordsmachine3;
+        public string museum_enemiesSwordsmachine4;
+        public string museum_enemiesSwordsmachine5;
+        public string museum_enemiesSwordsmachine6;
+        
+        public string museum_enemiesMaliciousFace1;
+        public string museum_enemiesMaliciousFace2;
+        public string museum_enemiesMaliciousFace3;
+        public string museum_enemiesMaliciousFace4;
+        public string museum_enemiesMaliciousFace5;
+        public string museum_enemiesMaliciousFace6;
+        public string museum_enemiesMaliciousFace7;
         
         public string museum_weaponsBeamcutter1;
         public string museum_weaponsBeamcutter2;
@@ -3106,42 +3190,6 @@ namespace UltrakULL.json
         public string museum_weaponsNailgun5;
         public string museum_weaponsNailgun6;
         
-        public string museum_enemiesFilth1;
-        public string museum_enemiesFilth2;
-        public string museum_enemiesFilth3;
-        public string museum_enemiesFilth4;
-        public string museum_enemiesFilth5;
-        public string museum_enemiesFilth6;
-        public string museum_enemiesFilth7;
-        
-        public string museum_enemiesStray1;
-        public string museum_enemiesStray2;
-        public string museum_enemiesStray3;
-        public string museum_enemiesStray4;
-        public string museum_enemiesStray5;
-        
-        public string museum_enemiesSchism1;
-        public string museum_enemiesSchism2;
-        public string museum_enemiesSchism3;
-        public string museum_enemiesSchism4;
-        public string museum_enemiesSchism5;
-        public string museum_enemiesSchism6;
-        
-        public string museum_enemiesSwordsmachine1;
-        public string museum_enemiesSwordsmachine2;
-        public string museum_enemiesSwordsmachine3;
-        public string museum_enemiesSwordsmachine4;
-        public string museum_enemiesSwordsmachine5;
-        public string museum_enemiesSwordsmachine6;
-        
-        public string museum_enemiesMaliciousFace1;
-        public string museum_enemiesMaliciousFace2;
-        public string museum_enemiesMaliciousFace3;
-        public string museum_enemiesMaliciousFace4;
-        public string museum_enemiesMaliciousFace5;
-        public string museum_enemiesMaliciousFace6;
-        public string museum_enemiesMaliciousFace7;
-
         public string museum_plaquesMuseumTitle;
         
         public string museum_plaquesHakita1;
@@ -3161,8 +3209,11 @@ namespace UltrakULL.json
         public string museum_plaquesBigRockBMP1;
         public string museum_plaquesBigRockBMP2;
         
-        public string museum_plaquesMaxOvesson1;
-        public string museum_plaquesMaxOvesson2;
+        public string museum_plaquesMaximilianOvesson1;
+        public string museum_plaquesMaximilianOvesson2;
+
+        public string museum_plaquesRhiannonMitchell1;
+        public string museum_plaquesRhiannonMitchell2;
         
         public string museum_plaquesVictoriaHolland1;
         public string museum_plaquesVictoriaHolland2;
@@ -3176,6 +3227,8 @@ namespace UltrakULL.json
         public string museum_plaquesSamuelJamesBryan1;
         public string museum_plaquesSamuelJamesBryan2;
         
+        public string museum_plaquesAdditionalArt;
+
         public string museum_plaquesCameronMartin1;
         public string museum_plaquesCameronMartin2;
         
@@ -3187,12 +3240,18 @@ namespace UltrakULL.json
         
         public string museum_plaquesScottGurney1;
         public string museum_plaquesScottGurney2;
+
+        public string museum_plaquesAaronBurzynski1;
+        public string museum_plaquesAaronBurzynski2;
         
         public string museum_plaquesPitr1;
         public string museum_plaquesPitr2;
         
         public string museum_plaquesHeckteck1;
         public string museum_plaquesHeckteck2;
+
+        public string museum_plaquesHazeluff1;
+        public string museum_plaquesHazeluff2;
         
         public string museum_plaquesCabalcrow1;
         public string museum_plaquesCabalcrow2;
@@ -3215,13 +3274,17 @@ namespace UltrakULL.json
         public string museum_plaquesHealth1;
         public string museum_plaquesHealth2;
 
-        public string museum_plaquesHazeluff1;
-        public string museum_plaquesHazeluff2;
         public string museum_plaquesKingGizzard1;
         public string museum_plaquesKingGizzard2;
 
+        public string museum_plaquesVyletPony1;
+        public string museum_plaquesVyletPony2;
+
         public string museum_plaquesQuetzalTirado1;
         public string museum_plaquesQuetzalTirado2;
+
+        public string museum_plaquesAdditionalMusic;
+        public string museum_plaquesAdditionalCredits;
         
         public string museum_plaquesSalad1;
         public string museum_plaquesSalad2;
@@ -3232,9 +3295,6 @@ namespace UltrakULL.json
         public string museum_plaquesVVizard1;
         public string museum_plaquesVVizard2;
         
-        public string museum_plaquesAdditionalMusic;
-        public string museum_plaquesAdditionalCredits;
-        
         public string museum_plaquesStephanWeyte1;
         public string museum_plaquesStephanWeyte2;
         
@@ -3244,6 +3304,9 @@ namespace UltrakULL.json
         public string museum_plaquesGianniMatragrano1;
         public string museum_plaquesGianniMatragrano2;
         
+        public string museum_plaquesKennadyRay1;
+        public string museum_plaquesKennadyRay2;
+
         public string museum_plaquesJoyYoung1;
         public string museum_plaquesJoyYoung2;
         
@@ -3273,48 +3336,7 @@ namespace UltrakULL.json
         public string museum_spoiler2;
         public string museum_spoiler3;
 
-        public string museum_bookQATeamLine1;
-        public string museum_bookQATeamLine2;
-        public string museum_bookQATeamLine3;
-        public string museum_bookQATeamLine4;
-        public string museum_bookQATeamLine5;
-        public string museum_bookQATeamDesc1;
-        public string museum_bookQATeamDesc2;
-        public string museum_bookQATeamDesc3;
-        public string museum_bookQATeamQuote1;
-        public string museum_bookQATeamQuote2;
-        public string museum_bookQATeamQuote3;
-        public string museum_bookQATeamQuote4;
-        public string museum_bookQATeamQuote5;
-        public string museum_bookHazeluff1;
-        public string museum_bookHazeluff2;
-        public string museum_bookHazeluff3;
-        public string museum_bookPower1;
-        public string museum_bookPower2;
-        public string museum_bookPower3;
-        public string museum_bookVylet1;
-        public string museum_bookVylet2;
-        public string museum_bookVylet3;
-        public string museum_bookVylet4;
-        public string museum_bookVylet5;
-        public string museum_bookAdditionalArt1;
-        public string museum_bookAdditionalArt2;
-        public string museum_bookAdditionalArt3;
-        public string museum_bookAdditionalArt4;
-        public string museum_bookAdditionalArt5;
-        public string museum_bookAdditionalArt6;
-        public string museum_bookAdditionalArt7;
-        public string museum_bookAdditionalArt8;
-        public string museum_bookAdditionalArt9;
-        public string museum_plaquesAaronBurzynski1;
-        public string museum_plaquesAaronBurzynski2;
-        public string museum_plaquesKennadyRay1;
-        public string museum_plaquesKennadyRay2;
-        public string museum_plaquesVyletPony1;
-        public string museum_plaquesVyletPony2;
-        public string museum_plaquesAdditionalArt;
-
- }
+    }
 
     public class Misc
     {
