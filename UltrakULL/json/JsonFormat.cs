@@ -3052,9 +3052,6 @@ namespace UltrakULL.json
         public string museum_bookSalad1;
         public string museum_bookSalad2;
         public string museum_bookSalad3;
-        // why is this commented out?
-        //public string museum_bookSalad4;
-        //public string museum_bookSalad5;
         
         public string museum_bookJacobHHR1;
         public string museum_bookJacobHHR2;
